@@ -1,0 +1,709 @@
+# PROJECT: AI ENGINEERING LAB
+## A Six-Hour Intensive, Hands-On AI Engineering Crash Course
+
+### 1. YOUR ROLE
+
+Act as a Senior AI Engineer, Senior Full-Stack Architect, Product Designer and Autonomous Coding Agent.
+
+Your responsibility is to help me learn modern AI Engineering through an intensive, hands-on crash course, supported by a dedicated learning website and one substantial practical project.
+
+I already understand:
+- Python and programming fundamentals.
+- APIs and backend development.
+- Basic LLM concepts.
+- Full-stack web development.
+
+Do not teach me from absolute scratch.
+
+I want to learn at an accelerated pace, but with enough technical depth to understand the underlying engineering.
+
+My priorities:
+
+1. Hands-on implementation.
+2. Strong conceptual clarity.
+3. Production-level architectural understanding.
+4. Current tools and practices.
+5. Minimal repetition.
+6. Excellent frontend design.
+7. One meaningful final project.
+
+The target learning duration is approximately six hours, from 1:30 PM to 8 PM.
+
+This is an intensive crash course, not a multi-week curriculum.
+
+---
+
+# 2. CRITICAL: THREE DISTINCT COMPONENTS
+
+There are three separate components in this initiative.
+
+Understand their responsibilities clearly.
+
+## A. AI ENGINEERING LAB — THE LEARNING WEBSITE
+
+Build a standalone web application using Next.js, TypeScript and Tailwind CSS.
+
+This website is my personal AI Engineering learning environment.
+
+It will contain:
+- Learning dashboard.
+- Course roadmap.
+- Learning objectives.
+- External learning resources.
+- Interactive RAG playground.
+- Evaluation dashboard.
+- LangGraph visualizer.
+- Agent playground.
+- Experiment tracking.
+- Technical visualizations.
+- Learning progress.
+
+The website supports my learning by making concepts visible and allowing me to experiment with them.
+
+It is NOT the final AI project.
+
+It is NOT where the main teaching conversation happens.
+
+## B. CHATGPT — THE ACTUAL TEACHER
+
+I will learn through a separate ChatGPT conversation.
+
+ChatGPT is my technical mentor.
+
+Its responsibilities:
+- Explain concepts.
+- Teach system architecture.
+- Explain underlying execution models.
+- Guide implementation.
+- Discuss engineering decisions.
+- Analyse code and outputs.
+- Explain trade-offs.
+- Provide useful resources.
+- Help me understand what I am building.
+
+We will learn one topic at a time.
+
+Keep explanations concise, technically strong and practical.
+
+Avoid repetitive textbook explanations.
+
+The website should complement this conversation, not replace it.
+
+## C. PROJECT ODYSSEY — THE FINAL AI APPLICATION
+
+Build one completely separate application called:
+
+# ODYSSEY — AI SPACE MISSION CONTROL
+
+This is the actual AI engineering project.
+
+It will be developed progressively as we learn the concepts.
+
+It must have:
+- Its own frontend.
+- Its own backend.
+- Its own project structure.
+- Its own database and AI infrastructure.
+- Its own application architecture.
+
+Do not embed Odyssey inside the AI Engineering Lab.
+
+Do not combine their frontends.
+
+They are two independent products developed alongside each other.
+
+---
+
+# 3. PROJECT ODYSSEY — THE FINAL GOAL
+
+## Concept
+
+Build an AI-powered fictional space exploration and mission-control platform.
+
+Imagine a futuristic space agency managing exploration missions across different planets.
+
+The system contains a fictional universe with:
+- Planets.
+- Missions.
+- Crew members.
+- Scientific reports.
+- Mission logs.
+- Equipment manuals.
+- Environmental observations.
+- Historical events.
+- Anomalies.
+- Exploration records.
+
+Users interact with the platform to explore information, investigate discoveries, plan missions and ask questions.
+
+### Core capabilities
+
+1. Chat with the AI mission assistant.
+2. Ask questions about planets and missions.
+3. Upload and process mission documents.
+4. Retrieve relevant scientific evidence.
+5. Investigate unusual discoveries.
+6. Compare information across documents.
+7. Search for relevant clues.
+8. Call mission-related tools.
+9. Plan exploration workflows.
+10. Generate evidence-grounded recommendations.
+11. Escalate important decisions for human approval.
+
+The application should feel like a sophisticated mission-control system, not a generic chatbot.
+
+However, prioritize AI engineering functionality over decorative space-game features.
+
+## Why Odyssey?
+
+It gives us a sufficiently rich and universally understandable hypothetical environment.
+
+It allows us to learn and implement:
+
+- RAG.
+- Embeddings.
+- Vector search.
+- Hybrid retrieval.
+- Reranking.
+- LLM evaluation.
+- Golden datasets.
+- LangGraph.
+- Tool calling.
+- Agent workflows.
+- Agent evaluation.
+- Dataset engineering.
+- Observability.
+- Inference optimization.
+- Production architecture.
+
+The fictional environment also lets us create deterministic ground-truth datasets and reproducible evaluation scenarios.
+
+Create enough fictional mission data to make retrieval, reasoning and evaluation meaningful.
+
+---
+
+# 4. THE SIX-HOUR LEARNING CURRICULUM
+
+Cover the following subjects in this order.
+
+Do not introduce unrelated curriculum or expand the scope unnecessarily.
+
+## MODULE 1: RAG ENGINEERING
+Duration: 60 minutes
+
+Teach and implement:
+
+- RAG architecture.
+- Document ingestion.
+- Chunking strategies.
+- Chunk overlap.
+- Embeddings.
+- Vector databases.
+- Semantic search.
+- Similarity scores.
+- Metadata filtering.
+- Context construction.
+- Prompt construction.
+- Grounded answer generation.
+- Source citations.
+
+Explain:
+- Why RAG exists.
+- How retrieval and generation interact.
+- How chunking affects retrieval quality.
+- How embeddings represent information.
+- What happens when the knowledge base grows.
+- How document updates are handled.
+- Common retrieval failure modes.
+
+Practical outcome:
+
+A working Odyssey knowledge assistant that can answer questions using mission documents.
+
+## MODULE 2: LLM EVALUATION
+Duration: 60 minutes
+
+Teach and implement:
+
+- Evaluation datasets.
+- Golden datasets.
+- Reference answers.
+- Reference-based evaluation.
+- Reference-free evaluation.
+- LLM-as-a-Judge.
+- Faithfulness.
+- Answer relevancy.
+- Context precision.
+- Context recall.
+- Correctness.
+- Hallucination evaluation.
+- RAGAS.
+- Evaluation pipelines.
+- Failure analysis.
+
+Explain:
+- Why traditional software testing is insufficient for LLM applications.
+- How to determine whether an answer is actually good.
+- Why a plausible answer can still be incorrect.
+- How to evaluate retrieval separately from generation.
+- How to build a repeatable evaluation process.
+
+Practical outcome:
+
+A working evaluation suite for Odyssey with a golden dataset and measurable results.
+
+## MODULE 3: LANGGRAPH
+Duration: 60 minutes
+
+Teach and implement:
+
+- Graph fundamentals.
+- Nodes and edges.
+- State management.
+- Conditional edges.
+- Routing.
+- Cycles and loops.
+- Tool calling.
+- Persistence.
+- Checkpointing.
+- Interrupts.
+- Human-in-the-loop.
+- Subgraphs.
+- Retries.
+- Error handling.
+
+Explain:
+- Why LangGraph is useful.
+- How graph execution works.
+- How state moves between nodes.
+- When to use conditional routing.
+- How to design reliable workflows.
+- How checkpointing supports resumable execution.
+
+Practical outcome:
+
+An Odyssey mission-investigation workflow using LangGraph.
+
+## MODULE 4: ADVANCED RAG
+Duration: 60 minutes
+
+Teach and implement:
+
+- Dense retrieval.
+- Sparse retrieval.
+- BM25.
+- Hybrid search.
+- Reciprocal Rank Fusion.
+- Reranking.
+- Query rewriting.
+- Multi-query retrieval.
+- Metadata filtering.
+- Retrieval optimization.
+
+Explain:
+- Why semantic search alone may be insufficient.
+- When keyword search is better.
+- How hybrid search works.
+- Why reranking improves retrieval.
+- How to compare retrieval strategies.
+
+Practical outcome:
+
+An improved Odyssey retrieval pipeline with measurable comparisons against baseline retrieval.
+
+## MODULE 5: AGENT EVALUATION
+Duration: 60 minutes
+
+Teach and implement:
+
+- Agent evaluation.
+- Tool-call accuracy.
+- Trajectory evaluation.
+- Task completion.
+- Routing accuracy.
+- Failure recovery.
+- Agent reliability.
+- Multi-step execution evaluation.
+- Regression testing.
+
+Explain the difference between evaluating an agent's final answer and evaluating its complete execution.
+
+Practical outcome:
+
+An evaluation suite that tests Odyssey's mission-investigation workflows, tool selection and execution paths.
+
+## MODULE 6: INTEGRATION AND PRODUCTION SYSTEM DESIGN
+Duration: 70 minutes
+
+Bring everything together.
+
+Cover:
+
+- Complete application architecture.
+- RAG and LangGraph integration.
+- Evaluation pipelines.
+- Logging and tracing.
+- Observability.
+- Latency.
+- Token consumption.
+- Cost optimization.
+- Failure handling.
+- Production monitoring.
+- Testing.
+- CI/CD evaluation.
+- Scaling considerations.
+
+Discuss:
+- What happens when document volume grows?
+- How do we handle concurrent requests?
+- How do we prevent unreliable answers?
+- How do we detect regressions?
+- How do we manage LLM provider failures?
+- How do we monitor production quality?
+- How do we improve the system using user feedback?
+
+Practical outcome:
+
+An integrated Odyssey application with an evaluation and observability layer.
+
+---
+
+# 5. AI ENGINEERING LAB — WEBSITE DESIGN
+
+Build the website using:
+
+- Next.js App Router.
+- TypeScript.
+- Tailwind CSS.
+- shadcn/ui.
+- Lucide icons.
+- Recharts.
+
+## Visual direction: Klyro-inspired
+
+The design must be premium, modern, dark and colorful.
+
+Use:
+- Deep navy and near-black backgrounds.
+- Purple, blue and cyan accents.
+- Subtle gradients.
+- Elegant typography.
+- Beautiful spacing.
+- Clean cards.
+- Interactive charts.
+- Smooth transitions.
+- Subtle glow effects.
+- Excellent responsive layouts.
+
+Avoid generic dashboard templates and excessive decoration.
+
+It should look like a professional developer product.
+
+## Website sections
+
+### A. Dashboard
+
+Display:
+- Overall learning progress.
+- Current module.
+- Session timeline.
+- Completed learning objectives.
+- Project progress.
+- Recent experiments.
+- Next task.
+
+### B. Learning Roadmap
+
+Display all six modules.
+
+For each module include:
+- Concepts to learn.
+- Learning objectives.
+- Important terminology.
+- Expected implementation.
+- Estimated duration.
+- Completion status.
+- External resources.
+
+### C. RAG Playground
+
+Allow me to:
+- Upload documents.
+- Inspect chunks.
+- View document metadata.
+- Enter queries.
+- Inspect retrieved documents.
+- View similarity scores.
+- Compare retrieval results.
+- Inspect generated answers.
+- View source citations.
+
+### D. Evaluation Dashboard
+
+Display:
+- Golden datasets.
+- Evaluation runs.
+- Faithfulness.
+- Answer relevancy.
+- Context precision.
+- Context recall.
+- Correctness.
+- Failed test cases.
+- Evaluation history.
+- Baseline comparisons.
+
+Allow individual test-case inspection.
+
+### E. LangGraph Visualizer
+
+Display actual execution information:
+- Nodes.
+- Edges.
+- Conditional branches.
+- Execution paths.
+- State transitions.
+- Tool calls.
+- Retries.
+- Node inputs and outputs.
+
+The visualizer must be connected to real backend execution data.
+
+Do not create fake execution animations.
+
+### F. Agent Playground
+
+Allow me to submit queries and inspect:
+- Agent execution.
+- Tool invocations.
+- Retrieved evidence.
+- Intermediate outputs.
+- Graph transitions.
+- Final results.
+- Execution traces.
+
+Show observable execution events and concise decision summaries, not hidden chain-of-thought.
+
+### G. Experiments and Benchmarks
+
+Allow comparison of:
+- Chunking strategies.
+- Embedding configurations.
+- Retrieval methods.
+- Reranking.
+- Prompts.
+- Evaluation results.
+- Latency.
+- Token usage.
+- Cost estimates.
+
+Use real execution data.
+
+---
+
+# 6. ODYSSEY — APPLICATION ARCHITECTURE
+
+Build Odyssey independently using:
+
+### Frontend
+- Next.js.
+- TypeScript.
+- Tailwind CSS.
+- shadcn/ui.
+
+Design its interface around a futuristic mission-control experience.
+
+Include:
+- Mission dashboard.
+- Planet and mission information.
+- Mission document explorer.
+- AI mission assistant.
+- Investigation interface.
+- Evidence viewer.
+- Agent execution history.
+
+### Backend
+- Python.
+- FastAPI.
+- LangGraph.
+- Pydantic.
+
+### AI Infrastructure
+- OpenAI API or a suitable model provider.
+- Qdrant.
+- RAGAS.
+- LangSmith where useful.
+- BM25.
+- Cross-encoder reranking.
+
+### Testing
+- Pytest.
+
+Keep the implementation modular and maintainable.
+
+Use current supported APIs.
+
+Avoid unnecessary dependencies.
+
+---
+
+# 7. TEACHING AND CODING WORKFLOW
+
+This distinction is especially important.
+
+## ChatGPT handles teaching.
+
+When I ask to learn a topic:
+
+1. Explain the concept concisely.
+2. Explain why it exists.
+3. Show its architecture and data flow.
+4. Explain how it works internally.
+5. Connect it to Odyssey.
+6. Discuss relevant engineering trade-offs.
+7. Give me useful documentation and video links.
+8. Help me understand the actual implementation.
+9. Move forward without repeating material.
+
+Keep explanations technically meaningful but easy to follow.
+
+## Coding agent handles implementation.
+
+I want autonomous coding.
+
+The coding agent should:
+- Create both applications independently.
+- Scaffold project structures.
+- Build frontend components.
+- Implement backend APIs.
+- Integrate AI services.
+- Configure dependencies.
+- Write tests.
+- Debug issues.
+- Verify functionality.
+- Maintain documentation.
+
+Do not repeatedly ask me to write boilerplate.
+
+Do not wait for approval for ordinary engineering decisions.
+
+Ask me only when an important architectural or product decision requires my input.
+
+The coding agent should do the repetitive implementation work while I focus on understanding the engineering.
+
+---
+
+# 8. LEARNING RESOURCES
+
+For every major topic, provide carefully selected resources.
+
+Prioritize:
+
+1. Official documentation.
+2. High-quality YouTube tutorials.
+3. Technical engineering articles.
+4. Relevant GitHub repositories.
+5. Architecture explanations.
+
+For every resource include:
+- Direct URL.
+- What it explains.
+- Why it is useful.
+- Relevant section or timestamp, if available.
+
+Use current documentation and APIs.
+
+Never invent links or video timestamps.
+
+Keep resources targeted. Do not send me entire long playlists unnecessarily.
+
+The main teaching must still happen through our ChatGPT conversation.
+
+---
+
+# 9. ENGINEERING RULES
+
+- Do not build everything from scratch when mature libraries are available.
+- Do not repeat implementations unnecessarily.
+- Do not build five disconnected toy projects.
+- Do not dump the entire codebase in one response.
+- Build functional vertical slices.
+- Use real execution data.
+- Use actual evaluation results.
+- Implement error handling and logging.
+- Keep frontend and backend responsibilities separate.
+- Keep the two applications separate.
+- Never expose API keys in frontend code.
+- Do not spend time on authentication, payments or unnecessary SaaS features.
+- Do not overengineer.
+- Prioritize learning value over feature count.
+
+The six-hour timeline is for the learning sprint and first functional implementations, not a promise to complete an enormous production application.
+
+---
+
+# 10. FINAL SUCCESS CRITERIA
+
+## AI Engineering Lab
+
+I should have:
+- A polished Next.js learning website.
+- A clear six-module roadmap.
+- Learning objectives and resources.
+- Functional RAG playground.
+- Evaluation dashboard.
+- LangGraph visualizer.
+- Agent playground.
+- Experiment tracking.
+
+## Odyssey
+
+I should have:
+- A separate working AI space mission-control application.
+- A functional RAG pipeline.
+- Document ingestion.
+- Semantic and hybrid retrieval.
+- Reranking.
+- Evidence-grounded answers.
+- A LangGraph investigation workflow.
+- Tool calling.
+- Agent evaluation.
+- Basic observability.
+
+## Learning outcome
+
+I should be able to confidently explain:
+- How RAG works.
+- How to evaluate LLM applications.
+- How LangGraph works.
+- How to build and evaluate agent workflows.
+- How to improve retrieval.
+- How to measure AI system reliability.
+- How to design production-oriented AI applications.
+
+I should understand the architecture and trade-offs, not merely know how to use libraries.
+
+---
+
+# 11. START INSTRUCTIONS
+
+Before coding:
+
+1. Confirm that you understand the three separate components.
+2. Present the AI Engineering Lab architecture.
+3. Present the independent Odyssey architecture.
+4. Show the six-module learning roadmap.
+5. Define the minimum working features.
+6. Identify required dependencies and API keys.
+7. Present the implementation sequence.
+
+Then start autonomous development.
+
+Prioritize getting a working RAG pipeline inside Odyssey and a usable learning dashboard inside the Lab as early as possible.
+
+Do not spend excessive time planning.
+
+Do not introduce unrelated topics.
+
+Do not expand this into a multi-week course.
+
+**The mission is simple: learn modern AI Engineering properly, build an impressive practical application called Odyssey, and use a beautiful interactive learning website to support the entire experience — all through an intensive, hands-on six-hour crash course.**
