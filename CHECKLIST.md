@@ -91,25 +91,25 @@ Resources: [Hamel: Your AI product needs evals](https://hamel.dev/blog/posts/eva
 
 ## M3 LangGraph + Agent Harness (60 min)
 **Learn**
-- [ ] What an agent harness is: the runtime around the model (loop, tools, context, memory, permissions, limits). Claude Code / Codex are harnesses; our graph is Odyssey's
-- [ ] Context engineering: what goes into the window each step (system prompt, tool results, retrieved evidence, trimmed history)
-- [ ] Why graphs: explicit control flow vs a free-running agent loop
-- [ ] State (TypedDict + reducers), nodes, edges, conditional edges, cycles
-- [ ] Tool calling: model emits a tool call → ToolNode executes → loop
-- [ ] Checkpointing: thread_id, resume, time travel
-- [ ] Interrupts / human-in-the-loop: `interrupt()` + `Command(resume=...)`
-- [ ] Retries + error handling; subgraphs (concept)
+- [x] What an agent harness is: the runtime around the model (loop, tools, context, memory, permissions, limits). Claude Code / Codex are harnesses; our graph is Odyssey's
+- [x] Context engineering: what goes into the window each step (system prompt, tool results, retrieved evidence, trimmed history)
+- [x] Why graphs: explicit control flow vs a free-running agent loop
+- [x] State (TypedDict + reducers), nodes, edges, conditional edges, cycles
+- [x] Tool calling: model emits a tool call → ToolNode executes → loop
+- [x] Checkpointing: thread_id, resume, time travel
+- [x] Interrupts / human-in-the-loop: `interrupt()` + `Command(resume=...)`
+- [x] Retries + error handling; subgraphs (concept)
 
 **Build**
-- [ ] Tools: `search_docs`, `get_mission(id)`, `get_crew(mission)`, `request_director_approval(...)`
-- [ ] Investigation graph: classify → retrieve/tools loop → assess evidence → (needs approval? → interrupt) → recommend
-- [ ] Checkpointer; record node-level events (node, input, output, ms) as a trace list
-- [ ] Retry policy on the LLM node
+- [x] Tools: `search_docs`, `get_mission(id)`, `get_crew(mission)`, `request_director_approval(...)`
+- [x] Investigation graph: classify → retrieve/tools loop → assess evidence → (needs approval? → interrupt) → recommend
+- [x] Checkpointer; record node-level events (node, input, output, ms) as a trace list
+- [x] Retry policy on the LLM node
 
 **Verify**
-- [ ] "Investigate ANM-0042 and recommend next steps" → runs, cites evidence, **pauses for approval**
-- [ ] Resume with approve / reject → different endings
-- [ ] Print the trace: nodes visited + tool calls in order
+- [x] "Investigate ANM-0042 and recommend next steps" → runs, cites evidence, **pauses for approval**
+- [x] Resume with approve / reject → different endings
+- [x] Print the trace: nodes visited + tool calls in order
 
 Resources: [LangGraph overview](https://docs.langchain.com/oss/python/langgraph/overview) · [Persistence](https://docs.langchain.com/oss/python/langgraph/persistence) · [Interrupts](https://docs.langchain.com/oss/python/langgraph/interrupts) · [Anthropic: Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
 

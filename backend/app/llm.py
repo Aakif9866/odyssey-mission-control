@@ -81,3 +81,27 @@ def _strict(s: dict) -> dict:
         for v in (s[key] if isinstance(s.get(key), list) else [s[key]] if key in s else []):
             _strict(v)
     return s
+
+
+def chat_tools(messages: list[dict], tools: list[dict], tag: str = "agent", max_tokens: int = 1200) -> dict:
+    """One tool-calling turn (native OpenAI-format tools). Returns the assistant message as a dict."""
+    model = _models["gen"]
+    for attempt in range(6):
+        try:
+            t = time.perf_counter()
+            r = _clients["gen"].chat.completions.create(model=model, messages=messages, tools=tools, tool_choice="auto",
+                                                        max_tokens=max_tokens, reasoning_effort="low")
+            break
+        except RateLimitError as e:
+            if attempt == 5:
+                raise
+            m = re.search(r"try again in ([\d.]+)s", str(e))
+            time.sleep((float(m.group(1)) if m else 2 ** attempt) + 0.5)
+    u, msg = r.usage, r.choices[0].message
+    CALLS.append({"tag": tag, "role": "gen", "model": model, "ms": round((time.perf_counter() - t) * 1000),
+                  "in": u.prompt_tokens, "out": u.completion_tokens, "cost": round(cost(model, u.prompt_tokens, u.completion_tokens), 6), "ts": time.time()})
+    out = {"role": "assistant", "content": msg.content or ""}
+    if msg.tool_calls:
+        out["tool_calls"] = [{"id": tc.id, "type": "function", "function": {"name": tc.function.name, "arguments": tc.function.arguments}}
+                             for tc in msg.tool_calls]
+    return out

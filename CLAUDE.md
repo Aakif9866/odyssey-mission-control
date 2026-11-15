@@ -38,7 +38,7 @@ Track time: if a module runs >15 min over, cut the stretch items, never the Veri
 | Reranker | fastembed `BAAI/bge-reranker-v2-m3-int8` (2024); `Xenova/ms-marco-MiniLM-L-6-v2` as the fast/old baseline to compare | Local ONNX, no torch |
 | Late interaction (M4 stretch) | fastembed `answerdotai/answerai-colbert-small-v1` + Qdrant multivectors | ColBERT-style token-level matching |
 | Vector DB | Qdrant embedded (`QdrantClient(path="backend/.qdrant")`), Query API (`prefetch` + `FusionQuery(RRF)`) | Zero infra; same API as server mode |
-| Agent | LangGraph 1.x (`StateGraph`, `ToolNode`, `interrupt()`/`Command`, `InMemorySaver`) | |
+| Agent | LangGraph 1.x (`StateGraph`, custom tool node, `interrupt()`/`Command`, `SqliteSaver`), OpenAI SDK for tool calls (no langchain) | |
 | Evals | Own LLM-judge metrics (Pydantic structured outputs) + RAGAS 0.4 cross-check + pytest regression gates | |
 
 Pinned at setup (all latest on 2026-11-15): langgraph 1.2.22, langchain-core/openai 1.8.0, openai 3.51.0, fastapi 0.163.0, qdrant-client 1.20.0, fastembed 0.9.1, pydantic 2.14.

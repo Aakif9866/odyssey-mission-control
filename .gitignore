@@ -8,3 +8,4 @@ backend/.qdrant/
 node_modules/
 .next/
 .DS_Store
+checkpoints.sqlite*
