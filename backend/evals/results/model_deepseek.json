@@ -1,0 +1,1218 @@
+{
+  "config": {
+    "tag": "model_deepseek",
+    "k": 5,
+    "mode": "dense",
+    "model": "deepseek-flash",
+    "judge": "deepseek-flash",
+    "n_cases": 18,
+    "ts": "2026-11-15 15:11:02",
+    "note": "Requested llama-3.1-8b-instant (404 on this account); every case fell back to deepseek-flash. Relabelled."
+  },
+  "summary": {
+    "correctness": 0.889,
+    "relevance": 1.0,
+    "groundedness": 0.889,
+    "retrieval_relevance": 1.0,
+    "concision": 0.444,
+    "hit": 1,
+    "mrr": 0.953,
+    "ctx_precision": 0.921,
+    "ctx_recall": 0.969,
+    "pass_rate": 0.778,
+    "latency_p50_ms": 1468,
+    "latency_p95_ms": 3414,
+    "gen_tokens": 18897,
+    "gen_cost_usd": 0.00799,
+    "by_category": {
+      "exact_code": "1/1",
+      "version": "2/2",
+      "contradiction": "1/1",
+      "distractor": "1/2",
+      "semantic": "5/6",
+      "multi_hop": "2/4",
+      "unanswerable": "2/2"
+    },
+    "judge_cost_usd": 0.02657
+  },
+  "cases": [
+    {
+      "id": "e217",
+      "category": "exact_code",
+      "question": "What should the crew do when error E-217 appears?",
+      "reference": "Swap to the backup cartridge LS-CART-B within 30 minutes; cabin CO2 must stay below 0.5%.",
+      "answer": "For error E-217 (CO2 scrubber saturation), the crew should swap to the backup cartridge LS-CART-B within 30 minutes, keeping cabin CO2 below 0.5%.",
+      "citations": [
+        "MAN-HABLS"
+      ],
+      "answerable": true,
+      "retrieved": [
+        "MAN-HABLS",
+        "MSN-ODY05",
+        "CRW-ODY03",
+        "RPT-ANM0042",
+        "MSN-ODY05"
+      ],
+      "bad_citations": [],
+      "latency_ms": 2218,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 1369,
+        "in": 937,
+        "out": 94,
+        "cost": 0.000394,
+        "ts": 1794735616.077575
+      },
+      "contexts": [
+        "Habitat Life Support Manual (v3) > ## Error codes\n## Error codes\n- **E-104 (O2 generator low output):** inspect the electrolysis cell; switch to O2 reserve tanks if output stays below 70%.\n- **E-217 (CO2 scrubber saturation):** swap to backup cartridge LS-CART-B within 30 minutes. Cabin CO2 must stay below 0.5%.\n- **E-309 (water reclamation fault):** switch to stored water; reserve supports 9 days for 6 crew.\n- **E-412 (thermal loop pressure loss):** evacuate the module if loop pressure falls below 60 kPa.",
+        "Mission Brief: ODY-05 Deepwater > ## Open issues\n## Open issues\n- The mission cannot proceed until the Director of Exploration, Halima Sato, approves a radiation waiver (surface dose 5.4 Sv/year).\n- Crew surface EVAs are capped at 4 hours.",
+        "Crew Roster: ODY-03 Meridian (as of 2240-10-01) > # Crew Roster: ODY-03 Meridian (as of 2240-10-01)\n# Crew Roster: ODY-03 Meridian (as of 2240-10-01)\n\n| Name | Role | Specialty |\n|---|---|---|\n| Cdr. Imani Okafor-Reyes | Commander | Mission command, EVA |\n| Lt. Cdr. Tomas Varga | Pilot, second-in-command | Flight operations |\n| Dr. Priya Raman | Astrobiologist | Biosignature analysis |\n| Dr. Lukas Brandt | Glaciologist, drill lead | RD-440 operations |\n| Eng. Sofia Mendez-Hale | Systems engineer | Life support, power |\n| Dr. Kenji Watanabe | Geophysicist | Seismometer array |\n\nPer protocol HED-OPS-7, if the commander is incapacitated, command passes to the second-in-command.",
+        "Science Report: Anomaly ANM-0042 > # Science Report: Anomaly ANM-0042\n# Science Report: Anomaly ANM-0042",
+        "Mission Brief: ODY-05 Deepwater > # Mission Brief: ODY-05 Deepwater\n# Mission Brief: ODY-05 Deepwater\n\n**Destination:** Thalassa Prime, Tethys Rift\n**Planned launch:** 2242-06-01\n**Crew:** 4 plus the cryobot NAUTILUS-2 | **Status:** Planning\n**Risk class:** A (highest)"
+      ],
+      "retrieval": {
+        "hit": true,
+        "mrr": 1.0,
+        "ctx_precision": 1.0,
+        "ctx_recall": 1.0
+      },
+      "verdicts": {
+        "correctness": {
+          "explanation": "The answer states the same required actions as the ground truth: swap to backup cartridge LS-CART-B within 30 minutes and keep cabin CO2 below 0.5%. No conflicting statements are present.",
+          "passed": true
+        },
+        "retrieval_relevance": {
+          "explanation": "The habitat life support manual's error code section explicitly lists E-217 as CO2 scrubber saturation and instructs the crew to swap to backup cartridge LS-CART-B within 30 minutes, keeping cabin CO2 below 0.5%. This directly answers the question.",
+          "passed": true
+        },
+        "relevance": {
+          "explanation": "The question asks for the crew's action when error E-217 occurs. The answer directly names the error (CO2 scrubber saturation) and provides a concrete action: swap to backup cartridge LS-CART-B within 30 minutes while keeping cabin CO2 below 0.5%. This is a clear, concise, and direct response to the question, so it addresses what was asked.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The answer's claims trace directly to the habitat manual entry for E-217: 'CO2 scrubber saturation: swap to backup cartridge LS-CART-B within 30 minutes. Cabin CO2 must stay below 0.5%.' The 30-minute timeframe, cartridge designation LS-CART-B, and the 0.5% CO2 limit are all explicitly stated in the context. No unsupported claims are made.",
+          "passed": true
+        },
+        "concision": {
+          "passed": true,
+          "explanation": "146 vs ref 89 chars"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "rd440_depth",
+      "category": "version",
+      "question": "What is the current maximum drilling depth of the RD-440 in very cold ice?",
+      "reference": "25 m in ice colder than -130 \u00b0C, per manual v2 (v1's 40 m limit is superseded).",
+      "answer": "The current RD-440 maximum drilling depth in very cold ice (colder than -130 \u00b0C) is 25 m. This is from the current v2 manual, which supersedes v1.",
+      "citations": [
+        "MAN-RD440"
+      ],
+      "answerable": true,
+      "retrieved": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MSN-ODY03",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "bad_citations": [],
+      "latency_ms": 2096,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 1632,
+        "in": 776,
+        "out": 204,
+        "cost": 0.000478,
+        "ts": 1794735615.955563
+      },
+      "contexts": [
+        "RD-440 Regolith and Ice Drill: Operations Manual (v2, supersedes v1) > ## Specifications\n## Specifications\n- Maximum drilling depth: **25 m in ice colder than -130 \u00b0C**; 40 m otherwise.\n- Bit type: CB-9X reinforced carbide (CB-9 bits are withdrawn).\n- Maximum rotation: 150 rpm\n- Rated operating temperature: down to -160 \u00b0C",
+        "RD-440 Regolith and Ice Drill: Operations Manual (v1) > ## Specifications\n## Specifications\n- Maximum drilling depth: **40 m**\n- Bit type: CB-9 carbide\n- Maximum rotation: 180 rpm\n- Rated operating temperature: down to -160 \u00b0C",
+        "Mission Brief: ODY-03 Meridian > ## Objectives\n## Objectives\n1. Drill three boreholes (BH-1, BH-2, BH-3) to study the upper ice shell using the RD-440 drill.\n2. Deploy a four-station seismometer array (S1\u2013S4) to probe ice-shell thickness.\n3. Search meltwater samples for biosignatures.",
+        "RD-440 Regolith and Ice Drill: Operations Manual (v2, supersedes v1) > # RD-440 Regolith and Ice Drill: Operations Manual (v2, supersedes v1)\n# RD-440 Regolith and Ice Drill: Operations Manual (v2, supersedes v1)\n\nIssued after the BH-2 bit fracture on Kepler-Vex (Sol 43).",
+        "RD-440 Regolith and Ice Drill: Operations Manual (v1) > # RD-440 Regolith and Ice Drill: Operations Manual (v1)\n# RD-440 Regolith and Ice Drill: Operations Manual (v1)"
+      ],
+      "retrieval": {
+        "hit": true,
+        "mrr": 1.0,
+        "ctx_precision": 0.8875,
+        "ctx_recall": 1.0
+      },
+      "verdicts": {
+        "correctness": {
+          "explanation": "The answer states the RD-440's current maximum drilling depth in very cold ice (colder than -130 \u00b0C) is 25 m, citing the current v2 manual and noting it supersedes v1. This matches the ground truth exactly, including that v1's 40 m limit is superseded. No conflicting statement is present.",
+          "passed": true
+        },
+        "retrieval_relevance": {
+          "explanation": "The current manual (v2, status=current) explicitly states the maximum drilling depth is 25 m in ice colder than -130 \u00b0C (and 40 m otherwise). The superseded v1 manual gives 40 m but is outdated. The key fact for very cold ice is present in the current context.",
+          "passed": true
+        },
+        "relevance": {
+          "explanation": "The answer directly states the current maximum drilling depth (25 m) for the RD-440 in very cold ice and identifies the source/version context. This concisely addresses the question asked.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The v2 manual, marked current, states: 'Maximum drilling depth: 25 m in ice colder than -130 \u00b0C; 40 m otherwise.' It also states v2 supersedes v1. The answer accurately restates the 25 m figure for very cold ice and correctly attributes it to the current v2 manual that supersedes v1.",
+          "passed": true
+        },
+        "concision": {
+          "passed": true,
+          "explanation": "146 vs ref 79 chars"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "commander",
+      "category": "contradiction",
+      "question": "Who is currently in command of the Meridian mission?",
+      "reference": "Lt. Cdr. Tomas Varga, who took command on Sol 46 after Cdr. Okafor-Reyes was injured.",
+      "answer": "Lt. Cdr. Tomas Varga is currently in command. Cdr. Imani Okafor-Reyes fractured her wrist during EVA on Sol 46, and under protocol HED-OPS-7 command transferred to Lt. Cdr. Tomas Varga, the pilot and second-in-command. This supersedes the original roster entry listing Okafor-Reyes as commander, since the mission log (2241-01-08) is more recent than the crew roster (2240-10-01).",
+      "citations": [
+        "LOG-ODY03-41",
+        "CRW-ODY03"
+      ],
+      "answerable": true,
+      "retrieved": [
+        "CRW-ODY03",
+        "MSN-ODY03",
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "bad_citations": [],
+      "latency_ms": 3414,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 1822,
+        "in": 991,
+        "out": 218,
+        "cost": 0.000559,
+        "ts": 1794735617.273809
+      },
+      "contexts": [
+        "Crew Roster: ODY-03 Meridian (as of 2240-10-01) > # Crew Roster: ODY-03 Meridian (as of 2240-10-01)\n# Crew Roster: ODY-03 Meridian (as of 2240-10-01)\n\n| Name | Role | Specialty |\n|---|---|---|\n| Cdr. Imani Okafor-Reyes | Commander | Mission command, EVA |\n| Lt. Cdr. Tomas Varga | Pilot, second-in-command | Flight operations |\n| Dr. Priya Raman | Astrobiologist | Biosignature analysis |\n| Dr. Lukas Brandt | Glaciologist, drill lead | RD-440 operations |\n| Eng. Sofia Mendez-Hale | Systems engineer | Life support, power |\n| Dr. Kenji Watanabe | Geophysicist | Seismometer array |\n\nPer protocol HED-OPS-7, if the commander is incapacitated, command passes to the second-in-command.",
+        "Mission Brief: ODY-03 Meridian > ## Command and approvals\n## Command and approvals\nCommander: Imani Okafor-Reyes. Any change that alters the mission risk class, adds new hardware deployments, or exceeds approved drilling limits requires approval from the HED Director of Exploration, Halima Sato.",
+        "Mission Brief: ODY-03 Meridian > # Mission Brief: ODY-03 Meridian\n# Mission Brief: ODY-03 Meridian\n\n**Destination:** Kepler-Vex, Halvorsen Basin\n**Launch:** 2240-03-14 | **Arrival:** 2240-11-02\n**Crew:** 6 | **Budget:** 4.2 billion credits | **Status:** Active\n**Risk class:** B\n\nMeridian was originally scheduled for 2236 but was delayed four years by a funding freeze, which is why it launched after ODY-04 despite its lower number.",
+        "Meridian Station Mission Log, Sols 41\u201348 > # Meridian Station Mission Log, Sols 41\u201348\ner sample from 22 m. This is NOT a confirmed biosignature; abiotic origin is possible.\n\n**Sol 46**: Cdr. Okafor-Reyes fractured her wrist during EVA. Under HED-OPS-7, command transferred to Lt. Cdr. Tomas Varga.\n\n**Sol 47**: HED issued RD-440 manual revision v2. Drilling limits changed (see manual).\n\n**Sol 48** (Watanabe): ANM-0042 period shortened from 6.2 h to 5.9 h. Proposal to deploy additional seismometers drafted; awaiting Director approval.",
+        "Mission Brief: ODY-03 Meridian > ## Base\n## Base\nMeridian Station consists of Hab modules A and B, a drill garage, and a science lab."
+      ],
+      "retrieval": {
+        "hit": true,
+        "mrr": 0.25,
+        "ctx_precision": 0.25,
+        "ctx_recall": 1.0
+      },
+      "verdicts": {
+        "correctness": {
+          "explanation": "The ground truth states that Lt. Cdr. Tomas Varga is currently in command of the Meridian mission, having taken command on Sol 46 after Cdr. Okafor-Reyes was injured. The answer identifies Lt. Cdr. Tomas Varga as currently in command and explains that command transferred after Okafor-Reyes was injured on Sol 46. The additional details about the specific injury and protocol do not contradict the ground truth, and the key fact is present.",
+          "passed": true
+        },
+        "retrieval_relevance": {
+          "explanation": "The question asks who currently commands the Meridian mission. The crew roster (2240-10-01) lists Cdr. Imani Okafor-Reyes as Commander, but the mission log dated 2241-01-08 (Sol 46) records that she fractured her wrist during EVA and that, under HED-OPS-7, command transferred to Lt. Cdr. Tomas Varga. Since the log is the most recent record, the context contains the key fact needed: current command rests with Lt. Cdr. Tomas Varga.",
+          "passed": true
+        },
+        "relevance": {
+          "explanation": "The answer directly identifies Lt. Cdr. Tomas Varga as currently in command and briefly explains why, including the injury and protocol transfer. This addresses the question clearly and concisely.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The roster identifies Lt. Cdr. Tomas Varga as Pilot and second-in-command, and states that under HED-OPS-7 command passes to the second-in-command if the commander is incapacitated. The mission log states that on Sol 46 Cdr. Okafor-Reyes fractured her wrist during EVA and command transferred to Lt. Cdr. Tomas Varga under HED-OPS-7. The log is dated 2241-01-08, later than the roster dated 2240-10-01, so the claim that Varga is currently in command and that this supersedes the earlier roster commander entry is directly supported by the context.",
+          "passed": true
+        },
+        "concision": {
+          "passed": false,
+          "explanation": "380 vs ref 85 chars"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "anm_freq",
+      "category": "distractor",
+      "question": "What is the frequency of the seismic signal in anomaly ANM-0042?",
+      "reference": "0.37 Hz.",
+      "answer": "The seismic signal in anomaly ANM-0042 has a frequency of 0.37 Hz. It was detected beneath Halvorsen Basin, initially with a period of 6.2 hours that shortened to 5.9 hours by Sol 48, and was recorded independently by seismometers S1, S2 and S4. (Note: the 1.2 Hz dominant frequency in RPT-CI-SEIS refers to the separate Kiln-2 Cinder site observations, not ANM-0042.)",
+      "citations": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "RPT-CI-SEIS"
+      ],
+      "answerable": true,
+      "retrieved": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "RPT-CI-SEIS"
+      ],
+      "bad_citations": [],
+      "latency_ms": 1346,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 1184,
+        "in": 1011,
+        "out": 217,
+        "cost": 0.000564,
+        "ts": 1794735622.5941062
+      },
+      "contexts": [
+        "Science Report: Anomaly ANM-0042 > ## Observation\n## Observation\nA periodic seismic signal at 0.37 Hz was detected beneath Halvorsen Basin, first on Sol 42 with a period of 6.2 hours, shortening to 5.9 hours by Sol 48. The signal was recorded independently by seismometers S1, S2 and S4 (S3 was offline for maintenance), which rules out a single-instrument artifact.",
+        "Science Report: Anomaly ANM-0042 > # Science Report: Anomaly ANM-0042\n# Science Report: Anomaly ANM-0042",
+        "Science Report: Anomaly ANM-0042 > ## Recommendations\n## Recommendations\n- Deploy four additional seismometers in a triangle with 12 km spacing (requires Director approval as a new hardware deployment).\n- Do not resume drilling beyond 25 m until the RD-440 v2 limits are confirmed safe.",
+        "Meridian Station Mission Log, Sols 41\u201348 > # Meridian Station Mission Log, Sols 41\u201348\n# Meridian Station Mission Log, Sols 41\u201348\n\n**Sol 41** (Brandt): Borehole BH-2 reached 32 m. RD-440 raised vibration warning V-11; rpm reduced to 120 per manual v1.\n\n**Sol 42** (Watanabe): Detected an unexplained periodic seismic signal beneath Halvorsen Basin: frequency 0.37 Hz, repeating every 6.2 hours. Logged as anomaly **ANM-0042**.\n\n**Sol 43** (Brandt): RD-440 bit fractured in BH-2 at 38 m depth (ice temperature -148 \u00b0C). Drilling halted. BH-3 not yet started.\n\n**Sol 44** (Mendez-Hale): Error **E-217** in Hab module B. Swapped to backup cartridge LS-CART-B within 18 minutes. CO2 returned to nominal.\n\n**Sol 45** (Raman): Complex nitrogen-bearing organic molecules found in a BH-1 meltwater sample from 22 m. This is NOT a confirmed biosignature; abiotic origin is possible.\n\n**Sol 46**: ",
+        "Science Report: Cinder Seismic Observations (Kiln-2) > # Science Report: Cinder Seismic Observations (Kiln-2)\n# Science Report: Cinder Seismic Observations (Kiln-2)\n\nLander Kiln-2 records frequent seismic events up to magnitude 4.1. Events cluster in a regular cycle of about 6 hours, driven by tidal heating from the star. The dominant frequency is 1.2 Hz.\n\nKiln-1 was lost on 2239-08-19 when a roof section of the Ashfall Tubes collapsed beneath it. Kiln-2 has been operating since 2239-09-02 and avoids tube regions mapped by ground-penetrating radar."
+      ],
+      "retrieval": {
+        "hit": true,
+        "mrr": 1.0,
+        "ctx_precision": 1.0,
+        "ctx_recall": 1.0
+      },
+      "verdicts": {
+        "correctness": {
+          "explanation": "The answer states the correct key fact that the frequency is 0.37 Hz. However, it also says the same seismic signal had a period of 6.2 hours, which would correspond to about 0.000045 Hz, directly conflicting with 0.37 Hz. Because it contains a conflicting statement about the signal, it should not pass.",
+          "passed": false
+        },
+        "retrieval_relevance": {
+          "explanation": "The question asks for the frequency of the seismic signal in anomaly ANM-0042. The science report for ANM-0042 states a periodic seismic signal at 0.37 Hz was detected beneath Halvorsen Basin, and the mission log entry for Sol 42 confirms the frequency as 0.37 Hz. (The 1.2 Hz figure belongs to a different anomaly, Cinder/Kiln-2.) The key fact is present.",
+          "passed": true
+        },
+        "relevance": {
+          "explanation": "The answer directly states that the seismic signal in anomaly ANM-0042 has a frequency of 0.37 Hz, which explicitly addresses the question. Additional context is provided, but the requested value is clearly given.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "All factual claims in the answer are directly supported by the context: ANM-0042 had a 0.37 Hz seismic signal beneath Halvorsen Basin, a period of 6.2 hours shortening to 5.9 hours by Sol 48, and independent recording by S1, S2, and S4. The note distinguishing the 1.2 Hz Kiln-2/Cinder observation from ANM-0042 is also supported by the separate RPT-CI-SEIS report.",
+          "passed": true
+        },
+        "concision": {
+          "passed": false,
+          "explanation": "368 vs ref 8 chars"
+        }
+      },
+      "passed": false
+    },
+    {
+      "id": "anm_hypothesis",
+      "category": "semantic",
+      "question": "What is the most likely explanation for anomaly ANM-0042?",
+      "reference": "Tidal flexing of the ice shell, with moderate confidence.",
+      "answer": "The most likely explanation is tidal flexing of the ice shell, which is ranked as the top hypothesis and is consistent with orbital period harmonics. (Note: confidence is only moderate, and the observed period change from 6.2 to 5.9 hours is not yet explained by any hypothesis.)",
+      "citations": [
+        "RPT-ANM0042"
+      ],
+      "answerable": true,
+      "retrieved": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "bad_citations": [],
+      "latency_ms": 1468,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 1403,
+        "in": 969,
+        "out": 133,
+        "cost": 0.00045,
+        "ts": 1794735623.034362
+      },
+      "contexts": [
+        "Science Report: Anomaly ANM-0042 > # Science Report: Anomaly ANM-0042\n# Science Report: Anomaly ANM-0042",
+        "Science Report: Anomaly ANM-0042 > ## Hypotheses (ranked)\n## Hypotheses (ranked)\n1. **Tidal flexing** of the ice shell (most likely; consistent with orbital period harmonics).\n2. **Subsurface ocean currents** interacting with the shell base.\n3. **Cryovolcanic activity** linked to the Corvane Ridges (least likely; the source is 140 km away).\n\nConfidence: moderate. The period change is not yet explained by any hypothesis.",
+        "Science Report: Anomaly ANM-0042 > ## Observation\n## Observation\nA periodic seismic signal at 0.37 Hz was detected beneath Halvorsen Basin, first on Sol 42 with a period of 6.2 hours, shortening to 5.9 hours by Sol 48. The signal was recorded independently by seismometers S1, S2 and S4 (S3 was offline for maintenance), which rules out a single-instrument artifact.",
+        "Science Report: Anomaly ANM-0042 > ## Recommendations\n## Recommendations\n- Deploy four additional seismometers in a triangle with 12 km spacing (requires Director approval as a new hardware deployment).\n- Do not resume drilling beyond 25 m until the RD-440 v2 limits are confirmed safe.",
+        "Meridian Station Mission Log, Sols 41\u201348 > # Meridian Station Mission Log, Sols 41\u201348\n# Meridian Station Mission Log, Sols 41\u201348\n\n**Sol 41** (Brandt): Borehole BH-2 reached 32 m. RD-440 raised vibration warning V-11; rpm reduced to 120 per manual v1.\n\n**Sol 42** (Watanabe): Detected an unexplained periodic seismic signal beneath Halvorsen Basin: frequency 0.37 Hz, repeating every 6.2 hours. Logged as anomaly **ANM-0042**.\n\n**Sol 43** (Brandt): RD-440 bit fractured in BH-2 at 38 m depth (ice temperature -148 \u00b0C). Drilling halted. BH-3 not yet started.\n\n**Sol 44** (Mendez-Hale): Error **E-217** in Hab module B. Swapped to backup cartridge LS-CART-B within 18 minutes. CO2 returned to nominal.\n\n**Sol 45** (Raman): Complex nitrogen-bearing organic molecules found in a BH-1 meltwater sample from 22 m. This is NOT a confirmed biosignature; abiotic origin is possible.\n\n**Sol 46**: "
+      ],
+      "retrieval": {
+        "hit": true,
+        "mrr": 1.0,
+        "ctx_precision": 1.0,
+        "ctx_recall": 1.0
+      },
+      "verdicts": {
+        "correctness": {
+          "explanation": "The answer identifies tidal flexing of the ice shell as the most likely explanation, which matches the ground truth. It also correctly notes that the confidence level is only moderate. The additional caveat about the unexplained period change does not conflict with the ground truth.",
+          "passed": true
+        },
+        "retrieval_relevance": {
+          "explanation": "The context includes the science report for ANM-0042, which provides ranked hypotheses. Hypothesis 1, tidal flexing of the ice shell, is explicitly marked as 'most likely' and consistent with orbital period harmonics. Therefore the context contains the key fact needed to answer the question.",
+          "passed": true
+        },
+        "relevance": {
+          "explanation": "The question asks for the most likely explanation for anomaly ANM-0042. The answer identifies tidal flexing of the ice shell as the top-ranked hypothesis, justifies it briefly via consistency with orbital period harmonics, and transparently notes caveats (moderate confidence, unexplained period change). This is a direct, concise response to what was asked, so it passes.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The answer states that tidal flexing of the ice shell is the most likely explanation, ranked as the top hypothesis, and consistent with orbital period harmonics. This is directly supported by the ranked hypotheses in RPT-ANM0042. The note that confidence is only moderate and that the period change from 6.2 to 5.9 hours is not yet explained is also directly supported by the report. No unsupported factual claims are present.",
+          "passed": true
+        },
+        "concision": {
+          "passed": false,
+          "explanation": "279 vs ref 57 chars"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "deepwater_blocker",
+      "category": "semantic",
+      "question": "What is blocking the ODY-05 Deepwater mission from proceeding?",
+      "reference": "It needs a radiation waiver approved by the Director of Exploration, Halima Sato, because the surface dose is 5.4 Sv/year.",
+      "answer": "The ODY-05 Deepwater mission cannot proceed until the Director of Exploration, Halima Sato, approves a radiation waiver for a surface dose of 5.4 Sv/year. (Separately, crew surface EVAs are capped at 4 hours.)",
+      "citations": [
+        "MSN-ODY05"
+      ],
+      "answerable": true,
+      "retrieved": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "bad_citations": [],
+      "latency_ms": 1367,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 1281,
+        "in": 826,
+        "out": 107,
+        "cost": 0.000376,
+        "ts": 1794735625.542402
+      },
+      "contexts": [
+        "Mission Brief: ODY-05 Deepwater > ## Open issues\n## Open issues\n- The mission cannot proceed until the Director of Exploration, Halima Sato, approves a radiation waiver (surface dose 5.4 Sv/year).\n- Crew surface EVAs are capped at 4 hours.",
+        "Mission Brief: ODY-05 Deepwater > # Mission Brief: ODY-05 Deepwater\n# Mission Brief: ODY-05 Deepwater\n\n**Destination:** Thalassa Prime, Tethys Rift\n**Planned launch:** 2242-06-01\n**Crew:** 4 plus the cryobot NAUTILUS-2 | **Status:** Planning\n**Risk class:** A (highest)",
+        "Mission Brief: ODY-05 Deepwater > ## Objectives\n## Objectives\n1. Land near the Tethys Rift where the ice is approximately 0.9 km thick.\n2. Deploy NAUTILUS-2, a nuclear-heated cryobot that melts through ice at 2.5 m per hour, to reach the ocean (estimated transit time: about 15 days).\n3. Collect ocean water samples and return them to the surface lander.",
+        "Mission Brief: ODY-05 Deepwater > ## Crew\n## Crew\nCommander Amara Lindqvist; Dr. Felix Osei (oceanographer); Engineer Rhea Castellanos; Dr. Mei-Lin Zhou (radiation physician).",
+        "Mission Brief: ODY-03 Meridian > # Mission Brief: ODY-03 Meridian\n# Mission Brief: ODY-03 Meridian\n\n**Destination:** Kepler-Vex, Halvorsen Basin\n**Launch:** 2240-03-14 | **Arrival:** 2240-11-02\n**Crew:** 6 | **Budget:** 4.2 billion credits | **Status:** Active\n**Risk class:** B\n\nMeridian was originally scheduled for 2236 but was delayed four years by a funding freeze, which is why it launched after ODY-04 despite its lower number."
+      ],
+      "retrieval": {
+        "hit": true,
+        "mrr": 1.0,
+        "ctx_precision": 1.0,
+        "ctx_recall": 1.0
+      },
+      "verdicts": {
+        "correctness": {
+          "explanation": "The answer states that ODY-05 Deepwater is blocked pending a radiation waiver approved by the Director of Exploration, Halima Sato, for a surface dose of 5.4 Sv/year \u2014 exactly matching the ground truth. The additional note about crew surface EVAs being capped at 4 hours is separate contextual detail and does not conflict with the key fact.",
+          "passed": true
+        },
+        "retrieval_relevance": {
+          "explanation": "The context's 'Open issues' section for ODY-05 Deepwater explicitly states that the mission cannot proceed until the Director of Exploration, Halima Sato, approves a radiation waiver (surface dose 5.4 Sv/year). This directly identifies the blocking issue, so the context contains the needed fact.",
+          "passed": true
+        },
+        "relevance": {
+          "explanation": "The answer directly identifies the blocker: the mission is waiting on approval of a radiation waiver by the Director of Exploration for a 5.4 Sv/year surface dose. The additional note about EVA limits does not detract from the direct answer.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The answer states that ODY-05 Deepwater cannot proceed until Director of Exploration Halima Sato approves a radiation waiver for a surface dose of 5.4 Sv/year, and that crew surface EVAs are capped at 4 hours. Both claims appear verbatim in the 'Open issues' section of the ODY-05 mission brief. No unsupported claims are present.",
+          "passed": true
+        },
+        "concision": {
+          "passed": true,
+          "explanation": "209 vs ref 122 chars"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "nautilus_time",
+      "category": "multi_hop",
+      "question": "How long will NAUTILUS-2 take to melt through the ice at the Tethys Rift?",
+      "reference": "About 15 days: 0.9 km of ice at 2.5 m per hour.",
+      "answer": "NAUTILUS-2 is estimated to take about 15 days to melt through the approximately 0.9 km thick ice at the Tethys Rift. This follows from the stated melt rate of 2.5 m per hour and the 0.9 km ice thickness, and the mission brief directly gives an estimated transit time of about 15 days.",
+      "citations": [
+        "MSN-ODY05",
+        "PLN-TP"
+      ],
+      "answerable": true,
+      "retrieved": [
+        "MSN-ODY05",
+        "PLN-TP",
+        "MSN-ODY05",
+        "MAN-RD440",
+        "PLN-TP"
+      ],
+      "bad_citations": [],
+      "latency_ms": 1735,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 1663,
+        "in": 803,
+        "out": 209,
+        "cost": 0.000492,
+        "ts": 1794735630.4481962
+      },
+      "contexts": [
+        "Mission Brief: ODY-05 Deepwater > ## Objectives\n## Objectives\n1. Land near the Tethys Rift where the ice is approximately 0.9 km thick.\n2. Deploy NAUTILUS-2, a nuclear-heated cryobot that melts through ice at 2.5 m per hour, to reach the ocean (estimated transit time: about 15 days).\n3. Collect ocean water samples and return them to the surface lander.",
+        "Planet Profile: Thalassa Prime > ## Structure\n## Structure\nThe ice crust is 3\u20135 km thick at the poles but thins to approximately 0.9 km at the **Tethys Rift**, a 600 km long equatorial fracture zone. Surface gravity is 0.22 g. Surface temperature averages -170 \u00b0C.",
+        "Mission Brief: ODY-05 Deepwater > # Mission Brief: ODY-05 Deepwater\n# Mission Brief: ODY-05 Deepwater\n\n**Destination:** Thalassa Prime, Tethys Rift\n**Planned launch:** 2242-06-01\n**Crew:** 4 plus the cryobot NAUTILUS-2 | **Status:** Planning\n**Risk class:** A (highest)",
+        "RD-440 Regolith and Ice Drill: Operations Manual (v2, supersedes v1) > ## Specifications\n## Specifications\n- Maximum drilling depth: **25 m in ice colder than -130 \u00b0C**; 40 m otherwise.\n- Bit type: CB-9X reinforced carbide (CB-9 bits are withdrawn).\n- Maximum rotation: 150 rpm\n- Rated operating temperature: down to -160 \u00b0C",
+        "Planet Profile: Thalassa Prime > ## Scientific interest\n## Scientific interest\nPlumes of water vapour are periodically observed venting from the Tethys Rift, making it the most accessible point to sample the ocean directly."
+      ],
+      "retrieval": {
+        "hit": true,
+        "mrr": 1.0,
+        "ctx_precision": 0.95,
+        "ctx_recall": 1.0
+      },
+      "verdicts": {
+        "correctness": {
+          "explanation": "The answer states about 15 days, 0.9 km ice thickness, and a melt rate of 2.5 m per hour, matching the ground truth exactly. No conflicting statements are present.",
+          "passed": true
+        },
+        "retrieval_relevance": {
+          "explanation": "The context states the ice at the Tethys Rift is about 0.9 km thick and that NAUTILUS-2 melts ice at 2.5 m per hour. It also explicitly gives an estimated transit time of about 15 days. This is sufficient to answer how long melting through the ice will take.",
+          "passed": true
+        },
+        "relevance": {
+          "explanation": "The answer directly states the estimated time: about 15 days. It also explains the basis using the 0.9 km ice thickness and 2.5 m/hour melt rate, which calculates to 15 days, and notes the mission brief gives the same estimate. This directly and concisely addresses the question.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The answer states that NAUTILUS-2 is estimated to take about 15 days to melt through roughly 0.9 km of ice at the Tethys Rift. The context explicitly gives a 0.9 km ice thickness at the Tethys Rift, a 2.5 m/hour melt rate for NAUTILUS-2, and an estimated transit time of about 15 days. The stated calculation is directly supported: 0.9 km = 900 m, and 900 / 2.5 = 360 hours = 15 days. No unsupported factual claims are present.",
+          "passed": true
+        },
+        "concision": {
+          "passed": false,
+          "explanation": "284 vs ref 47 chars"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "kiln1",
+      "category": "semantic",
+      "question": "What happened to the Kiln-1 lander?",
+      "reference": "It was lost on 2239-08-19 when a roof section of the Ashfall Tubes lava tubes collapsed beneath it.",
+      "answer": "Kiln-1 was lost on 2239-08-19 when a roof section of the Ashfall Tubes collapsed beneath it. (Its successor, Kiln-2, has been operating since 2239-09-02 and avoids tube regions mapped by ground-penetrating radar.)",
+      "citations": [
+        "RPT-CI-SEIS"
+      ],
+      "answerable": true,
+      "retrieved": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "bad_citations": [],
+      "latency_ms": 1039,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 972,
+        "in": 1013,
+        "out": 136,
+        "cost": 0.000467,
+        "ts": 1794735631.6093938
+      },
+      "contexts": [
+        "Science Report: Cinder Seismic Observations (Kiln-2) > # Science Report: Cinder Seismic Observations (Kiln-2)\n# Science Report: Cinder Seismic Observations (Kiln-2)\n\nLander Kiln-2 records frequent seismic events up to magnitude 4.1. Events cluster in a regular cycle of about 6 hours, driven by tidal heating from the star. The dominant frequency is 1.2 Hz.\n\nKiln-1 was lost on 2239-08-19 when a roof section of the Ashfall Tubes collapsed beneath it. Kiln-2 has been operating since 2239-09-02 and avoids tube regions mapped by ground-penetrating radar.",
+        "Planet Profile: Cinder > ## Missions\n## Missions\nODY-01 Firstlight (2203) was a crewed orbital mission and the first HED mission ever flown. ODY-04 Ember (2239) is a robotic surface mission with two landers, Kiln-1 and Kiln-2.",
+        "RD-440 Regolith and Ice Drill: Operations Manual (v2, supersedes v1) > ## Warning codes\n## Warning codes\n- **V-11 (vibration):** FULL STOP. Retract the bit and inspect before resuming. (Changed from v1.)\n- **V-20 (overheat):** stop drilling for 10 minutes.",
+        "RD-440 Regolith and Ice Drill: Operations Manual (v1) > ## Warning codes\n## Warning codes\n- **V-11 (vibration):** reduce rotation to 120 rpm and continue.\n- **V-20 (overheat):** stop drilling for 10 minutes.",
+        "Meridian Station Mission Log, Sols 41\u201348 > # Meridian Station Mission Log, Sols 41\u201348\n# Meridian Station Mission Log, Sols 41\u201348\n\n**Sol 41** (Brandt): Borehole BH-2 reached 32 m. RD-440 raised vibration warning V-11; rpm reduced to 120 per manual v1.\n\n**Sol 42** (Watanabe): Detected an unexplained periodic seismic signal beneath Halvorsen Basin: frequency 0.37 Hz, repeating every 6.2 hours. Logged as anomaly **ANM-0042**.\n\n**Sol 43** (Brandt): RD-440 bit fractured in BH-2 at 38 m depth (ice temperature -148 \u00b0C). Drilling halted. BH-3 not yet started.\n\n**Sol 44** (Mendez-Hale): Error **E-217** in Hab module B. Swapped to backup cartridge LS-CART-B within 18 minutes. CO2 returned to nominal.\n\n**Sol 45** (Raman): Complex nitrogen-bearing organic molecules found in a BH-1 meltwater sample from 22 m. This is NOT a confirmed biosignature; abiotic origin is possible.\n\n**Sol 46**: "
+      ],
+      "retrieval": {
+        "hit": true,
+        "mrr": 1.0,
+        "ctx_precision": 1.0,
+        "ctx_recall": 0.5
+      },
+      "verdicts": {
+        "correctness": {
+          "explanation": "The answer states the key facts from the ground truth: Kiln-1 was lost on 2239-08-19 when a roof section of the Ashfall Tubes collapsed beneath it. The additional detail about Kiln-2 is extra and does not conflict with the ground truth.",
+          "passed": true
+        },
+        "retrieval_relevance": {
+          "explanation": "The science report explicitly states that Kiln-1 was lost on 2239-08-19 when a roof section of the Ashfall Tubes collapsed beneath it. This directly answers the question about what happened to the Kiln-1 lander.",
+          "passed": true
+        },
+        "relevance": {
+          "explanation": "The answer directly addresses the question by explaining that Kiln-1 was lost when a roof section of the Ashfall Tubes collapsed beneath it, and it provides the date. The additional detail about Kiln-2 is extra but does not detract from the clear answer.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The answer accurately repeats the context about Kiln-1\u2019s loss on 2239-08-19 due to an Ashfall Tubes roof collapse, and that Kiln-2 has operated since 2239-09-02 while avoiding GPR-mapped tube regions. However, it adds that Kiln-2 is Kiln-1\u2019s \u201csuccessor.\u201d The context describes Kiln-1 and Kiln-2 as two landers of the same ODY-04 Ember mission and does not state that Kiln-2 succeeded or replaced Kiln-1. That unsupported characterization makes the answer not fully grounded.",
+          "passed": false
+        },
+        "concision": {
+          "passed": true,
+          "explanation": "213 vs ref 99 chars"
+        }
+      },
+      "passed": false
+    },
+    {
+      "id": "launch_order",
+      "category": "multi_hop",
+      "question": "Why did ODY-03 launch after ODY-04 despite its lower number?",
+      "reference": "A funding freeze (2236) delayed Meridian by four years.",
+      "answer": "ODY-03 Meridian was originally scheduled for 2236 but was delayed four years by a funding freeze, which is why it launched after ODY-04 despite its lower number. The historical timeline confirms the 2236 funding freeze and shows ODY-04 Ember launching in 2239, before Meridian's 2240 launch.",
+      "citations": [
+        "MSN-ODY03",
+        "HIS-HED"
+      ],
+      "answerable": true,
+      "retrieved": [
+        "MSN-ODY03",
+        "HIS-HED",
+        "MSN-ODY05",
+        "PLN-CI",
+        "MSN-ODY03"
+      ],
+      "bad_citations": [],
+      "latency_ms": 1547,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 1453,
+        "in": 949,
+        "out": 136,
+        "cost": 0.000448,
+        "ts": 1794735633.518153
+      },
+      "contexts": [
+        "Mission Brief: ODY-03 Meridian > # Mission Brief: ODY-03 Meridian\n# Mission Brief: ODY-03 Meridian\n\n**Destination:** Kepler-Vex, Halvorsen Basin\n**Launch:** 2240-03-14 | **Arrival:** 2240-11-02\n**Crew:** 6 | **Budget:** 4.2 billion credits | **Status:** Active\n**Risk class:** B\n\nMeridian was originally scheduled for 2236 but was delayed four years by a funding freeze, which is why it launched after ODY-04 despite its lower number.",
+        "Helios Exploration Directorate (HED): Historical Timeline > # Helios Exploration Directorate (HED): Historical Timeline\n# Helios Exploration Directorate (HED): Historical Timeline\n\n- **2189**: HED founded.\n- **2203**: ODY-01 Firstlight, the first crewed HED mission (Cinder orbit).\n- **2217**: ODY-02 Halcyon orbital survey of Kepler-Vex discovers evidence of a subsurface ocean.\n- **2231**: Probe Siren confirms a global ocean on Thalassa Prime.\n- **2236**: Funding freeze delays ODY-03 Meridian.\n- **2239**: ODY-04 Ember lands on Cinder; Kiln-1 lost to a lava tube collapse.\n- **2240**: ODY-03 Meridian launches (March) and arrives at Kepler-Vex (November).\n- **2241**: Halima Sato serves as Director of Exploration; ODY-05 Deepwater enters planning.",
+        "Mission Brief: ODY-05 Deepwater > # Mission Brief: ODY-05 Deepwater\n# Mission Brief: ODY-05 Deepwater\n\n**Destination:** Thalassa Prime, Tethys Rift\n**Planned launch:** 2242-06-01\n**Crew:** 4 plus the cryobot NAUTILUS-2 | **Status:** Planning\n**Risk class:** A (highest)",
+        "Planet Profile: Cinder > ## Missions\n## Missions\nODY-01 Firstlight (2203) was a crewed orbital mission and the first HED mission ever flown. ODY-04 Ember (2239) is a robotic surface mission with two landers, Kiln-1 and Kiln-2.",
+        "Mission Brief: ODY-03 Meridian > ## Command and approvals\n## Command and approvals\nCommander: Imani Okafor-Reyes. Any change that alters the mission risk class, adds new hardware deployments, or exceeds approved drilling limits requires approval from the HED Director of Exploration, Halima Sato."
+      ],
+      "retrieval": {
+        "hit": true,
+        "mrr": 1.0,
+        "ctx_precision": 0.8666666666666667,
+        "ctx_recall": 1.0
+      },
+      "verdicts": {
+        "correctness": {
+          "explanation": "The answer matches the ground truth: it states that ODY-03 Meridian was delayed four years by a 2236 funding freeze, explaining why it launched after ODY-04 despite the lower number. The added timeline details (ODY-04 Ember in 2239, Meridian in 2240) are consistent with a four-year delay from 2236 and do not conflict with the ground truth.",
+          "passed": true
+        },
+        "retrieval_relevance": {
+          "explanation": "The ODY-03 mission brief explicitly states that Meridian was originally scheduled for 2236 but was delayed four years by a funding freeze, 'which is why it launched after ODY-04 despite its lower number.' The historical timeline corroborates this: a 2236 funding freeze delayed ODY-03, ODY-04 landed in 2239, and ODY-03 launched in March 2240. Thus the context contains the key fact needed to answer the question.",
+          "passed": true
+        },
+        "relevance": {
+          "explanation": "The answer directly addresses the question by explaining that ODY-03 was originally scheduled for 2236 but was delayed four years due to a funding freeze, causing it to launch after ODY-04. It also references the timeline showing ODY-04 launching in 2239 and ODY-03/Meridian in 2240. This is a clear and concise explanation of the apparent numbering anomaly.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The first sentence is directly supported by the ODY-03 mission brief. However, the answer says the historical timeline shows ODY-04 Ember \"launching in 2239.\" The context says ODY-04 Ember *lands* on Cinder in 2239, not that it launched then. Therefore, the answer contains a factual claim not supported by the context.",
+          "passed": false
+        },
+        "concision": {
+          "passed": false,
+          "explanation": "291 vs ref 55 chars"
+        }
+      },
+      "passed": false
+    },
+    {
+      "id": "v11_current",
+      "category": "version",
+      "question": "What must an operator do on RD-440 warning V-11 under the current manual?",
+      "reference": "Full stop: retract the bit and inspect before resuming (v2; v1's 'reduce to 120 rpm' is superseded).",
+      "answer": "Under the current RD-440 manual (v2, dated 2241-01-10, which supersedes v1), warning V-11 (vibration) requires a FULL STOP: the operator must retract the bit and inspect it before resuming drilling. This is explicitly noted as changed from v1, whose instruction was merely to reduce rotation to 120 rpm and continue \u2014 so the older procedure must not be used.",
+      "citations": [
+        "MAN-RD440"
+      ],
+      "answerable": true,
+      "retrieved": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "bad_citations": [],
+      "latency_ms": 1613,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 1544,
+        "in": 942,
+        "out": 163,
+        "cost": 0.000478,
+        "ts": 1794735638.331996
+      },
+      "contexts": [
+        "RD-440 Regolith and Ice Drill: Operations Manual (v2, supersedes v1) > ## Warning codes\n## Warning codes\n- **V-11 (vibration):** FULL STOP. Retract the bit and inspect before resuming. (Changed from v1.)\n- **V-20 (overheat):** stop drilling for 10 minutes.",
+        "RD-440 Regolith and Ice Drill: Operations Manual (v1) > # RD-440 Regolith and Ice Drill: Operations Manual (v1)\n# RD-440 Regolith and Ice Drill: Operations Manual (v1)",
+        "RD-440 Regolith and Ice Drill: Operations Manual (v1) > ## Warning codes\n## Warning codes\n- **V-11 (vibration):** reduce rotation to 120 rpm and continue.\n- **V-20 (overheat):** stop drilling for 10 minutes.",
+        "RD-440 Regolith and Ice Drill: Operations Manual (v2, supersedes v1) > # RD-440 Regolith and Ice Drill: Operations Manual (v2, supersedes v1)\n# RD-440 Regolith and Ice Drill: Operations Manual (v2, supersedes v1)\n\nIssued after the BH-2 bit fracture on Kepler-Vex (Sol 43).",
+        "Meridian Station Mission Log, Sols 41\u201348 > # Meridian Station Mission Log, Sols 41\u201348\n# Meridian Station Mission Log, Sols 41\u201348\n\n**Sol 41** (Brandt): Borehole BH-2 reached 32 m. RD-440 raised vibration warning V-11; rpm reduced to 120 per manual v1.\n\n**Sol 42** (Watanabe): Detected an unexplained periodic seismic signal beneath Halvorsen Basin: frequency 0.37 Hz, repeating every 6.2 hours. Logged as anomaly **ANM-0042**.\n\n**Sol 43** (Brandt): RD-440 bit fractured in BH-2 at 38 m depth (ice temperature -148 \u00b0C). Drilling halted. BH-3 not yet started.\n\n**Sol 44** (Mendez-Hale): Error **E-217** in Hab module B. Swapped to backup cartridge LS-CART-B within 18 minutes. CO2 returned to nominal.\n\n**Sol 45** (Raman): Complex nitrogen-bearing organic molecules found in a BH-1 meltwater sample from 22 m. This is NOT a confirmed biosignature; abiotic origin is possible.\n\n**Sol 46**: "
+      ],
+      "retrieval": {
+        "hit": true,
+        "mrr": 1.0,
+        "ctx_precision": 1.0,
+        "ctx_recall": 1.0
+      },
+      "verdicts": {
+        "correctness": {
+          "explanation": "The ground truth requires a full stop under the current manual: retract the bit and inspect before resuming, with v1's 'reduce to 120 rpm' superseded. The answer states exactly this: under current RD-440 v2, V-11 requires a full stop, retract the bit, and inspect before resuming; it also correctly notes v1's 120 rpm instruction is superseded and must not be used. No conflicting statements are present.",
+          "passed": true
+        },
+        "retrieval_relevance": {
+          "explanation": "The context includes the current manual (MAN-RD440, version 2, status=current, dated 2241-01-10), which explicitly states under Warning codes: 'V-11 (vibration): FULL STOP. Retract the bit and inspect before resuming. (Changed from v1.)' The superseded v1 says to reduce rotation to 120 rpm, but the question specifically asks about the current manual, and the current version's required action is present in the context. Therefore the key fact needed to answer is available.",
+          "passed": true
+        },
+        "relevance": {
+          "explanation": "The question asks what an operator must do on RD-440 warning V-11 under the current manual. The answer directly states the required action: a full stop, retract the bit, inspect it, and then resume drilling. It also clarifies the current manual version and distinguishes it from the older v1 procedure. This is a clear and concise response to the question.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The context includes the current RD-440 manual v2 (dated 2241-01-10, superseding v1), which states V-11 requires a FULL STOP, retracting the bit and inspecting before resuming, and notes this changed from v1. It also includes superseded v1, which said V-11 required reducing rotation to 120 rpm and continuing. Thus the answer's claims about both versions and the instruction to follow v2 are directly supported.",
+          "passed": true
+        },
+        "concision": {
+          "passed": false,
+          "explanation": "358 vs ref 100 chars"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "organics",
+      "category": "semantic",
+      "question": "Has the Meridian mission found a confirmed biosignature?",
+      "reference": "No. Complex nitrogen-bearing organics were found in BH-1 meltwater at 22 m, but this is not a confirmed biosignature; an abiotic origin is possible.",
+      "answer": "No. On Sol 45, Dr. Raman reported complex nitrogen-bearing organic molecules in a BH-1 meltwater sample from 22 m, but the log explicitly states this is NOT a confirmed biosignature and that an abiotic origin is possible. No confirmed biosignature has been reported in the provided records.",
+      "citations": [
+        "LOG-ODY03-41"
+      ],
+      "answerable": true,
+      "retrieved": [
+        "LOG-ODY03-41",
+        "LOG-ODY03-41",
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "MSN-ODY03"
+      ],
+      "bad_citations": [],
+      "latency_ms": 1519,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 1452,
+        "in": 1236,
+        "out": 151,
+        "cost": 0.000552,
+        "ts": 1794735640.721288
+      },
+      "contexts": [
+        "Meridian Station Mission Log, Sols 41\u201348 > # Meridian Station Mission Log, Sols 41\u201348\ner sample from 22 m. This is NOT a confirmed biosignature; abiotic origin is possible.\n\n**Sol 46**: Cdr. Okafor-Reyes fractured her wrist during EVA. Under HED-OPS-7, command transferred to Lt. Cdr. Tomas Varga.\n\n**Sol 47**: HED issued RD-440 manual revision v2. Drilling limits changed (see manual).\n\n**Sol 48** (Watanabe): ANM-0042 period shortened from 6.2 h to 5.9 h. Proposal to deploy additional seismometers drafted; awaiting Director approval.",
+        "Meridian Station Mission Log, Sols 41\u201348 > # Meridian Station Mission Log, Sols 41\u201348\n# Meridian Station Mission Log, Sols 41\u201348\n\n**Sol 41** (Brandt): Borehole BH-2 reached 32 m. RD-440 raised vibration warning V-11; rpm reduced to 120 per manual v1.\n\n**Sol 42** (Watanabe): Detected an unexplained periodic seismic signal beneath Halvorsen Basin: frequency 0.37 Hz, repeating every 6.2 hours. Logged as anomaly **ANM-0042**.\n\n**Sol 43** (Brandt): RD-440 bit fractured in BH-2 at 38 m depth (ice temperature -148 \u00b0C). Drilling halted. BH-3 not yet started.\n\n**Sol 44** (Mendez-Hale): Error **E-217** in Hab module B. Swapped to backup cartridge LS-CART-B within 18 minutes. CO2 returned to nominal.\n\n**Sol 45** (Raman): Complex nitrogen-bearing organic molecules found in a BH-1 meltwater sample from 22 m. This is NOT a confirmed biosignature; abiotic origin is possible.\n\n**Sol 46**: ",
+        "Mission Brief: ODY-03 Meridian > # Mission Brief: ODY-03 Meridian\n# Mission Brief: ODY-03 Meridian\n\n**Destination:** Kepler-Vex, Halvorsen Basin\n**Launch:** 2240-03-14 | **Arrival:** 2240-11-02\n**Crew:** 6 | **Budget:** 4.2 billion credits | **Status:** Active\n**Risk class:** B\n\nMeridian was originally scheduled for 2236 but was delayed four years by a funding freeze, which is why it launched after ODY-04 despite its lower number.",
+        "Crew Roster: ODY-03 Meridian (as of 2240-10-01) > # Crew Roster: ODY-03 Meridian (as of 2240-10-01)\n# Crew Roster: ODY-03 Meridian (as of 2240-10-01)\n\n| Name | Role | Specialty |\n|---|---|---|\n| Cdr. Imani Okafor-Reyes | Commander | Mission command, EVA |\n| Lt. Cdr. Tomas Varga | Pilot, second-in-command | Flight operations |\n| Dr. Priya Raman | Astrobiologist | Biosignature analysis |\n| Dr. Lukas Brandt | Glaciologist, drill lead | RD-440 operations |\n| Eng. Sofia Mendez-Hale | Systems engineer | Life support, power |\n| Dr. Kenji Watanabe | Geophysicist | Seismometer array |\n\nPer protocol HED-OPS-7, if the commander is incapacitated, command passes to the second-in-command.",
+        "Mission Brief: ODY-03 Meridian > ## Objectives\n## Objectives\n1. Drill three boreholes (BH-1, BH-2, BH-3) to study the upper ice shell using the RD-440 drill.\n2. Deploy a four-station seismometer array (S1\u2013S4) to probe ice-shell thickness.\n3. Search meltwater samples for biosignatures."
+      ],
+      "retrieval": {
+        "hit": true,
+        "mrr": 1.0,
+        "ctx_precision": 1.0,
+        "ctx_recall": 1.0
+      },
+      "verdicts": {
+        "correctness": {
+          "explanation": "The answer correctly states that no confirmed biosignature has been found. It includes the key supporting fact: complex nitrogen-bearing organics were found in a BH-1 meltwater sample at 22 m, but this is explicitly not a confirmed biosignature and an abiotic origin remains possible. The additional details about Sol 45 and Dr. Raman do not conflict with the ground truth.",
+          "passed": true
+        },
+        "retrieval_relevance": {
+          "explanation": "The context includes the relevant mission log entry for Sol 45, which states that complex nitrogen-bearing organic molecules were found in a BH-1 meltwater sample, but explicitly says this is NOT a confirmed biosignature and that abiotic origin is possible. Therefore, the context contains the key fact needed to answer that Meridian has not found a confirmed biosignature.",
+          "passed": true
+        },
+        "relevance": {
+          "explanation": "The question asks whether the Meridian mission has found a confirmed biosignature. The answer directly states 'No,' clarifies that organic molecules were reported but explicitly not a confirmed biosignature, and notes no confirmed biosignature appears in the records. This clearly and concisely addresses the question.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The answer states that on Sol 45 Dr. Raman reported complex nitrogen-bearing organic molecules in a BH-1 meltwater sample from 22 m. This is directly supported by the Sol 45 log entry. It also correctly notes the log's explicit caveat that this is NOT a confirmed biosignature and that abiotic origin is possible. The conclusion that no confirmed biosignature has been reported in the provided records follows from the context, where the only biosignature-related finding is explicitly unconfirmed.",
+          "passed": true
+        },
+        "concision": {
+          "passed": true,
+          "explanation": "290 vs ref 148 chars"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "cinder_crew",
+      "category": "semantic",
+      "question": "Can a crew land on Cinder?",
+      "reference": "No. Cinder is robotic-only and crewed landings are prohibited.",
+      "answer": "No. Cinder is designated robotic-only, and crewed landings are prohibited.",
+      "citations": [
+        "PLN-CI"
+      ],
+      "answerable": true,
+      "retrieved": [
+        "PLN-CI",
+        "PLN-CI",
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "MSN-ODY05"
+      ],
+      "bad_citations": [],
+      "latency_ms": 1398,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 1328,
+        "in": 777,
+        "out": 120,
+        "cost": 0.000377,
+        "ts": 1794735641.590337
+      },
+      "contexts": [
+        "Planet Profile: Cinder > ## Missions\n## Missions\nODY-01 Firstlight (2203) was a crewed orbital mission and the first HED mission ever flown. ODY-04 Ember (2239) is a robotic surface mission with two landers, Kiln-1 and Kiln-2.",
+        "Planet Profile: Cinder > # Planet Profile: Cinder\n# Planet Profile: Cinder\n\nCinder is a tidally heated volcanic world orbiting close to its star. Dayside surface temperature averages 410 \u00b0C. Cinder is designated **robotic-only**; crewed landings are prohibited.",
+        "Science Report: Cinder Seismic Observations (Kiln-2) > # Science Report: Cinder Seismic Observations (Kiln-2)\n# Science Report: Cinder Seismic Observations (Kiln-2)\n\nLander Kiln-2 records frequent seismic events up to magnitude 4.1. Events cluster in a regular cycle of about 6 hours, driven by tidal heating from the star. The dominant frequency is 1.2 Hz.\n\nKiln-1 was lost on 2239-08-19 when a roof section of the Ashfall Tubes collapsed beneath it. Kiln-2 has been operating since 2239-09-02 and avoids tube regions mapped by ground-penetrating radar.",
+        "Planet Profile: Cinder > ## Geology\n## Geology\nIntense tidal heating drives constant volcanism. A network of lava tubes called the **Ashfall Tubes** runs beneath the southern plains. Tube roofs are unstable and collapse without warning.",
+        "Mission Brief: ODY-05 Deepwater > ## Open issues\n## Open issues\n- The mission cannot proceed until the Director of Exploration, Halima Sato, approves a radiation waiver (surface dose 5.4 Sv/year).\n- Crew surface EVAs are capped at 4 hours."
+      ],
+      "retrieval": {
+        "hit": true,
+        "mrr": 1.0,
+        "ctx_precision": 0.9166666666666666,
+        "ctx_recall": 1.0
+      },
+      "verdicts": {
+        "correctness": {
+          "explanation": "The ground truth states that no crew can land on Cinder because it is robotic-only and crewed landings are prohibited. The answer states exactly this: 'No. Cinder is designated robotic-only, and crewed landings are prohibited.' The facts align with no conflicting statements.",
+          "passed": true
+        },
+        "retrieval_relevance": {
+          "explanation": "The context includes a planet profile stating that Cinder is 'designated robotic-only; crewed landings are prohibited.' This directly answers whether a crew can land on Cinder (no), so the key fact is present.",
+          "passed": true
+        },
+        "relevance": {
+          "explanation": "The question asks whether a crew can land on Cinder. The answer responds with a direct \"No\" and provides a concise justification: Cinder is designated robotic-only and crewed landings are prohibited. This directly and clearly addresses the question without ambiguity or unnecessary detail, so it should be graded as passing.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The planet profile for Cinder explicitly states that Cinder is designated robotic-only and that crewed landings are prohibited. The answer directly restates these supported facts, so it is fully grounded in the context.",
+          "passed": true
+        },
+        "concision": {
+          "passed": true,
+          "explanation": "74 vs ref 62 chars"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "thalassa_eva",
+      "category": "semantic",
+      "question": "What is the maximum duration of a crewed EVA on Thalassa Prime?",
+      "reference": "4 hours.",
+      "answer": "Crewed surface EVAs on Thalassa Prime are limited to a maximum of 4 hours.",
+      "citations": [
+        "PLN-TP",
+        "MSN-ODY05"
+      ],
+      "answerable": true,
+      "retrieved": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "PLN-TP",
+        "MSN-ODY05",
+        "PLN-TP"
+      ],
+      "bad_citations": [],
+      "latency_ms": 1001,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 933,
+        "in": 760,
+        "out": 65,
+        "cost": 0.000306,
+        "ts": 1794735645.47354
+      },
+      "contexts": [
+        "Planet Profile: Thalassa Prime > ## Radiation\n## Radiation\nBecause Thalassa Prime orbits inside Aurelia's magnetosphere, the surface radiation dose is 5.4 Sv/year, far above the HED crew limit. Crewed EVAs on the surface are limited to a maximum of 4 hours. Any crewed landing requires a radiation waiver approved by the Director of Exploration.",
+        "Mission Brief: ODY-05 Deepwater > # Mission Brief: ODY-05 Deepwater\n# Mission Brief: ODY-05 Deepwater\n\n**Destination:** Thalassa Prime, Tethys Rift\n**Planned launch:** 2242-06-01\n**Crew:** 4 plus the cryobot NAUTILUS-2 | **Status:** Planning\n**Risk class:** A (highest)",
+        "Planet Profile: Thalassa Prime > # Planet Profile: Thalassa Prime\n# Planet Profile: Thalassa Prime\n\nThalassa Prime is the largest moon of the gas giant Aurelia. It hosts a global liquid-water ocean confirmed in 2231 by the probe Siren.",
+        "Mission Brief: ODY-05 Deepwater > ## Open issues\n## Open issues\n- The mission cannot proceed until the Director of Exploration, Halima Sato, approves a radiation waiver (surface dose 5.4 Sv/year).\n- Crew surface EVAs are capped at 4 hours.",
+        "Planet Profile: Thalassa Prime > ## Structure\n## Structure\nThe ice crust is 3\u20135 km thick at the poles but thins to approximately 0.9 km at the **Tethys Rift**, a 600 km long equatorial fracture zone. Surface gravity is 0.22 g. Surface temperature averages -170 \u00b0C."
+      ],
+      "retrieval": {
+        "hit": true,
+        "mrr": 1.0,
+        "ctx_precision": 1.0,
+        "ctx_recall": 1.0
+      },
+      "verdicts": {
+        "correctness": {
+          "explanation": "The ground truth states the maximum crewed EVA duration on Thalassa Prime is 4 hours. The answer states exactly that: crewed surface EVAs are limited to a maximum of 4 hours. The facts match with no conflicting statements.",
+          "passed": true
+        },
+        "retrieval_relevance": {
+          "explanation": "The planet profile states surface radiation dose is 5.4 Sv/year and that 'Crewed EVAs on the surface are limited to a maximum of 4 hours.' The mission brief corroborates: 'Crew surface EVAs are capped at 4 hours.' The key fact is present, so the context is sufficient.",
+          "passed": true
+        },
+        "relevance": {
+          "explanation": "The question asks for the maximum duration of a crewed EVA on Thalassa Prime. The answer directly provides a specific maximum duration: 4 hours. It is concise and responsive to the question as asked.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The answer claims that crewed surface EVAs on Thalassa Prime are limited to a maximum of 4 hours. This is directly stated in the planet profile radiation section ('Crewed EVAs on the surface are limited to a maximum of 4 hours') and corroborated in the mission brief's open issues ('Crew surface EVAs are capped at 4 hours'). No unsupported claims are made.",
+          "passed": true
+        },
+        "concision": {
+          "passed": false,
+          "explanation": "74 vs ref 8 chars"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "oxygen",
+      "category": "multi_hop",
+      "question": "How much oxygen does the six-person Meridian crew use per day in total?",
+      "reference": "About 5.04 kg per day (0.84 kg per person per day x 6 crew).",
+      "answer": "The six-person Meridian crew uses 5.04 kg of oxygen per day in total (0.84 kg per crew member per day \u00d7 6 crew members).",
+      "citations": [
+        "MAN-HABLS",
+        "CRW-ODY03"
+      ],
+      "answerable": true,
+      "retrieved": [
+        "MAN-HABLS",
+        "CRW-ODY03",
+        "LOG-ODY03-41",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "bad_citations": [],
+      "latency_ms": 1293,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 1231,
+        "in": 887,
+        "out": 142,
+        "cost": 0.000436,
+        "ts": 1794735647.7743921
+      },
+      "contexts": [
+        "Habitat Life Support Manual (v3) > ## Consumables\n## Consumables\nEach crew member uses 0.84 kg of oxygen per day.",
+        "Crew Roster: ODY-03 Meridian (as of 2240-10-01) > # Crew Roster: ODY-03 Meridian (as of 2240-10-01)\n# Crew Roster: ODY-03 Meridian (as of 2240-10-01)\n\n| Name | Role | Specialty |\n|---|---|---|\n| Cdr. Imani Okafor-Reyes | Commander | Mission command, EVA |\n| Lt. Cdr. Tomas Varga | Pilot, second-in-command | Flight operations |\n| Dr. Priya Raman | Astrobiologist | Biosignature analysis |\n| Dr. Lukas Brandt | Glaciologist, drill lead | RD-440 operations |\n| Eng. Sofia Mendez-Hale | Systems engineer | Life support, power |\n| Dr. Kenji Watanabe | Geophysicist | Seismometer array |\n\nPer protocol HED-OPS-7, if the commander is incapacitated, command passes to the second-in-command.",
+        "Meridian Station Mission Log, Sols 41\u201348 > # Meridian Station Mission Log, Sols 41\u201348\ner sample from 22 m. This is NOT a confirmed biosignature; abiotic origin is possible.\n\n**Sol 46**: Cdr. Okafor-Reyes fractured her wrist during EVA. Under HED-OPS-7, command transferred to Lt. Cdr. Tomas Varga.\n\n**Sol 47**: HED issued RD-440 manual revision v2. Drilling limits changed (see manual).\n\n**Sol 48** (Watanabe): ANM-0042 period shortened from 6.2 h to 5.9 h. Proposal to deploy additional seismometers drafted; awaiting Director approval.",
+        "Mission Brief: ODY-05 Deepwater > ## Crew\n## Crew\nCommander Amara Lindqvist; Dr. Felix Osei (oceanographer); Engineer Rhea Castellanos; Dr. Mei-Lin Zhou (radiation physician).",
+        "Mission Brief: ODY-03 Meridian > ## Base\n## Base\nMeridian Station consists of Hab modules A and B, a drill garage, and a science lab."
+      ],
+      "retrieval": {
+        "hit": true,
+        "mrr": 1.0,
+        "ctx_precision": 1.0,
+        "ctx_recall": 1.0
+      },
+      "verdicts": {
+        "correctness": {
+          "explanation": "The answer states the total oxygen use is 5.04 kg per day, calculated as 0.84 kg per crew member per day times 6 crew members. This matches the ground truth exactly and contains no conflicting statements.",
+          "passed": true
+        },
+        "retrieval_relevance": {
+          "explanation": "The habitat life support manual states each crew member uses 0.84 kg of oxygen per day. The Meridian crew roster lists six crew members. Multiplying 0.84 kg/day by 6 gives 5.04 kg/day total.",
+          "passed": true
+        },
+        "relevance": {
+          "explanation": "The question asks for the total daily oxygen use of the six-person Meridian crew. The answer directly provides a total of 5.04 kg per day and shows the calculation (0.84 kg per person \u00d7 6). This concisely addresses the question.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The Habitat Life Support Manual states each crew member uses 0.84 kg of oxygen per day. The ODY-03 Meridian crew roster lists exactly six crew members. Multiplying 0.84 kg/day by 6 gives 5.04 kg/day total, so the answer is directly supported by the context.",
+          "passed": true
+        },
+        "concision": {
+          "passed": true,
+          "explanation": "120 vs ref 60 chars"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "seismo_approval",
+      "category": "multi_hop",
+      "question": "Who must approve deploying additional seismometers at Halvorsen Basin, and why?",
+      "reference": "The Director of Exploration, Halima Sato, because new hardware deployments require Director approval.",
+      "answer": "The Director must approve the deployment of four additional seismometers (arranged in a triangle with 12 km spacing), because it constitutes a new hardware deployment. This recommendation comes from the science report on Anomaly ANM-0042.",
+      "citations": [
+        "RPT-ANM0042"
+      ],
+      "answerable": true,
+      "retrieved": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "PLN-KV",
+        "MSN-ODY03"
+      ],
+      "bad_citations": [],
+      "latency_ms": 1222,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 1155,
+        "in": 1038,
+        "out": 124,
+        "cost": 0.00046,
+        "ts": 1794735647.87235
+      },
+      "contexts": [
+        "Science Report: Anomaly ANM-0042 > ## Observation\n## Observation\nA periodic seismic signal at 0.37 Hz was detected beneath Halvorsen Basin, first on Sol 42 with a period of 6.2 hours, shortening to 5.9 hours by Sol 48. The signal was recorded independently by seismometers S1, S2 and S4 (S3 was offline for maintenance), which rules out a single-instrument artifact.",
+        "Science Report: Anomaly ANM-0042 > ## Recommendations\n## Recommendations\n- Deploy four additional seismometers in a triangle with 12 km spacing (requires Director approval as a new hardware deployment).\n- Do not resume drilling beyond 25 m until the RD-440 v2 limits are confirmed safe.",
+        "Meridian Station Mission Log, Sols 41\u201348 > # Meridian Station Mission Log, Sols 41\u201348\n# Meridian Station Mission Log, Sols 41\u201348\n\n**Sol 41** (Brandt): Borehole BH-2 reached 32 m. RD-440 raised vibration warning V-11; rpm reduced to 120 per manual v1.\n\n**Sol 42** (Watanabe): Detected an unexplained periodic seismic signal beneath Halvorsen Basin: frequency 0.37 Hz, repeating every 6.2 hours. Logged as anomaly **ANM-0042**.\n\n**Sol 43** (Brandt): RD-440 bit fractured in BH-2 at 38 m depth (ice temperature -148 \u00b0C). Drilling halted. BH-3 not yet started.\n\n**Sol 44** (Mendez-Hale): Error **E-217** in Hab module B. Swapped to backup cartridge LS-CART-B within 18 minutes. CO2 returned to nominal.\n\n**Sol 45** (Raman): Complex nitrogen-bearing organic molecules found in a BH-1 meltwater sample from 22 m. This is NOT a confirmed biosignature; abiotic origin is possible.\n\n**Sol 46**: ",
+        "Planet Profile: Kepler-Vex > ## Surface sites\n## Surface sites\n- **Halvorsen Basin**: a smooth impact basin near the equator, chosen as the landing site for Meridian Station because the ice there is thought to be thinnest (approx. 18 km).\n- **Corvane Ridges**: fractured terrain 140 km north of the basin, possible cryovolcanic origin.",
+        "Mission Brief: ODY-03 Meridian > # Mission Brief: ODY-03 Meridian\n# Mission Brief: ODY-03 Meridian\n\n**Destination:** Kepler-Vex, Halvorsen Basin\n**Launch:** 2240-03-14 | **Arrival:** 2240-11-02\n**Crew:** 6 | **Budget:** 4.2 billion credits | **Status:** Active\n**Risk class:** B\n\nMeridian was originally scheduled for 2236 but was delayed four years by a funding freeze, which is why it launched after ODY-04 despite its lower number."
+      ],
+      "retrieval": {
+        "hit": true,
+        "mrr": 1.0,
+        "ctx_precision": 0.8666666666666667,
+        "ctx_recall": 1.0
+      },
+      "verdicts": {
+        "correctness": {
+          "explanation": "The ground truth requires identifying the approver as the Director of Exploration, Halima Sato, and explaining that new hardware deployments require Director approval. The answer says only \u201cThe Director\u201d and omits Halima Sato and the specific role \u201cDirector of Exploration.\u201d Although it correctly states the reason (new hardware deployment) and adds non-conflicting detail, it misses the key identity facts for \u201cwho,\u201d so it should fail.",
+          "passed": false
+        },
+        "retrieval_relevance": {
+          "explanation": "The Recommendations section of science report RPT-ANM0042 states that deploying four additional seismometers is 'requires Director approval as a new hardware deployment.' Thus the context provides both the approver (the Director) and the reason (it constitutes a new hardware deployment).",
+          "passed": true
+        },
+        "relevance": {
+          "explanation": "The answer directly identifies the approver as the Director and gives the reason: deploying four additional seismometers constitutes a new hardware deployment. It also cites the source recommendation. This addresses both parts of the question concisely.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The context's ANM-0042 science report Recommendations section states: \u201cDeploy four additional seismometers in a triangle with 12 km spacing (requires Director approval as a new hardware deployment).\u201d The answer accurately restates that the deployment requires Director approval because it is a new hardware deployment, and correctly attributes the recommendation to the ANM-0042 science report.",
+          "passed": true
+        },
+        "concision": {
+          "passed": true,
+          "explanation": "238 vs ref 101 chars"
+        }
+      },
+      "passed": false
+    },
+    {
+      "id": "cinder_freq",
+      "category": "distractor",
+      "question": "What is the dominant frequency of seismic events on Cinder?",
+      "reference": "1.2 Hz.",
+      "answer": "The dominant seismic frequency recorded by Lander Kiln-2 on Cinder is 1.2 Hz; events reach magnitude 4.1 and cluster in a roughly 6-hour tidal cycle.",
+      "citations": [
+        "RPT-CI-SEIS"
+      ],
+      "answerable": true,
+      "retrieved": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "PLN-CI",
+        "RPT-ANM0042",
+        "RPT-ANM0042"
+      ],
+      "bad_citations": [],
+      "latency_ms": 1195,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 1125,
+        "in": 818,
+        "out": 81,
+        "cost": 0.000343,
+        "ts": 1794735651.578144
+      },
+      "contexts": [
+        "Science Report: Cinder Seismic Observations (Kiln-2) > # Science Report: Cinder Seismic Observations (Kiln-2)\n# Science Report: Cinder Seismic Observations (Kiln-2)\n\nLander Kiln-2 records frequent seismic events up to magnitude 4.1. Events cluster in a regular cycle of about 6 hours, driven by tidal heating from the star. The dominant frequency is 1.2 Hz.\n\nKiln-1 was lost on 2239-08-19 when a roof section of the Ashfall Tubes collapsed beneath it. Kiln-2 has been operating since 2239-09-02 and avoids tube regions mapped by ground-penetrating radar.",
+        "Planet Profile: Cinder > ## Geology\n## Geology\nIntense tidal heating drives constant volcanism. A network of lava tubes called the **Ashfall Tubes** runs beneath the southern plains. Tube roofs are unstable and collapse without warning.",
+        "Planet Profile: Cinder > # Planet Profile: Cinder\n# Planet Profile: Cinder\n\nCinder is a tidally heated volcanic world orbiting close to its star. Dayside surface temperature averages 410 \u00b0C. Cinder is designated **robotic-only**; crewed landings are prohibited.",
+        "Science Report: Anomaly ANM-0042 > ## Observation\n## Observation\nA periodic seismic signal at 0.37 Hz was detected beneath Halvorsen Basin, first on Sol 42 with a period of 6.2 hours, shortening to 5.9 hours by Sol 48. The signal was recorded independently by seismometers S1, S2 and S4 (S3 was offline for maintenance), which rules out a single-instrument artifact.",
+        "Science Report: Anomaly ANM-0042 > ## Recommendations\n## Recommendations\n- Deploy four additional seismometers in a triangle with 12 km spacing (requires Director approval as a new hardware deployment).\n- Do not resume drilling beyond 25 m until the RD-440 v2 limits are confirmed safe."
+      ],
+      "retrieval": {
+        "hit": true,
+        "mrr": 1.0,
+        "ctx_precision": 1.0,
+        "ctx_recall": 1.0
+      },
+      "verdicts": {
+        "correctness": {
+          "explanation": "The ground truth states the dominant seismic frequency on Cinder is 1.2 Hz. The answer explicitly gives 1.2 Hz as the dominant seismic frequency recorded on Cinder, so it matches the key fact. The additional details about magnitude 4.1 and a roughly 6-hour tidal cycle do not conflict with the stated dominant frequency.",
+          "passed": true
+        },
+        "retrieval_relevance": {
+          "explanation": "The context explicitly states in the Cinder seismic observations report that the dominant frequency is 1.2 Hz. This directly answers the question.",
+          "passed": true
+        },
+        "relevance": {
+          "explanation": "The question asks for the dominant frequency of seismic events on Cinder. The answer directly states it is 1.2 Hz, with additional context about the recording instrument and event characteristics. This clearly addresses the question.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The science report for Cinder Seismic Observations states that Lander Kiln-2 records seismic events up to magnitude 4.1, clustered in a regular cycle of about 6 hours driven by tidal heating, with a dominant frequency of 1.2 Hz. Each claim in the answer is directly supported by the context.",
+          "passed": true
+        },
+        "concision": {
+          "passed": false,
+          "explanation": "149 vs ref 7 chars"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "unans_budget",
+      "category": "unanswerable",
+      "question": "What is the budget of the ODY-05 Deepwater mission?",
+      "reference": "UNANSWERABLE: the documents do not state it.",
+      "answer": "I don't know \u2014 the provided context does not state a budget for the ODY-05 Deepwater mission. The only budget figure in the context belongs to a different mission: ODY-03 Meridian, at 4.2 billion credits [MSN-ODY03]. The ODY-05 brief lists destination, launch, crew, risk class, objectives, and open issues, but no budget [MSN-ODY05].",
+      "citations": [
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "answerable": false,
+      "retrieved": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "bad_citations": [],
+      "latency_ms": 1524,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 1453,
+        "in": 826,
+        "out": 148,
+        "cost": 0.000425,
+        "ts": 1794735653.945698
+      },
+      "contexts": [
+        "Mission Brief: ODY-05 Deepwater > # Mission Brief: ODY-05 Deepwater\n# Mission Brief: ODY-05 Deepwater\n\n**Destination:** Thalassa Prime, Tethys Rift\n**Planned launch:** 2242-06-01\n**Crew:** 4 plus the cryobot NAUTILUS-2 | **Status:** Planning\n**Risk class:** A (highest)",
+        "Mission Brief: ODY-05 Deepwater > ## Crew\n## Crew\nCommander Amara Lindqvist; Dr. Felix Osei (oceanographer); Engineer Rhea Castellanos; Dr. Mei-Lin Zhou (radiation physician).",
+        "Mission Brief: ODY-05 Deepwater > ## Open issues\n## Open issues\n- The mission cannot proceed until the Director of Exploration, Halima Sato, approves a radiation waiver (surface dose 5.4 Sv/year).\n- Crew surface EVAs are capped at 4 hours.",
+        "Mission Brief: ODY-05 Deepwater > ## Objectives\n## Objectives\n1. Land near the Tethys Rift where the ice is approximately 0.9 km thick.\n2. Deploy NAUTILUS-2, a nuclear-heated cryobot that melts through ice at 2.5 m per hour, to reach the ocean (estimated transit time: about 15 days).\n3. Collect ocean water samples and return them to the surface lander.",
+        "Mission Brief: ODY-03 Meridian > # Mission Brief: ODY-03 Meridian\n# Mission Brief: ODY-03 Meridian\n\n**Destination:** Kepler-Vex, Halvorsen Basin\n**Launch:** 2240-03-14 | **Arrival:** 2240-11-02\n**Crew:** 6 | **Budget:** 4.2 billion credits | **Status:** Active\n**Risk class:** B\n\nMeridian was originally scheduled for 2236 but was delayed four years by a funding freeze, which is why it launched after ODY-04 despite its lower number."
+      ],
+      "retrieval": null,
+      "verdicts": {
+        "correctness": {
+          "passed": true,
+          "explanation": "expects answerable=false"
+        },
+        "relevance": {
+          "explanation": "The question asks for the budget of the ODY-05 Deepwater mission. The answer explicitly states that the provided context does not contain that budget and clarifies that the only budget figure mentioned is for a different mission. This is a clear, concise, and appropriate response indicating the information is unavailable in the context.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The answer correctly refuses to provide an ODY-05 budget because none is stated in the context. Its supporting claims are grounded: ODY-03 Meridian has a budget of 4.2 billion credits [MSN-ODY03], and the ODY-05 brief includes destination, launch, crew, risk class, objectives, and open issues but no budget [MSN-ODY05]. No unsupported factual claims are made.",
+          "passed": true
+        },
+        "concision": {
+          "passed": false,
+          "explanation": "334 vs ref 44 chars"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "unans_aurelia",
+      "category": "unanswerable",
+      "question": "What is the surface gravity of the gas giant Aurelia?",
+      "reference": "UNANSWERABLE: the documents do not state it.",
+      "answer": "I don't know. The provided context does not state the surface gravity of the gas giant Aurelia. The only gravity figure given for the Aurelia system is Thalassa Prime's surface gravity of 0.22 g, which is the moon, not the gas giant itself.",
+      "citations": [
+        "PLN-TP"
+      ],
+      "answerable": false,
+      "retrieved": [
+        "PLN-TP",
+        "PLN-KV",
+        "PLN-TP",
+        "PLN-TP",
+        "PLN-KV"
+      ],
+      "bad_citations": [],
+      "latency_ms": 1322,
+      "llm": {
+        "tag": "rag_answer:fallback",
+        "role": "judge",
+        "model": "deepseek-flash",
+        "ms": 1251,
+        "in": 759,
+        "out": 131,
+        "cost": 0.000385,
+        "ts": 1794735657.7989252
+      },
+      "contexts": [
+        "Planet Profile: Thalassa Prime > # Planet Profile: Thalassa Prime\n# Planet Profile: Thalassa Prime\n\nThalassa Prime is the largest moon of the gas giant Aurelia. It hosts a global liquid-water ocean confirmed in 2231 by the probe Siren.",
+        "Planet Profile: Kepler-Vex > ## Structure\n## Structure\nThe planet is covered by an ice shell estimated at 18\u201324 km thick. Gravity and magnetometer data from the ODY-02 Halcyon orbital survey strongly suggest a liquid subsurface ocean beneath the shell. The atmosphere is thin (0.08 bar), composed mostly of nitrogen with traces of methane.",
+        "Planet Profile: Thalassa Prime > ## Radiation\n## Radiation\nBecause Thalassa Prime orbits inside Aurelia's magnetosphere, the surface radiation dose is 5.4 Sv/year, far above the HED crew limit. Crewed EVAs on the surface are limited to a maximum of 4 hours. Any crewed landing requires a radiation waiver approved by the Director of Exploration.",
+        "Planet Profile: Thalassa Prime > ## Structure\n## Structure\nThe ice crust is 3\u20135 km thick at the poles but thins to approximately 0.9 km at the **Tethys Rift**, a 600 km long equatorial fracture zone. Surface gravity is 0.22 g. Surface temperature averages -170 \u00b0C.",
+        "Planet Profile: Kepler-Vex > # Planet Profile: Kepler-Vex\n# Planet Profile: Kepler-Vex\n\nKepler-Vex is the third planet orbiting the K-type star Vex. It is an ice world with a mean surface temperature of -142 \u00b0C and a surface gravity of 0.71 g. One local day (a \"sol\") lasts 31.4 hours."
+      ],
+      "retrieval": null,
+      "verdicts": {
+        "correctness": {
+          "passed": true,
+          "explanation": "expects answerable=false"
+        },
+        "relevance": {
+          "explanation": "The question asks for the surface gravity of the gas giant Aurelia. The answer clearly states it does not know and explains that the context does not provide this figure, while distinguishing the only gravity figure given (Thalassa Prime's 0.22 g, a moon). A clear \"I don't know\" with justification directly addresses the question per the grading criteria.",
+          "passed": true
+        },
+        "groundedness": {
+          "explanation": "The answer refuses because the context does not provide Aurelia's surface gravity. Checking the context, Aurelia is identified only as the gas giant orbited by Thalassa Prime; no gravity value is given for Aurelia. The only gravity value associated with the Aurelia system is Thalassa Prime's 0.22 g. The answer correctly distinguishes the moon from the gas giant and does not introduce unsupported facts.",
+          "passed": true
+        },
+        "concision": {
+          "passed": false,
+          "explanation": "240 vs ref 44 chars"
+        }
+      },
+      "passed": true
+    }
+  ]
+}

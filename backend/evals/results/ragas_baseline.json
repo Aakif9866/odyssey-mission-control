@@ -1,0 +1,13 @@
+{
+  "tag": "baseline",
+  "ragas": {
+    "faithfulness": 0.948,
+    "llm_context_precision_with_reference": 0.867,
+    "context_recall": 0.938
+  },
+  "ours": {
+    "faithfulness": 0.944,
+    "llm_context_precision_with_reference": 0.921,
+    "context_recall": 0.969
+  }
+}

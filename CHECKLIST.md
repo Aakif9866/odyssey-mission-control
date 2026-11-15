@@ -1,7 +1,9 @@
 # Odyssey Sprint Checklist
 
 Tick `[x]` as we go. Each module = **Learn → Build → Verify**. Don't skip Verify.
-Stretch items get cut first if we fall behind.
+Stretch items get cut first if we fall behind (M7 UI before anything in M5/M6).
+
+Claude builds everything; you run, inspect output, and note key ideas.
 
 ## Timeline (Sun 2026-11-15)
 | Time | Block | Started | Done |
@@ -25,33 +27,33 @@ Later (not today): AI Engineering Lab website, built on Odyssey's `/traces` + `/
 - [x] fastembed models pre-downloaded (dense, BM25, bge-reranker-v2-m3, MiniLM, ColBERT)
 - [x] All deps on latest versions; RAGAS isolated (it would downgrade openai/langchain)
 - [x] Fictional corpus written (`data/corpus/`, 13 docs)
-- [ ] `cp .env.example .env` and add `GROQ_API_KEY`, `DEEPSEEK_API_KEY`
-- [ ] `cd backend && uv run python check_env.py` → both providers answer
+- [x] `cp .env.example .env` and add `GROQ_API_KEY`, `DEEPSEEK_API_KEY`
+- [x] `cd backend && uv run python check_env.py` → both providers answer
 
 ---
 
 ## M1 RAG Engineering (60 min)
 **Learn**
-- [ ] Why RAG exists (knowledge cutoff, private data, grounding, citations)
-- [ ] Pipeline: load → chunk → embed → index → retrieve → build context → prompt → generate → cite
-- [ ] Chunking: fixed vs recursive vs by-heading; overlap; chunk size trade-off
-- [ ] Embeddings: what a vector encodes, cosine similarity, why 384-d
-- [ ] Vector DB internals: HNSW (approximate NN), payloads, metadata filters
-- [ ] Failure modes: wrong chunk, split fact, stale doc, distractor, "lost in the middle"
-- [ ] Document updates: re-ingest by `doc_id`, versioning (v1 vs v2 drill manual)
+- [x] Why RAG exists (knowledge cutoff, private data, grounding, citations)
+- [x] Pipeline: load → chunk → embed → index → retrieve → build context → prompt → generate → cite
+- [x] Chunking: fixed vs recursive vs by-heading; overlap; chunk size trade-off
+- [x] Embeddings: what a vector encodes, cosine similarity, why 384-d
+- [x] Vector DB internals: HNSW (approximate NN), payloads, metadata filters
+- [x] Failure modes: wrong chunk, split fact, stale doc, distractor, "lost in the middle"
+- [x] Document updates: re-ingest by `doc_id`, versioning (v1 vs v2 drill manual)
 
 **Build**
-- [ ] `app/config.py` + `app/llm.py` (OpenAI-compatible client, logs latency + tokens)
-- [ ] `app/ingest.py`: parse front matter → chunks with metadata → Qdrant
-- [ ] Hand-roll cosine similarity once on 3 chunks (then use Qdrant)
-- [ ] `app/rag.py`: retrieve top-k → context with `[doc_id]` tags → grounded answer + citations
-- [ ] "I don't know" behaviour when context lacks the answer
+- [x] `app/config.py` + `app/llm.py` (OpenAI-compatible client, logs latency + tokens)
+- [x] `app/ingest.py`: parse front matter → chunks with metadata → Qdrant
+- [x] chunking function (by heading + size limit + overlap)
+- [x] `app/rag.py`: retrieve top-k → context with `[doc_id]` tags → grounded answer + citations
+- [x] "I don't know" behaviour when context lacks the answer
 
 **Verify**
-- [ ] Ask: "What should the crew do on error E-217?" → cites MAN-HABLS
-- [ ] Ask: "Max drilling depth for the RD-440?" → inspect: did v1 or v2 win? Why?
-- [ ] Ask something not in the corpus → refuses to invent
-- [ ] Print retrieved chunks + scores for 1 query and read them
+- [x] Ask: "What should the crew do on error E-217?" → cites MAN-HABLS
+- [x] Ask: "Max drilling depth for the RD-440?" → inspect: did v1 or v2 win? Why?
+- [x] Ask something not in the corpus → refuses to invent
+- [x] Print retrieved chunks + scores for 1 query and read them
 
 Resources: [RAG paper (Lewis et al.)](https://arxiv.org/abs/2005.11401) · [Pinecone: chunking strategies](https://www.pinecone.io/learn/chunking-strategies/) · [fastembed docs](https://qdrant.github.io/fastembed/)
 
@@ -59,24 +61,29 @@ Resources: [RAG paper (Lewis et al.)](https://arxiv.org/abs/2005.11401) · [Pine
 
 ## M2 LLM Evaluation (60 min)
 **Learn**
-- [ ] Why unit tests aren't enough (non-determinism, open-ended outputs, plausible ≠ correct)
-- [ ] Golden dataset: question, reference answer, reference contexts (doc_ids)
-- [ ] Reference-based vs reference-free metrics
-- [ ] Retrieval metrics: context precision, context recall (plus hit-rate / MRR by doc_id)
-- [ ] Generation metrics: faithfulness, answer relevancy, correctness
-- [ ] LLM-as-judge: how it works, biases (self-preference, verbosity, position), why a different judge model
+- [x] Why unit tests aren't enough (non-determinism, open-ended outputs, plausible ≠ correct)
+- [x] Golden dataset: question, reference answer, reference contexts (doc_ids)
+- [x] Reference-based vs reference-free metrics
+- [x] Retrieval metrics: context precision, context recall (plus hit-rate / MRR by doc_id)
+- [x] Generation metrics: faithfulness, answer relevancy, correctness
+- [x] LLM-as-judge: how it works, biases (self-preference, verbosity, position), why a different judge model
 
 **Build**
-- [ ] `evals/golden_rag.jsonl` with ~15 Qs (easy, multi-hop, version trap, contradiction, distractor, unanswerable)
-- [ ] Retrieval eval (no LLM): hit@k, MRR from doc_ids
-- [ ] Own LLM-judge metrics (faithfulness, relevancy, correctness) with Pydantic structured output → `evals/results/rag_baseline.json`
-- [ ] Cross-check with RAGAS (isolated: `uv run evals/ragas_check.py`); do our scores agree?
-- [ ] Failure analysis: list the failed cases + root cause (retrieval vs generation)
+- [x] `evals/golden_rag.jsonl` with ~15 Qs (easy, multi-hop, version trap, contradiction, distractor, unanswerable)
+- [x] retrieval eval (no LLM): hit@k, MRR from doc_ids
+- [x] Own LLM-judge metrics (faithfulness, relevancy, correctness) with Pydantic structured output → `evals/results/rag_baseline.json`
+- [x] Cross-check with RAGAS (isolated: `uv run evals/ragas_check.py`); do our scores agree?
+- [x] Failure analysis: list the failed cases + root cause (retrieval vs generation)
+- [x] 4 judges: correctness, relevance, groundedness, retrieval relevance (explanation-before-verdict); see `notes/krish-naik-rag-eval.md`
+- [x] Code-based evaluator (concision) alongside LLM judges
+- [ ] Optional: LangSmith dataset + experiments (only if `LANGSMITH_API_KEY` set)
+- [x] Model comparison experiment: `gpt-oss-120b` vs `llama-3.1-8b-instant` on the same dataset
+- [x] Judge calibration: hand-check ~10 judge verdicts → agreement %
 
 **Verify**
-- [ ] Baseline numbers recorded here: faithfulness __ · answer relevancy __ · ctx precision __ · ctx recall __ · hit@5 __
-- [ ] Explain one failure: was it retrieval or generation?
-- [ ] Change one thing (chunk size or k), re-run, compare
+- [x] Baseline (gpt-oss-120b, dense k=5): correctness 0.944 · groundedness 0.944 · relevance 1.0 · ctx precision 0.921 · ctx recall 0.969 · hit@5 1.0 · MRR 0.953 · pass 16/18. RAGAS: faithfulness 0.948, ctx precision 0.867, ctx recall 0.938
+- [x] Explain one failure: was it retrieval or generation?
+- [x] Change one thing: generator model → 120b 88.9% / 20b 77.8% / deepseek 77.8% pass
 
 Resources: [Hamel: Your AI product needs evals](https://hamel.dev/blog/posts/evals/) · [RAGAS metrics](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/) · [Eugene Yan: LLM patterns](https://eugeneyan.com/writing/llm-patterns/)
 
@@ -112,7 +119,7 @@ Resources: [LangGraph overview](https://docs.langchain.com/oss/python/langgraph/
 **Learn**
 - [ ] Dense vs sparse; BM25 formula intuition (TF saturation, IDF, length norm)
 - [ ] Where dense fails: exact codes/IDs, rare terms. Where BM25 fails: paraphrase
-- [ ] Hybrid search + Reciprocal Rank Fusion (hand-roll RRF once)
+- [ ] Hybrid search + Reciprocal Rank Fusion
 - [ ] Cross-encoder reranking: bi-encoder vs cross-encoder trade-off
 - [ ] Query rewriting, multi-query, metadata filtering
 
@@ -142,7 +149,7 @@ Resources: [Qdrant hybrid queries](https://qdrant.tech/documentation/concepts/hy
 
 **Build**
 - [ ] `evals/golden_agent.jsonl`: scenario, expected route, expected tools (ordered/unordered), must-interrupt?, answer check
-- [ ] Trajectory scorer from recorded traces (exact, subset, in-order match)
+- [ ] trajectory scorer from recorded traces (exact, subset, in-order match)
 - [ ] Fault injection: tool raises / times out → agent recovers?
 - [ ] `tests/test_agent_regression.py`: pytest fails if scores drop below threshold
 
@@ -166,7 +173,7 @@ Resources: [Anthropic: Demystifying evals for AI agents](https://www.anthropic.c
 **Build**
 - [ ] Input guard: scope + injection classifier (structured output) before the graph
 - [ ] Retrieval guard: wrap retrieved text as untrusted data; flag instruction-like content
-- [ ] Tool guard: `request_director_approval` can only be triggered by the human interrupt, never by model text alone
+- [ ] tool guard: `request_director_approval` can only be triggered by the human interrupt, never by model text alone
 - [ ] Output guard: every claim cites a retrieved `doc_id`; uncited answer → block or downgrade
 - [ ] Ingest `data/adversarial/log-relay-contaminated.md` and attack the agent
 
@@ -200,6 +207,18 @@ Resources: [OWASP Top 10 for LLM Applications](https://genai.owasp.org/llm-top-1
 - [ ] Final README architecture section written
 
 Resources: [FastAPI](https://fastapi.tiangolo.com/) · [Groq tool use](https://console.groq.com/docs/tool-use) · [DeepSeek API](https://api-docs.deepseek.com/)
+
+---
+
+## Day 2 Replication Challenge (90 min, no Claude, docs allowed)
+In an empty folder, using `data/corpus/`:
+- [ ] Ingest + chunk + embed into Qdrant; answer 3 questions with citations
+- [ ] Golden set of 5 Qs; hit@k + one LLM-judge metric
+- [ ] 3-node LangGraph: route → retrieve/tool → answer, with one `interrupt()`
+- [ ] Hybrid search with your own RRF
+- [ ] Note where you got stuck → those are the topics to revisit
+
+Spaced review: CONCEPTS.md on Day 3 and Day 7 (15 min each).
 
 ---
 

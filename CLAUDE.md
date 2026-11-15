@@ -19,8 +19,8 @@ A 6-hour hands-on AI engineering crash course, taught **in this Claude chat**, b
 ## Teaching loop (per topic)
 1. **Concept** in ≤10 lines: what it is, why it exists, the data flow (ASCII diagram if helpful).
 2. **Internals**: how it actually works under the hood, and the key trade-off.
-3. **Build**: Claude writes the code in small diffs; walk through the *important* 10–20 lines, not all of it.
-4. **Run**: the user runs it and looks at real output (scores, chunks, traces). Break something on purpose when instructive.
+3. **Build**: Claude writes all the code. Explain only the key design decision, not the lines.
+4. **Run**: show real output (scores, chunks, traces) and say what it reveals.
 5. **Check**: ask 1–2 sharp questions; the user answers before moving on. Tick `CHECKLIST.md`.
 6. **Resources**: 1–3 links from `CHECKLIST.md` (all verified). **Never invent links or timestamps.** Verify any new link with curl before giving it.
 
@@ -30,7 +30,7 @@ Track time: if a module runs >15 min over, cut the stretch items, never the Veri
 ## Stack
 | Layer | Choice | Why |
 |---|---|---|
-| LLM (generation, agent) | Groq `openai/gpt-oss-120b` (fallback `llama-3.1-8b-instant`) | Fast, cheap, good tool calling |
+| LLM (generation, agent) | Groq `openai/gpt-oss-120b`; fast model `openai/gpt-oss-20b` (no Llama chat models on this account) | Fast, cheap, good tool calling |
 | LLM (judge for evals) | DeepSeek `deepseek-flash` | Different model family = less self-preference bias; no Groq rate limits during RAGAS |
 | Client | `openai` SDK / `langchain-openai` with `base_url` | Both providers are OpenAI-compatible: one code path |
 | Embeddings | fastembed `BAAI/bge-small-en-v1.5` (384-d, local) | Groq/DeepSeek have no embeddings API |
@@ -84,7 +84,7 @@ CONCEPTS.md         "can I explain it?" self-test, done at the end of each modul
 ## Rules
 - Always `uv` (never pip). `uv add <pkg>`, `uv run python ...`, `uv run pytest`.
 - Keys only in `.env` (gitignored). Never send keys to the frontend; the frontend talks only to FastAPI.
-- Mature libraries over hand-rolled code, *except* where hand-rolling once teaches the concept (e.g. cosine similarity, RRF in ~10 lines), then switch to the library.
+- Mature libraries over hand-rolled code. No coding exercises for the user: Claude builds, user runs + inspects; explanations short and architecture-level.
 - Small vertical slices; no scaffolding "for later". Eval results are real runs saved to `backend/evals/results/`.
 - Log latency + token usage per LLM call from Module 1 onward (it feeds Module 6).
 - Don't commit unless asked.

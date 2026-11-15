@@ -11,7 +11,7 @@ for name, key, url, model in [
     try:
         client = OpenAI(api_key=os.environ[key], base_url=os.environ[url])
         t = time.perf_counter()
-        r = client.chat.completions.create(model=os.environ[model], messages=[{"role": "user", "content": "Reply with: OK"}], max_tokens=20)
+        r = client.chat.completions.create(model=os.environ[model], messages=[{"role": "user", "content": "Reply with: OK"}], max_tokens=300, **({"reasoning_effort": "low"} if "gpt-oss" in os.environ[model] else {}))
         print(f"✓ {name:9} {os.environ[model]:24} {(time.perf_counter()-t)*1000:5.0f} ms  tokens={r.usage.total_tokens}  → {r.choices[0].message.content!r}")
     except Exception as e:
         print(f"✗ {name:9} {type(e).__name__}: {e}")
