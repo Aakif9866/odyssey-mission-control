@@ -1,0 +1,7 @@
+warning: `VIRTUAL_ENV=/Users/shaikyasin/.pyenv/versions/3.10.13` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+dense                  hit@3=0.897 mrr=0.825 recall=0.799 prec=0.821     5ms  {'code': 1.0, 'name': 0.75, 'paraphrase': 0.71, 'distractor': 1.0, 'rag_question': 0.94}
+bm25                   hit@3=0.923 mrr=0.893 recall=0.880 prec=0.872     0ms  {'code': 1.0, 'name': 1.0, 'paraphrase': 0.71, 'distractor': 0.67, 'rag_question': 1.0}
+hybrid                 hit@3=0.949 mrr=0.876 recall=0.885 prec=0.870     5ms  {'code': 1.0, 'name': 1.0, 'paraphrase': 0.71, 'distractor': 1.0, 'rag_question': 1.0}
+hybrid_rerank_minilm   hit@3=0.974 mrr=0.944 recall=0.940 prec=0.932   688ms  {'code': 1.0, 'name': 1.0, 'paraphrase': 0.86, 'distractor': 1.0, 'rag_question': 1.0}
+hybrid_rerank_bge      hit@3=1.000 mrr=0.970 recall=0.987 prec=0.953  6402ms  {'code': 1.0, 'name': 1.0, 'paraphrase': 1.0, 'distractor': 1.0, 'rag_question': 1.0}
+multi_query            hit@3=1.000 mrr=0.970 recall=0.987 prec=0.944  6949ms  {'code': 1.0, 'name': 1.0, 'paraphrase': 1.0, 'distractor': 1.0, 'rag_question': 1.0}

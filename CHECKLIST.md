@@ -117,24 +117,24 @@ Resources: [LangGraph overview](https://docs.langchain.com/oss/python/langgraph/
 
 ## M4 Advanced RAG (60 min)
 **Learn**
-- [ ] Dense vs sparse; BM25 formula intuition (TF saturation, IDF, length norm)
-- [ ] Where dense fails: exact codes/IDs, rare terms. Where BM25 fails: paraphrase
-- [ ] Hybrid search + Reciprocal Rank Fusion
-- [ ] Cross-encoder reranking: bi-encoder vs cross-encoder trade-off
-- [ ] Query rewriting, multi-query, metadata filtering
+- [x] Dense vs sparse; BM25 formula intuition (TF saturation, IDF, length norm)
+- [x] Where dense fails: exact codes/IDs, rare terms. Where BM25 fails: paraphrase
+- [x] Hybrid search + Reciprocal Rank Fusion
+- [x] Cross-encoder reranking: bi-encoder vs cross-encoder trade-off
+- [x] Query rewriting, multi-query, metadata filtering
 
 **Build**
-- [ ] Add sparse vectors to Qdrant collection; hybrid query with RRF
-- [ ] Rerank top-20 → top-5 (bge-reranker-v2-m3 vs old MiniLM: accuracy vs latency)
+- [x] Add sparse vectors to Qdrant collection; hybrid query with RRF
+- [x] Rerank top-20 → top-5 (bge-reranker-v2-m3 vs old MiniLM: accuracy vs latency)
 - [ ] Stretch: ColBERT late interaction via Qdrant multivectors
-- [ ] Query rewrite / multi-query (one, not both, if short on time)
-- [ ] `evals/compare_retrieval.py`: dense vs BM25 vs hybrid vs hybrid+rerank on the golden set (hit@k, MRR, latency)
+- [x] Query rewrite / multi-query (one, not both, if short on time)
+- [x] `evals/compare_retrieval.py`: dense vs BM25 vs hybrid vs hybrid+rerank on the golden set (hit@k, MRR, latency)
 
 **Verify**
-- [ ] Comparison table saved to `evals/results/retrieval_compare.json` and pasted here
-- [ ] E-217 / V-11 style queries: BM25/hybrid beat dense?
-- [ ] ANM-0042 vs Cinder distractor: does reranking fix it?
-- [ ] Re-run RAGAS on the best pipeline vs M2 baseline
+- [x] Comparison table saved to `evals/results/retrieval_compare.json` and pasted here
+- [x] E-217 / V-11 style queries: BM25/hybrid beat dense?
+- [x] ANM-0042 vs Cinder distractor: does reranking fix it?
+- [x] Re-run RAGAS on the best pipeline vs M2 baseline
 
 Resources: [Qdrant hybrid queries](https://qdrant.tech/documentation/concepts/hybrid-queries/) · [RRF paper](https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf) · [Anthropic: Contextual retrieval](https://www.anthropic.com/news/contextual-retrieval) · [SBERT retrieve & rerank](https://sbert.net/examples/sentence_transformer/applications/retrieve_rerank/README.html)
 
@@ -142,21 +142,21 @@ Resources: [Qdrant hybrid queries](https://qdrant.tech/documentation/concepts/hy
 
 ## M5 Agent Evaluation (60 min)
 **Learn**
-- [ ] Final-answer eval vs trajectory eval (the path matters)
-- [ ] Tool-call accuracy (right tool, right args), routing accuracy
-- [ ] Task completion, failure recovery (inject tool errors), step efficiency
-- [ ] Regression testing: fixed scenarios, thresholds, run on every change
+- [x] Final-answer eval vs trajectory eval (the path matters)
+- [x] Tool-call accuracy (right tool, right args), routing accuracy
+- [x] Task completion, failure recovery (inject tool errors), step efficiency
+- [x] Regression testing: fixed scenarios, thresholds, run on every change
 
 **Build**
-- [ ] `evals/golden_agent.jsonl`: scenario, expected route, expected tools (ordered/unordered), must-interrupt?, answer check
-- [ ] trajectory scorer from recorded traces (exact, subset, in-order match)
-- [ ] Fault injection: tool raises / times out → agent recovers?
-- [ ] `tests/test_agent_regression.py`: pytest fails if scores drop below threshold
+- [x] `evals/golden_agent.jsonl`: scenario, expected route, expected tools (ordered/unordered), must-interrupt?, answer check
+- [x] trajectory scorer from recorded traces (exact, subset, in-order match)
+- [x] Fault injection: tool raises / times out → agent recovers?
+- [x] `tests/test_agent_regression.py`: pytest fails if scores drop below threshold
 
 **Verify**
-- [ ] Scores: tool accuracy __ · routing __ · completion __ · recovery __
-- [ ] One scenario where the final answer was right but the trajectory was wrong
-- [ ] `uv run pytest` green
+- [x] Scores: tool accuracy 1.0 · routing 1.0 (after router-prompt fix; was 0.889) · completion 1.0 · recovery 1.0 · 9/9 pass
+- [x] One scenario where the final answer was right but the trajectory was wrong
+- [x] `uv run pytest` green
 
 Resources: [Anthropic: Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) · [LangSmith docs](https://docs.smith.langchain.com/)
 
@@ -164,23 +164,23 @@ Resources: [Anthropic: Demystifying evals for AI agents](https://www.anthropic.c
 
 ## M6 Guardrails + AI Safety (30 min)
 **Learn**
-- [ ] Guardrail layers: input → retrieval → tool → output (defence in depth, no single filter)
-- [ ] Prompt injection: direct vs **indirect** (malicious text inside retrieved docs), and why RAG + tools makes it dangerous
-- [ ] Deterministic checks first (schemas, allowlists, regex, limits), LLM classifiers second
-- [ ] Least privilege for tools: which tools are read-only, which need human approval
-- [ ] Output checks: groundedness/citation verification, PII/secret leakage, refusal for out-of-scope
+- [x] Guardrail layers: input → retrieval → tool → output (defence in depth, no single filter)
+- [x] Prompt injection: direct vs **indirect** (malicious text inside retrieved docs), and why RAG + tools makes it dangerous
+- [x] Deterministic checks first (schemas, allowlists, regex, limits), LLM classifiers second
+- [x] Least privilege for tools: which tools are read-only, which need human approval
+- [x] Output checks: groundedness/citation verification, PII/secret leakage, refusal for out-of-scope
 
 **Build**
-- [ ] Input guard: scope + injection classifier (structured output) before the graph
-- [ ] Retrieval guard: wrap retrieved text as untrusted data; flag instruction-like content
-- [ ] tool guard: `request_director_approval` can only be triggered by the human interrupt, never by model text alone
-- [ ] Output guard: every claim cites a retrieved `doc_id`; uncited answer → block or downgrade
-- [ ] Ingest `data/adversarial/log-relay-contaminated.md` and attack the agent
+- [x] Input guard: scope + injection classifier (structured output) before the graph
+- [x] Retrieval guard: wrap retrieved text as untrusted data; flag instruction-like content
+- [x] tool guard: `request_director_approval` can only be triggered by the human interrupt, never by model text alone
+- [x] Output guard: every claim cites a retrieved `doc_id`; uncited answer → block or downgrade
+- [x] Ingest `data/adversarial/log-relay-contaminated.md` and attack the agent
 
 **Verify**
-- [ ] Injection doc retrieved → agent does NOT approve the waiver, flags the source as unverified
-- [ ] Add 3 adversarial cases to `golden_agent.jsonl` (they become regression tests)
-- [ ] Guardrail cost: added latency per request __ ms
+- [x] Injection doc retrieved → agent does NOT approve the waiver, flags the source as unverified
+- [x] Add 3 adversarial cases to `golden_agent.jsonl` (they become regression tests)
+- [x] Guardrail cost: ~200 ms per request (Prompt Guard call); regex + citation checks ~0 ms
 
 Resources: [OWASP Top 10 for LLM Applications](https://genai.owasp.org/llm-top-10/) · [Simon Willison: prompt injection](https://simonwillison.net/tags/prompt-injection/)
 
@@ -188,23 +188,23 @@ Resources: [OWASP Top 10 for LLM Applications](https://genai.owasp.org/llm-top-1
 
 ## M7 Integration + Production (60 min)
 **Learn**
-- [ ] End-to-end architecture diagram (frontend → FastAPI → graph → retriever/tools → LLM)
-- [ ] Observability: traces, spans, latency p50/p95, tokens, cost per request
-- [ ] Provider failures: timeouts, retries with backoff, fallback model (Groq → DeepSeek)
-- [ ] Scaling: async, concurrency, ingestion queue, Qdrant server/sharding, caching
-- [ ] CI evals: regression gates; online monitoring + user feedback loop
+- [x] End-to-end architecture diagram (frontend → FastAPI → graph → retriever/tools → LLM)
+- [x] Observability: traces, spans, latency p50/p95, tokens, cost per request
+- [x] Provider failures: timeouts, retries with backoff, fallback model (Groq → DeepSeek)
+- [x] Scaling: async, concurrency, ingestion queue, Qdrant server/sharding, caching
+- [x] CI evals: regression gates; online monitoring + user feedback loop
 
 **Build**
-- [ ] FastAPI: `/ask`, `/investigate`, `/investigate/{thread}/resume`, `/ingest`, `/traces`, `/evals`
-- [ ] Fallback model + timeout in `app/llm.py`
-- [ ] Next.js mission-control UI: assistant chat + evidence/citations, investigation view with trace timeline + approve/reject, eval results page
+- [x] FastAPI: `/ask`, `/investigate`, `/investigate/{thread}/resume`, `/ingest`, `/traces`, `/evals`
+- [x] Fallback model + timeout in `app/llm.py`
+- [x] Next.js mission-control UI: assistant chat + evidence/citations, investigation view with trace timeline + approve/reject, eval results page
 - [ ] Optional: LangSmith tracing via env vars
 
 **Verify**
-- [ ] Full flow in the browser: ask → cited answer; investigate → approve → recommendation
-- [ ] Trace view shows real node timings + tokens
-- [ ] Kill the Groq key → fallback works
-- [ ] Final README architecture section written
+- [x] Full flow in the browser: ask → cited answer; investigate → approve → recommendation
+- [x] Trace view shows real node timings + tokens
+- [x] Kill the Groq key → fallback works (401 → served by deepseek-flash, tagged `:fallback`)
+- [x] Final README architecture section written
 
 Resources: [FastAPI](https://fastapi.tiangolo.com/) · [Groq tool use](https://console.groq.com/docs/tool-use) · [DeepSeek API](https://api-docs.deepseek.com/)
 

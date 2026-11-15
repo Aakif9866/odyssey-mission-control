@@ -1,9 +1,10 @@
 """Agent tools. All READ-ONLY. Requesting Director approval is deliberately NOT a tool:
 only the graph's human_approval node (an interrupt) can produce an approval."""
 import json
+from app.guards import screen_chunks
 from app.retrieve import search
 
-RETRIEVAL_MODE = "dense"  # upgraded in M4
+RETRIEVAL_MODE = "hybrid_rerank"  # M4 winner on latency/quality (see evals/results/retrieval_compare.json)
 
 # Structured mission DB (a real system would query Postgres/an ops API). Consistent with data/corpus.
 MISSIONS = {
@@ -38,8 +39,8 @@ APPROVAL_RULES = [  # (keywords, reason): deterministic policy, no LLM
 
 def search_docs(query: str, planet: str | None = None) -> list[dict]:
     filters = {"planet": planet} if planet else {}
-    hits = search(query, k=4, mode=RETRIEVAL_MODE, **filters)
-    return [{"doc_id": h["doc_id"], "score": h["score"], "text": h["text"][:600]} for h in hits]
+    hits, flags = screen_chunks(search(query, k=4, mode=RETRIEVAL_MODE, **filters))
+    return [{"doc_id": "GUARD", "score": 0, "text": f}  for f in flags] + [{"doc_id": h["doc_id"], "score": h["score"], "text": h["text"][:600]} for h in hits]
 
 
 def get_mission(mission_id: str) -> dict:
@@ -62,7 +63,7 @@ REGISTRY = {"search_docs": search_docs, "get_mission": get_mission, "get_crew": 
 SCHEMAS = [
     {"type": "function", "function": {"name": "search_docs", "description": "Semantic search over HED mission documents (reports, logs, manuals, briefs). Returns top chunks with doc_id.",
      "parameters": {"type": "object", "properties": {"query": {"type": "string"},
-                    "planet": {"type": "string", "enum": ["Kepler-Vex", "Thalassa Prime", "Cinder"], "description": "Optional filter"}}, "required": ["query"]}}},
+                    "planet": {"type": ["string", "null"], "enum": ["Kepler-Vex", "Thalassa Prime", "Cinder", None], "description": "Optional filter; null for all planets"}}, "required": ["query"]}}},
     {"type": "function", "function": {"name": "get_mission", "description": "Structured live status of a mission: status, risk class, commander, equipment, pending approvals.",
      "parameters": {"type": "object", "properties": {"mission_id": {"type": "string", "description": "e.g. ODY-03"}}, "required": ["mission_id"]}}},
     {"type": "function", "function": {"name": "get_crew", "description": "Current crew list and status for a mission.",

@@ -1,0 +1,23 @@
+{"id": "r_lscart", "kind": "code", "query": "LS-CART-B", "ref_docs": ["MAN-HABLS", "LOG-ODY03-41"]}
+{"id": "r_cb9x", "kind": "code", "query": "CB-9X", "ref_docs": ["MAN-RD440"]}
+{"id": "r_hedops7", "kind": "code", "query": "HED-OPS-7", "ref_docs": ["CRW-ODY03", "LOG-ODY03-41"]}
+{"id": "r_e309", "kind": "code", "query": "E-309", "ref_docs": ["MAN-HABLS"]}
+{"id": "r_e412", "kind": "code", "query": "E-412 procedure", "ref_docs": ["MAN-HABLS"]}
+{"id": "r_v20", "kind": "code", "query": "V-20", "ref_docs": ["MAN-RD440"]}
+{"id": "r_kiln2", "kind": "code", "query": "Kiln-2", "ref_docs": ["RPT-CI-SEIS", "PLN-CI"]}
+{"id": "r_nautilus", "kind": "code", "query": "NAUTILUS-2", "ref_docs": ["MSN-ODY05"]}
+{"id": "r_084", "kind": "code", "query": "0.84 kg", "ref_docs": ["MAN-HABLS"]}
+{"id": "r_corvane", "kind": "name", "query": "Corvane Ridges", "ref_docs": ["PLN-KV", "RPT-ANM0042"]}
+{"id": "r_siren", "kind": "name", "query": "Siren probe", "ref_docs": ["PLN-TP", "HIS-HED"]}
+{"id": "r_sato", "kind": "name", "query": "Halima Sato", "ref_docs": ["MSN-ODY03", "MSN-ODY05", "HIS-HED"]}
+{"id": "r_ashfall", "kind": "name", "query": "Ashfall Tubes collapse", "ref_docs": ["RPT-CI-SEIS", "PLN-CI"]}
+{"id": "p_co2", "kind": "paraphrase", "query": "the carbon dioxide filter is full, what now?", "ref_docs": ["MAN-HABLS"]}
+{"id": "p_bitbreak", "kind": "paraphrase", "query": "why did the drill bit break?", "ref_docs": ["LOG-ODY03-41", "MAN-RD440", "PLN-KV"]}
+{"id": "p_hurt", "kind": "paraphrase", "query": "who got hurt on the ice world?", "ref_docs": ["LOG-ODY03-41"]}
+{"id": "p_daylength", "kind": "paraphrase", "query": "how long does one day last on Kepler-Vex?", "ref_docs": ["PLN-KV"]}
+{"id": "p_nohumans", "kind": "paraphrase", "query": "which world is too dangerous for people to set foot on?", "ref_docs": ["PLN-CI"]}
+{"id": "p_icethick", "kind": "paraphrase", "query": "how thick is the ice where the cryobot will go down?", "ref_docs": ["PLN-TP", "MSN-ODY05"]}
+{"id": "p_firstcrew", "kind": "paraphrase", "query": "what was the very first crewed flight of the directorate?", "ref_docs": ["HIS-HED", "PLN-CI"]}
+{"id": "d_tremor", "kind": "distractor", "query": "periodic tremor under the landing basin every six hours", "ref_docs": ["RPT-ANM0042", "LOG-ODY03-41"]}
+{"id": "d_cinderquake", "kind": "distractor", "query": "regular quakes driven by tidal heating on the volcanic world", "ref_docs": ["RPT-CI-SEIS"]}
+{"id": "d_icedrill", "kind": "distractor", "query": "drilling limit in the coldest ice", "ref_docs": ["MAN-RD440"]}

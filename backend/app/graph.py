@@ -93,7 +93,11 @@ def classify(s):
                "Route a request for the HED space mission-control assistant.\n"
                "question = a factual lookup answerable from documents in one step.\n"
                "investigation = needs gathering evidence from several sources, analysing a situation, planning, or recommending actions.\n"
-               "out_of_scope = unrelated to HED missions, planets, crew, equipment or operations."},
+               "out_of_scope = clearly unrelated to HED (e.g. poems, recipes, sports, general trivia).\n"
+               "HED scope includes error/warning codes (E-217, V-11), equipment manuals (RD-440 drill, life support), procedures, "
+               "planets, missions (ODY-03/04/05), crew, anomalies (ANM-*), approvals. When unsure, prefer question over out_of_scope.\n"
+               "Examples: 'What should the crew do on error E-217?' → question. 'Can a crew land on Cinder?' → question. "
+               "'Investigate ANM-0042' → investigation. 'Write a poem' → out_of_scope."},
               {"role": "user", "content": s["query"]}], schema=Route, model=FAST_MODEL, max_tokens=400, tag="classify")
     return {"route": r.route, "_summary": f"{r.route}: {r.reason}"}
 
@@ -102,7 +106,7 @@ def classify(s):
 def rag_node(s):
     r = rag_answer(s["query"], k=5, mode=tools.RETRIEVAL_MODE)
     ev = [{"doc_id": c["doc_id"], "text": c["text"][:600], "score": c["score"], "via": "retrieval"} for c in r["chunks"]]
-    return {"answer": r["answer"], "citations": r["citations"], "evidence": ev,
+    return {"answer": r["answer"], "citations": r["citations"], "evidence": ev, "flags": r["flags"],
             "_summary": f"retrieved {len({e['doc_id'] for e in ev})} docs, cited {r['citations']}"}
 
 
@@ -129,7 +133,7 @@ def agent(s):
 @traced("tools")
 def tool_node(s):
     last = s["messages"][-1]
-    msgs, ev, calls = [], [], []
+    msgs, ev, calls, flags = [], [], [], []
     for tc in last.get("tool_calls", []):
         name, args = tc["function"]["name"], tc["function"]["arguments"]
         t = time.perf_counter()
@@ -138,10 +142,12 @@ def tool_node(s):
         msgs.append({"role": "tool", "tool_call_id": tc["id"], "content": result})
         calls.append({"name": name, "args": json.loads(args or "{}"), "ok": ok, "ms": ms})
         if ok and name == "search_docs":
-            ev += [{"doc_id": h["doc_id"], "text": h["text"], "score": h["score"], "via": name} for h in json.loads(result)]
+            hits = json.loads(result)
+            flags += [h["text"] for h in hits if h["doc_id"] == "GUARD"]
+            ev += [{"doc_id": h["doc_id"], "text": h["text"], "score": h["score"], "via": name} for h in hits if h["doc_id"] != "GUARD"]
         elif ok and name in ("get_mission", "get_crew"):
             ev.append({"doc_id": f"DB:{name}:{json.loads(args)['mission_id'].upper()}", "text": result[:600], "score": 1.0, "via": name})
-    return {"messages": msgs, "evidence": ev, "tool_calls": calls,
+    return {"messages": msgs, "evidence": ev, "tool_calls": calls, "flags": flags,
             "_summary": ", ".join(f"{c['name']}({'ok' if c['ok'] else 'ERROR'})" for c in calls)}
 
 

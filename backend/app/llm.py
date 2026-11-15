@@ -1,7 +1,7 @@
 """Thin OpenAI-compatible client. Every call is logged (latency, tokens, cost) to CALLS for observability.
 Generator calls fall back to the judge provider (DeepSeek) if Groq errors or times out."""
 import json, logging, re, time
-from openai import OpenAI, RateLimitError
+from openai import BadRequestError, OpenAI, RateLimitError
 from pydantic import BaseModel, ValidationError
 from app.config import GEN, JUDGE
 
@@ -97,6 +97,10 @@ def chat_tools(messages: list[dict], tools: list[dict], tag: str = "agent", max_
                 raise
             m = re.search(r"try again in ([\d.]+)s", str(e))
             time.sleep((float(m.group(1)) if m else 2 ** attempt) + 0.5)
+        except BadRequestError as e:  # Groq validates tool args server-side; a resample usually produces valid args
+            if "tool call validation failed" not in str(e) or attempt >= 2:
+                raise
+            log.warning("invalid tool-call args, resampling: %s", str(e)[:160])
     u, msg = r.usage, r.choices[0].message
     CALLS.append({"tag": tag, "role": "gen", "model": model, "ms": round((time.perf_counter() - t) * 1000),
                   "in": u.prompt_tokens, "out": u.completion_tokens, "cost": round(cost(model, u.prompt_tokens, u.completion_tokens), 6), "ts": time.time()})

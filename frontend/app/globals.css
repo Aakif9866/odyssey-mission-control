@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+/* Klyro · Spectrum vibe: pitch-black neutral surfaces, colour lives in area tones. */
+:root {
+  --bg: #000000;
+  --surface: #0a0a0a;
+  --surface-2: #151515;
+  --border: rgb(255 255 255 / 0.09);
+  --border-strong: rgb(255 255 255 / 0.16);
+  --text: #e5e7eb;
+  --heading: #ffffff;
+  --muted: #9ca3af;
+  --strip: 3px;
+  --glow: 0.35;
+
+  --tone-mission: #22d3ee;  --grad-mission: linear-gradient(135deg,#0e7490,#1d4ed8);  --bright-mission: linear-gradient(90deg,#22d3ee,#60a5fa);
+  --tone-assistant: #a5b4fc; --grad-assistant: linear-gradient(135deg,#4338ca,#6d28d9); --bright-assistant: linear-gradient(90deg,#818cf8,#c084fc);
+  --tone-investigate: #c084fc; --grad-investigate: linear-gradient(135deg,#7e22ce,#be185d); --bright-investigate: linear-gradient(90deg,#c084fc,#f472b6);
+  --tone-docs: #93c5fd;     --grad-docs: linear-gradient(135deg,#1d4ed8,#0e7490);     --bright-docs: linear-gradient(90deg,#60a5fa,#22d3ee);
+  --tone-retrieval: #fb923c; --grad-retrieval: linear-gradient(135deg,#c2410c,#b45309); --bright-retrieval: linear-gradient(90deg,#fb923c,#fbbf24);
+  --tone-evals: #34d399;    --grad-evals: linear-gradient(135deg,#047857,#0f766e);    --bright-evals: linear-gradient(90deg,#34d399,#2dd4bf);
+  --tone-graph: #f472b6;    --grad-graph: linear-gradient(135deg,#be185d,#7e22ce);    --bright-graph: linear-gradient(90deg,#f472b6,#c084fc);
+  --tone-telemetry: #2dd4bf; --grad-telemetry: linear-gradient(135deg,#0f766e,#0e7490); --bright-telemetry: linear-gradient(90deg,#2dd4bf,#22d3ee);
+  --tone-learn: #fbbf24;    --grad-learn: linear-gradient(135deg,#b45309,#c2410c);    --bright-learn: linear-gradient(90deg,#fbbf24,#fb923c);
+  --warn: #fbbf24;
+  --danger: #f87171;
+  --ok: #34d399;
+
+  --c: var(--tone-mission); --g: var(--grad-mission); --gb: var(--bright-mission);
+}
+[data-tone="mission"] { --c: var(--tone-mission); --g: var(--grad-mission); --gb: var(--bright-mission); }
+[data-tone="assistant"] { --c: var(--tone-assistant); --g: var(--grad-assistant); --gb: var(--bright-assistant); }
+[data-tone="investigate"] { --c: var(--tone-investigate); --g: var(--grad-investigate); --gb: var(--bright-investigate); }
+[data-tone="docs"] { --c: var(--tone-docs); --g: var(--grad-docs); --gb: var(--bright-docs); }
+[data-tone="retrieval"] { --c: var(--tone-retrieval); --g: var(--grad-retrieval); --gb: var(--bright-retrieval); }
+[data-tone="evals"] { --c: var(--tone-evals); --g: var(--grad-evals); --gb: var(--bright-evals); }
+[data-tone="graph"] { --c: var(--tone-graph); --g: var(--grad-graph); --gb: var(--bright-graph); }
+[data-tone="telemetry"] { --c: var(--tone-telemetry); --g: var(--grad-telemetry); --gb: var(--bright-telemetry); }
+[data-tone="learn"] { --c: var(--tone-learn); --g: var(--grad-learn); --gb: var(--bright-learn); }
+[data-tone] { --accent: var(--c); --accent-soft: color-mix(in srgb, var(--c) 12%, transparent); }
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-heading: var(--heading);
+  --color-muted: var(--muted);
+  --color-tone: var(--c);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-grotesk);
+  --font-mono: var(--font-mono);
+}
+
+html { background: var(--bg); color-scheme: dark; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  /* faint starfield: two fixed layers of tiny dots */
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgb(255 255 255 / .35), transparent 60%),
+    radial-gradient(1px 1px at 68% 42%, rgb(255 255 255 / .25), transparent 60%),
+    radial-gradient(1px 1px at 82% 12%, rgb(255 255 255 / .3), transparent 60%),
+    radial-gradient(1px 1px at 33% 76%, rgb(255 255 255 / .2), transparent 60%),
+    radial-gradient(1px 1px at 92% 88%, rgb(255 255 255 / .25), transparent 60%),
+    radial-gradient(1px 1px at 48% 8%, rgb(255 255 255 / .2), transparent 60%);
+  background-attachment: fixed;
+}
+::selection { background: color-mix(in srgb, var(--c) 35%, transparent); }
+
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-top-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+  border-top-right-radius: .375rem;
+  border-bottom-left-radius: .375rem;
+}
+.card-strip {
+  background-image: var(--gb);
+  background-size: 100% var(--strip);
+  background-position: top;
+  background-repeat: no-repeat;
+}
+.card-hover { transition: transform .2s ease-out, border-color .2s ease-out, box-shadow .2s ease-out; }
+.card-hover:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--c) 45%, transparent); box-shadow: 0 12px 40px -18px color-mix(in srgb, var(--c) 60%, transparent); }
+.chip-icon { background: var(--g); color: #fff; }
+.text-grad { background: var(--gb); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.glow { position: absolute; width: 22rem; height: 22rem; border-radius: 9999px; background: var(--gb); filter: blur(70px); opacity: var(--glow); pointer-events: none; }
+.meter { background: var(--surface-2); border-radius: 9999px; overflow: hidden; height: .5rem; }
+.meter > span { display: block; height: 100%; background: var(--gb); border-radius: 9999px; transition: width .6s ease-out; }
+.progress-ring { background: conic-gradient(var(--c) calc(var(--p) * 1%), var(--surface-2) 0); border-radius: 9999px; }
+.btn-primary { background: var(--g); color: #fff; }
+.btn-outline { border: 1px solid color-mix(in srgb, var(--c) 60%, transparent); color: var(--c); }
+.btn-outline:hover { background: var(--c); color: #000; }
+.scrollbar-thin { scrollbar-width: thin; scrollbar-color: #333 transparent; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { animation: reveal .45s ease-out both; }
+  @keyframes reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .pulse-dot { animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+  .dash-flow { stroke-dasharray: 6 6; animation: dash 1s linear infinite; }
+  @keyframes dash { to { stroke-dashoffset: -12; } }
+}

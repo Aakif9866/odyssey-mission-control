@@ -1,21 +1,63 @@
 # odyssey-mission-control
 
-AI space mission-control platform: RAG over mission documents, hybrid retrieval + reranking, LangGraph investigation agents with human-in-the-loop approval, and RAGAS/trajectory evals. Built during a 6-hour AI engineering sprint.
+AI space mission-control platform: RAG over mission documents, hybrid retrieval + reranking, a LangGraph investigation agent with human-in-the-loop approval, layered guardrails, and RAG + agent-trajectory evals. Built during a 6-hour AI engineering sprint.
 
-## Quickstart
+Product overview: [PRODUCT.md](PRODUCT.md) · Workflow and graph state: [WORKFLOW.md](WORKFLOW.md) · Progress: [CHECKLIST.md](CHECKLIST.md)
+
+## Run it
 ```bash
-cp .env.example .env              # add GROQ_API_KEY and DEEPSEEK_API_KEY
+cp .env.example .env                                     # GROQ_API_KEY, DEEPSEEK_API_KEY
+docker run -d --name odyssey-qdrant -p 6333:6333 qdrant/qdrant:v1.20.0
 cd backend && uv sync
-uv run python check_env.py        # both providers should answer
+uv run python -m app.ingest --reset                      # 13 docs → 38 chunks (dense + BM25)
+uv run uvicorn app.api:app --port 8000                   # API
+cd ../frontend && npm install && npm run dev             # UI on http://localhost:3000
+```
+No Docker? Remove `QDRANT_URL` from `.env` and Qdrant runs embedded (single process only).
+
+## Architecture
+```
+Next.js UI (Mission Control · Assistant · Investigations · Documents · Retrieval Lab · Evals · Graph · Telemetry · Learn)
+      │  REST + SSE (graph events stream live)
+FastAPI ── /ask /search /investigate(/stream, /resume) /documents /ingest /evals /graph /runs /metrics
+      │
+LangGraph: guard_input → classify ─┬─ question ──→ rag_answer ───────────────┐
+                                   ├─ investigation → agent ⇄ tools (≤5 steps)  │
+                                   │        → assess → needs approval? ─ ⏸ human_approval (interrupt, SQLite checkpoint)
+                                   │                          └──────→ recommend ─┤
+                                   └─ out_of_scope / blocked → refuse             └→ guard_output
+      │
+Retrieval: dense (bge-small) + BM25 (sparse, IDF) → RRF fusion in Qdrant → cross-encoder rerank (MiniLM)
+LLMs: Groq gpt-oss-120b (generation, agent) · gpt-oss-20b (routing, rewrites) · Llama Prompt Guard 2 (injection)
+      DeepSeek deepseek-flash (eval judge + fallback provider)
 ```
 
-## Stack
-FastAPI · LangGraph · Qdrant (embedded) · fastembed (dense + BM25 + cross-encoder) · RAGAS · Groq (generation) · DeepSeek (judge) · Next.js (UI)
+## Results (real runs, `backend/evals/results/`)
+| What | Result |
+|---|---|
+| RAG baseline (dense, k=5) | 16/18 pass · correctness 0.94 · groundedness 0.94 · hit@5 1.0 |
+| RAG hybrid + rerank | 16/18 pass · ctx recall 0.97 → **1.0**; remaining failures are generation, not retrieval |
+| Generator comparison | gpt-oss-120b 88.9% · gpt-oss-20b 77.8% (half the cost) · deepseek-flash 77.8% |
+| Retrieval benchmark (39 queries, k=3) | dense 0.90 → bm25 0.92 → hybrid 0.95 → +MiniLM 0.97 (688 ms) → +bge 1.00 (6.4 s) |
+| RAGAS cross-check | faithfulness 0.95 vs ours 0.94 · ctx recall 0.94 vs 0.97 |
+| Judge calibration | 36/36 verdicts agree with a human check |
+| Agent eval (9 scenarios) | **9/9**: route 1.0 · tools 1.0 · approval pause 1.0 · fault recovery 1.0 · safety (direct + indirect injection) 1.0 |
 
-## Layout
-- `data/corpus/`: fictional mission documents (ground truth for evals)
-- `backend/`: Python API, RAG pipeline, agent graph, evals
-- `frontend/`: mission-control UI
-- `CHECKLIST.md` / `CONCEPTS.md`: sprint progress + self-test
+## Lessons we hit for real
+- Groq free tier = 8k tokens/min → rate-limit-aware retries (wait; never silently switch models in an eval).
+- A silent provider fallback mislabelled an experiment → evals disable fallback and record `models_used`.
+- DeepSeek has JSON mode but no strict schema → validate with Pydantic and retry on truncation.
+- Groq validates tool-call args server-side → nullable optional params + resample on rejection.
+- Prompt Guard missed the planted indirect injection (0.004); the rule layer caught it → defence in depth.
+- The router (gpt-oss-20b) sent 'error E-217' to out_of_scope → explicit scope + examples in the routing prompt.
+- The scorer failed a correct answer: the model wrote `LS‑CART‑B` with U+2011 hyphens → normalise text before string checks.
+- Embedded Qdrant locks to one process → server mode for API + evals side by side.
 
-Architecture section: written in Module 6.
+## Tests
+```bash
+cd backend && uv run pytest -q            # metrics, trajectory scorer, RRF, guards + regression gate on saved evals
+uv run python -m evals.rag_eval --tag <name> [--mode hybrid_rerank] [--model ...]
+uv run python -m evals.compare_retrieval
+uv run python -m evals.agent_eval --adversarial
+uv run evals/ragas_check.py baseline      # isolated env (PEP 723)
+```
