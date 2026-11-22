@@ -21,3 +21,7 @@
 {"id": "d_tremor", "kind": "distractor", "query": "periodic tremor under the landing basin every six hours", "ref_docs": ["RPT-ANM0042", "LOG-ODY03-41"]}
 {"id": "d_cinderquake", "kind": "distractor", "query": "regular quakes driven by tidal heating on the volcanic world", "ref_docs": ["RPT-CI-SEIS"]}
 {"id": "d_icedrill", "kind": "distractor", "query": "drilling limit in the coldest ice", "ref_docs": ["MAN-RD440"]}
+{"id": "m_ody03_commander", "kind": "mission_id", "query": "Who currently commands ODY-03?", "ref_docs": ["LOG-ODY03-41"]}
+{"id": "m_ody03_bit", "kind": "mission_id", "query": "What happened to the drill bit on ODY-03 at 38 m?", "ref_docs": ["LOG-ODY03-41"]}
+{"id": "m_ody03_organics", "kind": "mission_id", "query": "What did ODY-03 find in the BH-1 meltwater sample?", "ref_docs": ["LOG-ODY03-41"]}
+{"id": "m_ody04_seismic", "kind": "mission_id", "query": "What seismic signal did ODY-04 record?", "ref_docs": ["RPT-CI-SEIS"]}

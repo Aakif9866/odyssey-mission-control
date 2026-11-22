@@ -42,7 +42,7 @@ class Assessment(BaseModel):
     proposed_action: str
     needs_approval: bool
     approval_reason: str
-    citations: list[str] = Field(description="doc_ids supporting the assessment")
+    citations: list[str] = Field(description="bare doc_ids supporting the assessment, e.g. MAN-RD440")
 
 
 class OdysseyState(TypedDict, total=False):

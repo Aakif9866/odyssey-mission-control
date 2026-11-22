@@ -16,3 +16,4 @@
 {"id": "cinder_freq", "category": "distractor", "question": "What is the dominant frequency of seismic events on Cinder?", "reference": "1.2 Hz.", "ref_docs": ["RPT-CI-SEIS"]}
 {"id": "unans_budget", "category": "unanswerable", "question": "What is the budget of the ODY-05 Deepwater mission?", "reference": "UNANSWERABLE: the documents do not state it.", "ref_docs": []}
 {"id": "unans_aurelia", "category": "unanswerable", "question": "What is the surface gravity of the gas giant Aurelia?", "reference": "UNANSWERABLE: the documents do not state it.", "ref_docs": []}
+{"id": "commander_by_id", "category": "contradiction", "question": "Who currently commands ODY-03?", "reference": "Lt. Cdr. Tomas Varga, acting commander since Sol 46 after Cdr. Okafor-Reyes was injured.", "ref_docs": ["LOG-ODY03-41"]}

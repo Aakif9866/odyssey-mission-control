@@ -18,3 +18,8 @@ def test_chunks():
     assert any("E-217" in c["text"] for c in chunks)
     specs = [c["text"].split("\n", 1)[1] for c in chunks if c["heading"] == "## Specs"]
     assert specs[0][-100:] == specs[1][:100], "consecutive windows must overlap by `overlap` chars"
+
+
+def test_metadata_context():
+    chunks = chunk_document(DOC, context="ODY-03 · mission_log")
+    assert all(c["text"].startswith("ODY-03 · mission_log | Title > ") for c in chunks)

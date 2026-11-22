@@ -10,9 +10,11 @@ def parse_front_matter(text: str) -> tuple[dict, str]:
     return (yaml.safe_load(m.group(1)), m.group(2)) if m else ({}, text)
 
 
-def chunk_document(body: str, max_chars: int = 800, overlap: int = 100) -> list[dict]:
+def chunk_document(body: str, max_chars: int = 800, overlap: int = 100, context: str = "") -> list[dict]:
     """Structure-aware chunking: split at headings, window long sections with overlap.
-    Each chunk gets a contextual header "<doc title> > <heading>" so it stays meaningful alone."""
+    Each chunk gets a contextual header "<context> | <doc title> > <heading>" so it stays meaningful alone.
+    `context` = front-matter facts the body may never state (e.g. a log titled "Meridian" is mission ODY-03)."""
+    prefix = f"{context} | " if context else ""
     sections, title = [], ""
     for block in re.split(r"\n(?=#)", body.strip()):
         heading = block.split("\n", 1)[0].strip()
@@ -25,5 +27,5 @@ def chunk_document(body: str, max_chars: int = 800, overlap: int = 100) -> list[
             continue
         step = max_chars - overlap
         for start in range(0, max(len(text) - overlap, 1), step):
-            chunks.append({"heading": heading, "text": f"{title} > {heading}\n{text[start:start + max_chars]}"})
+            chunks.append({"heading": heading, "text": f"{prefix}{title} > {heading}\n{text[start:start + max_chars]}"})
     return chunks

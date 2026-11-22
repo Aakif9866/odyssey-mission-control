@@ -20,7 +20,9 @@ def ensure_collection():
 def ingest_file(path: Path, max_chars=800, overlap=100) -> int:
     meta, body = parse_front_matter(path.read_text())
     meta = {k: str(meta[k]) for k in META_KEYS if k in meta} | {"source": path.name}
-    chunks = chunk_document(body, max_chars, overlap)
+    # Embed the metadata too: queries name missions/planets by ID even when the doc body doesn't.
+    context = " · ".join(meta[k] for k in ("mission", "planet", "type", "date") if k in meta)
+    chunks = chunk_document(body, max_chars, overlap, context)
     c = client()
     # Document update = delete this file's old chunks, then insert new ones (no stale or orphan chunks).
     c.delete(COLLECTION, qm.FilterSelector(filter=qm.Filter(must=[qm.FieldCondition(key="source", match=qm.MatchValue(value=path.name))])))
