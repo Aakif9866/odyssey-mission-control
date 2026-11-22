@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Bot, Clock, Coins, CornerDownLeft, FileText, Send, Sparkles } from "lucide-react";
 import { Badge, Button, Card, Empty, ErrorNote, PageHeader, Spinner } from "@/components/ui";
 import { post } from "@/lib/api";
+import { usePrefill } from "@/lib/prefill";
 
 const MODES = ["dense", "bm25", "hybrid", "hybrid_rerank", "multi_query"];
 const SAMPLES = ["What should the crew do on error E-217?", "What is the current max drilling depth of the RD-440 in very cold ice?",
@@ -12,6 +13,7 @@ type Turn = { q: string; r?: any; err?: string };
 
 export default function Assistant() {
   const [q, setQ] = useState("");
+  usePrefill(setQ);
   const [mode, setMode] = useState("hybrid_rerank");
   const [turns, setTurns] = useState<Turn[]>([]);
   const [busy, setBusy] = useState(false);

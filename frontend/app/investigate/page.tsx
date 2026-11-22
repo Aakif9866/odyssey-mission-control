@@ -3,6 +3,7 @@ import { useState } from "react";
 import { AlertOctagon, CheckCircle2, Circle, FileText, Gavel, Play, Radar, ShieldAlert, Wrench, XCircle, Zap } from "lucide-react";
 import { Badge, Button, Card, Empty, ErrorNote, PageHeader, Spinner } from "@/components/ui";
 import { API } from "@/lib/api";
+import { usePrefill } from "@/lib/prefill";
 
 const PRESETS = ["Investigate anomaly ANM-0042 and recommend next steps",
   "Is the ODY-05 Deepwater mission ready to launch? Check its live status and recommend next steps.",
@@ -15,6 +16,7 @@ type Ev = { node: string; ms: number; summary: string; tool_calls?: any[] };
 
 export default function Investigate() {
   const [q, setQ] = useState(PRESETS[0]);
+  usePrefill(setQ);
   const [fault, setFault] = useState("");
   const [events, setEvents] = useState<Ev[]>([]);
   const [pending, setPending] = useState<any>(null);

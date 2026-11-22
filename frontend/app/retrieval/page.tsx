@@ -4,6 +4,7 @@ import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAx
 import { Search } from "lucide-react";
 import { Badge, Button, Card, Empty, ErrorNote, PageHeader, Spinner } from "@/components/ui";
 import { api, post } from "@/lib/api";
+import { usePrefill } from "@/lib/prefill";
 
 const MODES = ["dense", "bm25", "hybrid", "hybrid_rerank"];
 const MODE_TONE: Record<string, string> = { dense: "assistant", bm25: "retrieval", hybrid: "mission", hybrid_rerank: "evals", multi_query: "graph" };
@@ -12,6 +13,7 @@ const tip = { contentStyle: { background: "#151515", border: "1px solid rgba(255
 
 export default function Retrieval() {
   const [q, setQ] = useState(SAMPLES[0]);
+  usePrefill(setQ);
   const [res, setRes] = useState<any>(null);
   const [cmp, setCmp] = useState<any>(null);
   const [busy, setBusy] = useState(false);
