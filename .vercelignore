@@ -1,0 +1,19 @@
+# Upload only what the two services need. Never secrets, venvs, models or local state.
+/*
+!/vercel.json
+!/frontend
+!/backend
+!/data
+/data/*
+!/data/corpus
+**/.env
+**/.env.local
+**/node_modules
+**/.next
+**/__pycache__
+/backend/.venv
+/backend/.models
+/backend/.qdrant
+/backend/.pytest_cache
+/backend/*.sqlite*
+/backend/tests

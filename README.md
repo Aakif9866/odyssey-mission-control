@@ -4,6 +4,22 @@ AI space mission-control platform: RAG over mission documents, hybrid retrieval 
 
 Product overview: [PRODUCT.md](PRODUCT.md) · Workflow and graph state: [WORKFLOW.md](WORKFLOW.md) · Progress: [CHECKLIST.md](CHECKLIST.md)
 
+**Live:** https://odyssey-mission-control-one.vercel.app
+
+## Deploy (Vercel)
+One Vercel project, two services (`vercel.json`): Next.js UI at `/`, FastAPI at `/api/*` (prefix stripped).
+`npx vercel deploy --prod` from the repo root; `.vercelignore` uploads only `frontend/`, `backend/`, `data/corpus/`.
+- The bundle is read-only, so each Python process downloads the ONNX models to `/tmp` and builds an in-memory
+  Qdrant index on cold start (~20 s cold, <1 s warm).
+- Env vars: `GROQ_API_KEY`, `DEEPSEEK_API_KEY`, `GEN_*`, `JUDGE_*` (set in the Vercel project, never in the UI).
+- Limits: run telemetry and agent checkpoints live in per-instance `/tmp` SQLite, so they reset on cold start, and a
+  resume that lands on another instance loses its thread. A Postgres checkpointer fixes this.
+
+## CI
+`.github/workflows/ci.yml`: pytest (incl. regression gate on committed eval results) + frontend lint/build on every push.
+`.github/workflows/evals.yml`: live RAG + agent evals on PRs touching `backend/app`, `backend/evals` or `data/corpus`
+(needs `GROQ_API_KEY` / `DEEPSEEK_API_KEY` repo secrets), gated by the same thresholds.
+
 ## Run it
 ```bash
 cp .env.example .env                                     # GROQ_API_KEY, DEEPSEEK_API_KEY

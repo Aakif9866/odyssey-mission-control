@@ -7,7 +7,7 @@ from langgraph.graph import END, START, StateGraph
 from langgraph.types import RetryPolicy, interrupt
 from pydantic import BaseModel, Field
 from app import guards, tools
-from app.config import BACKEND
+from app.config import STATE
 from app.llm import FAST_MODEL, chat, chat_tools
 from app.rag import answer as rag_answer
 
@@ -264,5 +264,5 @@ def build(checkpointer=None):
     return g.compile(checkpointer=checkpointer)
 
 
-_conn = sqlite3.connect(BACKEND / "checkpoints.sqlite", check_same_thread=False)
+_conn = sqlite3.connect(STATE / "checkpoints.sqlite", check_same_thread=False)
 GRAPH = build(SqliteSaver(_conn))  # checkpoints survive restarts; resume by thread_id

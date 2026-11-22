@@ -11,3 +11,5 @@ node_modules/
 checkpoints.sqlite*
 backend/runs.sqlite
 data/uploads/
+.vercel
+.env*

@@ -8,19 +8,21 @@ from langgraph.types import Command
 from pydantic import BaseModel
 from app import agent, llm, tools
 from app.chunking import parse_front_matter
-from app.config import BACKEND, COLLECTION, CORPUS_DIR, ROOT
+from app.config import BACKEND, COLLECTION, CORPUS_DIR, STATE, UPLOADS_DIR
 from app.graph import GRAPH
-from app.ingest import ensure_collection, ingest_file
+from app.ingest import ensure_collection, ingest_dir, ingest_file
 from app.rag import answer
 from app.retrieve import MODES, search
 from app.store import client
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(message)s")
+if not client().collection_exists(COLLECTION) or not client().count(COLLECTION).count:
+    ingest_dir()  # fresh instance (Vercel cold start): build the index from the corpus (~38 chunks)
 app = FastAPI(title="Odyssey Mission Control API")
 app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:3000"], allow_methods=["*"], allow_headers=["*"])
 RESULTS = BACKEND / "evals" / "results"
-UPLOADS = ROOT / "data" / "uploads"
-DB = sqlite3.connect(BACKEND / "runs.sqlite", check_same_thread=False)
+UPLOADS = UPLOADS_DIR
+DB = sqlite3.connect(STATE / "runs.sqlite", check_same_thread=False)
 DB.execute("create table if not exists runs (thread_id text primary key, query text, status text, route text, ts real, result text)")
 
 

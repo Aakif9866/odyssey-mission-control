@@ -15,7 +15,14 @@ _lock = threading.Lock()
 @lru_cache
 def _client() -> QdrantClient:
     url = os.getenv("QDRANT_URL")
-    c = QdrantClient(url=url) if url else QdrantClient(path=QDRANT_PATH)
+    if url:
+        c = QdrantClient(url=url)
+    elif os.getenv("VERCEL"):
+        # Several processes share one instance's /tmp; an on-disk index would be read half-built by a sibling.
+        # 38 chunks index in seconds, so each process builds its own in memory at startup.
+        c = QdrantClient(location=":memory:")
+    else:
+        c = QdrantClient(path=QDRANT_PATH)
     atexit.register(c.close)
     return c
 
