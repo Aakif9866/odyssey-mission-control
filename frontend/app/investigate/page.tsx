@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { AlertOctagon, CheckCircle2, Circle, FileText, Gavel, Play, Radar, ShieldAlert, Wrench, XCircle, Zap } from "lucide-react";
 import { Badge, Button, Card, Empty, ErrorNote, PageHeader, Spinner } from "@/components/ui";
 import { API } from "@/lib/api";
@@ -21,13 +21,13 @@ export default function Investigate() {
   const [result, setResult] = useState<any>(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
-  const thread = useRef<string | null>(null);
+  const [thread, setThread] = useState<string | null>(null);  // state, not a ref: the header shows it
 
   function stream(params: Record<string, string>) {
     setBusy(true); setErr(null);
     const url = `${API}/investigate/stream?${new URLSearchParams(params)}`;
     const es = new EventSource(url);
-    es.addEventListener("start", (e) => { thread.current = JSON.parse((e as MessageEvent).data).thread_id; });
+    es.addEventListener("start", (e) => setThread(JSON.parse((e as MessageEvent).data).thread_id));
     es.addEventListener("node", (e) => {
       const d = JSON.parse((e as MessageEvent).data);
       (d.trace ?? []).forEach((t: Ev) => setEvents((x) => [...x, { ...t, tool_calls: d.tool_calls }]));
@@ -35,7 +35,7 @@ export default function Investigate() {
     es.addEventListener("interrupt", (e) => setPending(JSON.parse((e as MessageEvent).data)));
     es.addEventListener("error", (e: any) => { if (e.data) setErr(JSON.parse(e.data).message); });
     es.addEventListener("done", (e) => { setResult(JSON.parse((e as MessageEvent).data)); setBusy(false); es.close(); });
-    es.onerror = () => { if (es.readyState === EventSource.CLOSED) return; setErr("stream failed: is the backend running on :8000?"); setBusy(false); es.close(); };
+    es.onerror = () => { if (es.readyState === EventSource.CLOSED) return; setErr(`stream failed: is the backend reachable at ${API}?`); setBusy(false); es.close(); };
   }
 
   function launch() {
@@ -44,7 +44,7 @@ export default function Investigate() {
   }
   function decide(d: "approved" | "rejected") {
     setPending(null); setResult(null);
-    stream({ query: q, thread_id: thread.current!, decision: d });
+    stream({ query: q, thread_id: thread!, decision: d });
   }
 
   const tools = result?.tool_calls ?? [];
@@ -71,7 +71,7 @@ export default function Investigate() {
             </select>
           </label>
           {busy && <Spinner label="Agent executing" />}
-          {thread.current && <span className="ml-auto font-mono text-[11px] text-muted">thread {thread.current}</span>}
+          {thread && <span className="ml-auto font-mono text-[11px] text-muted">thread {thread}</span>}
         </div>
       </Card>
       <ErrorNote error={err} />

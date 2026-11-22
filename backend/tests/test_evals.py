@@ -1,5 +1,5 @@
 """Deterministic tests for the eval machinery + the regression gate on the latest saved eval results."""
-import json
+import json, os
 from pathlib import Path
 import pytest
 from evals.metrics import retrieval_metrics
@@ -31,7 +31,8 @@ def test_guards_deterministic():
     assert kept == [] and flags
 
 
-@pytest.mark.parametrize("name,file", [("rag", "baseline.json"), ("agent", "agent_eval.json")])
+# Default: the committed production-config run. CI's eval job points RAG_RESULTS at its fresh run.
+@pytest.mark.parametrize("name,file", [("rag", os.getenv("RAG_RESULTS", "hybrid_rerank_v2.json")), ("agent", "agent_eval.json")])
 def test_regression_gate(name, file):
     """CI gate: fail the build if the latest saved eval run dropped below thresholds."""
     p = RESULTS / file

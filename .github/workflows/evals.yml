@@ -1,0 +1,38 @@
+name: Evals
+# Live LLM evals (~$0.04, ~5 min on Groq free tier). Run when retrieval/generation/eval code or the corpus changes.
+on:
+  workflow_dispatch:
+  pull_request:
+    paths: ["backend/app/**", "backend/evals/**", "data/corpus/**"]
+
+jobs:
+  evals:
+    # Secrets aren't available to fork PRs.
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: backend } }
+    env:
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+      GEN_BASE_URL: https://api.groq.com/openai/v1
+      GEN_MODEL: openai/gpt-oss-120b
+      GEN_FALLBACK_MODEL: openai/gpt-oss-20b
+      JUDGE_BASE_URL: https://api.deepseek.com
+      JUDGE_MODEL: deepseek-flash
+      # QDRANT_URL unset → embedded Qdrant in backend/.qdrant
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - uses: actions/cache@v4
+        with:
+          path: backend/.models
+          key: fastembed-${{ hashFiles('backend/app/store.py', 'backend/app/config.py') }}
+      - run: uv sync --frozen
+      - run: uv run python -m app.ingest --reset
+      - run: uv run python -m evals.rag_eval --tag ci --mode hybrid_rerank
+      - run: uv run python -m evals.agent_eval
+      - name: Regression gate on the fresh runs
+        run: RAG_RESULTS=ci.json uv run pytest -q -k regression_gate
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: eval-results, path: backend/evals/results/ }

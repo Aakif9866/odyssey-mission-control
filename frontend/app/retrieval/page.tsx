@@ -53,7 +53,7 @@ export default function Retrieval() {
           </Card>
         ))}
       </div>
-      <p className="mt-3 text-xs text-muted">Scores aren't comparable across columns: cosine (dense), BM25 weights, RRF rank-fusion and cross-encoder logits live on different scales. That's why hybrid fuses <em>ranks</em>.</p>
+      <p className="mt-3 text-xs text-muted">Scores aren&apos;t comparable across columns: cosine (dense), BM25 weights, RRF rank-fusion and cross-encoder logits live on different scales. That&apos;s why hybrid fuses <em>ranks</em>.</p>
 
       <Card className="reveal mt-6">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-2">

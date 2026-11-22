@@ -20,11 +20,11 @@ export default function GraphPage() {
   const [node, setNode] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
+  const pick = (id: string) => api(`/runs/${id}`).then((r) => { setRun(r); setNode(null); });
   useEffect(() => {
     api("/graph").then(setG).catch((e) => setErr(String(e)));
     api("/runs?limit=30").then((r) => { setRuns(r); if (r[0]) pick(r[0].thread_id); }).catch(() => {});
   }, []);
-  const pick = (id: string) => api(`/runs/${id}`).then((r) => { setRun(r); setNode(null); });
 
   const path: string[] = useMemo(() => (run?.trace ? ["__start__", ...run.trace.map((t: any) => t.node), ...(run.status === "done" ? ["__end__"] : [])] : []), [run]);
   const visits = useMemo(() => path.reduce((a: Record<string, number>, n) => ((a[n] = (a[n] ?? 0) + 1), a), {}), [path]);

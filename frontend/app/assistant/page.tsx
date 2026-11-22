@@ -46,7 +46,7 @@ export default function Assistant() {
           <div className="scrollbar-thin flex-1 space-y-5 overflow-y-auto pr-1">
             {turns.length === 0 && (
               <div className="space-y-4 py-6">
-                <Empty icon={Sparkles}>Ask anything about HED planets, missions, crew or equipment.<br />Answers cite their source documents and refuse when the docs don't say.</Empty>
+                <Empty icon={Sparkles}>Ask anything about HED planets, missions, crew or equipment.<br />Answers cite their source documents and refuse when the docs don&apos;t say.</Empty>
                 <div className="grid gap-2 sm:grid-cols-2">
                   {SAMPLES.map((s) => <button key={s} onClick={() => ask(s)} className="rounded-tl-xl rounded-br-xl border border-line px-3 py-2.5 text-left text-sm text-muted transition-colors hover:border-[var(--c)] hover:text-heading">{s}</button>)}
                 </div>

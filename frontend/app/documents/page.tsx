@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { FileText, Layers, Upload } from "lucide-react";
-import { Badge, Button, Card, Empty, ErrorNote, PageHeader, Spinner } from "@/components/ui";
+import { Badge, Card, Empty, ErrorNote, PageHeader, Spinner } from "@/components/ui";
 import { api } from "@/lib/api";
 
 const TYPE_TONE: Record<string, string> = { planet_profile: "mission", mission_brief: "investigate", crew_roster: "assistant", mission_log: "graph",
