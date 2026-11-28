@@ -3,6 +3,7 @@
   uv run python -m app.agent --resume <thread_id> approved"""
 import sys, uuid
 from langgraph.types import Command
+from app import obs
 from app.graph import GRAPH
 
 
@@ -16,12 +17,12 @@ def _result(thread_id, out):
 
 def start(query: str, thread_id: str | None = None, fault: str | None = None) -> dict:
     thread_id = thread_id or uuid.uuid4().hex[:12]
-    cfg = {"configurable": {"thread_id": thread_id}, "recursion_limit": 40}
+    cfg = {"configurable": {"thread_id": thread_id}, "recursion_limit": 40, "metadata": obs.trace_meta()}
     return _result(thread_id, GRAPH.invoke({"query": query, "fault": fault, "steps": 0}, cfg))
 
 
 def resume(thread_id: str, decision: str) -> dict:
-    cfg = {"configurable": {"thread_id": thread_id}, "recursion_limit": 40}
+    cfg = {"configurable": {"thread_id": thread_id}, "recursion_limit": 40, "metadata": obs.trace_meta()}
     return _result(thread_id, GRAPH.invoke(Command(resume=decision), cfg))
 
 

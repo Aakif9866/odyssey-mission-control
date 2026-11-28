@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import { AlertOctagon, CheckCircle2, Circle, FileText, Gavel, Play, Radar, ShieldAlert, Wrench, XCircle, Zap } from "lucide-react";
-import { Badge, Button, Card, Empty, ErrorNote, PageHeader, Spinner } from "@/components/ui";
-import { API } from "@/lib/api";
+import { Badge, Button, Card, Empty, ErrorNote, Feedback, PageHeader, Spinner } from "@/components/ui";
+import { API, streamUrl } from "@/lib/api";
 import { usePrefill } from "@/lib/prefill";
 
 const PRESETS = ["Investigate anomaly ANM-0042 and recommend next steps",
@@ -25,10 +25,9 @@ export default function Investigate() {
   const [err, setErr] = useState<string | null>(null);
   const [thread, setThread] = useState<string | null>(null);  // state, not a ref: the header shows it
 
-  function stream(params: Record<string, string>) {
+  async function stream(params: Record<string, string>) {
     setBusy(true); setErr(null);
-    const url = `${API}/investigate/stream?${new URLSearchParams(params)}`;
-    const es = new EventSource(url);
+    const es = new EventSource(await streamUrl("/investigate/stream", params));
     es.addEventListener("start", (e) => setThread(JSON.parse((e as MessageEvent).data).thread_id));
     es.addEventListener("node", (e) => {
       const d = JSON.parse((e as MessageEvent).data);
@@ -125,6 +124,7 @@ export default function Investigate() {
               <div className="mb-2 flex flex-wrap items-center gap-2">
                 <h2 className="font-display text-lg font-semibold text-heading">Recommendation</h2>
                 {result.approval && <Badge kind={result.approval === "approved" ? "ok" : "danger"}>Director {result.approval}</Badge>}
+                <span className="ml-auto"><Feedback refId={result.thread_id} question={result.query} answer={result.answer} /></span>
               </div>
               <p className="text-sm leading-relaxed text-text">{result.answer}</p>
               <div className="mt-3 flex flex-wrap gap-2">{result.citations?.map((c: string) => <Badge key={c}><FileText size={11} />{c}</Badge>)}</div>

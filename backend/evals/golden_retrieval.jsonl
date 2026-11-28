@@ -25,3 +25,50 @@
 {"id": "m_ody03_bit", "kind": "mission_id", "query": "What happened to the drill bit on ODY-03 at 38 m?", "ref_docs": ["LOG-ODY03-41"]}
 {"id": "m_ody03_organics", "kind": "mission_id", "query": "What did ODY-03 find in the BH-1 meltwater sample?", "ref_docs": ["LOG-ODY03-41"]}
 {"id": "m_ody04_seismic", "kind": "mission_id", "query": "What seismic signal did ODY-04 record?", "ref_docs": ["RPT-CI-SEIS"]}
+{"id": "r_e104", "kind": "code", "query": "E-104", "ref_docs": ["MAN-HABLS"]}
+{"id": "r_e217", "kind": "code", "query": "E-217", "ref_docs": ["MAN-HABLS", "LOG-ODY03-41"]}
+{"id": "r_v11", "kind": "code", "query": "V-11", "ref_docs": ["MAN-RD440", "LOG-ODY03-41"]}
+{"id": "r_anm", "kind": "code", "query": "ANM-0042", "ref_docs": ["RPT-ANM0042", "LOG-ODY03-41"]}
+{"id": "r_bh2", "kind": "code", "query": "BH-2 borehole", "ref_docs": ["LOG-ODY03-41", "MAN-RD440", "MSN-ODY03"]}
+{"id": "r_bh1", "kind": "code", "query": "BH-1 meltwater", "ref_docs": ["LOG-ODY03-41"]}
+{"id": "r_kiln1", "kind": "code", "query": "Kiln-1", "ref_docs": ["RPT-CI-SEIS", "PLN-CI", "HIS-HED"]}
+{"id": "r_s3", "kind": "code", "query": "S3 offline", "ref_docs": ["RPT-ANM0042"]}
+{"id": "r_037", "kind": "code", "query": "0.37 Hz", "ref_docs": ["RPT-ANM0042", "LOG-ODY03-41"]}
+{"id": "r_12hz", "kind": "code", "query": "1.2 Hz", "ref_docs": ["RPT-CI-SEIS"]}
+{"id": "r_54sv", "kind": "code", "query": "5.4 Sv/year", "ref_docs": ["PLN-TP", "MSN-ODY05"]}
+{"id": "r_60kpa", "kind": "code", "query": "60 kPa", "ref_docs": ["MAN-HABLS"]}
+{"id": "r_314", "kind": "code", "query": "31.4 hours", "ref_docs": ["PLN-KV"]}
+{"id": "r_ody02", "kind": "code", "query": "ODY-02 Halcyon", "ref_docs": ["HIS-HED", "PLN-KV"]}
+{"id": "r_ody01", "kind": "code", "query": "ODY-01 Firstlight", "ref_docs": ["HIS-HED", "PLN-CI"]}
+{"id": "r_tethys", "kind": "name", "query": "Tethys Rift", "ref_docs": ["PLN-TP", "MSN-ODY05"]}
+{"id": "r_halvorsen", "kind": "name", "query": "Halvorsen Basin", "ref_docs": ["PLN-KV", "MSN-ODY03", "RPT-ANM0042", "LOG-ODY03-41"]}
+{"id": "r_lindqvist", "kind": "name", "query": "Amara Lindqvist", "ref_docs": ["MSN-ODY05"]}
+{"id": "r_watanabe", "kind": "name", "query": "Kenji Watanabe", "ref_docs": ["CRW-ODY03", "RPT-ANM0042", "LOG-ODY03-41"]}
+{"id": "r_raman", "kind": "name", "query": "Priya Raman", "ref_docs": ["CRW-ODY03", "LOG-ODY03-41"]}
+{"id": "r_aurelia", "kind": "name", "query": "Aurelia magnetosphere", "ref_docs": ["PLN-TP"]}
+{"id": "r_station", "kind": "name", "query": "Meridian Station", "ref_docs": ["MSN-ODY03", "PLN-KV", "LOG-ODY03-41"]}
+{"id": "r_zhou", "kind": "name", "query": "Mei-Lin Zhou", "ref_docs": ["MSN-ODY05"]}
+{"id": "p_air", "kind": "paraphrase", "query": "running out of breathable oxygen in the habitat", "ref_docs": ["MAN-HABLS"]}
+{"id": "p_meltspeed", "kind": "paraphrase", "query": "how fast does the nuclear probe melt through the ice?", "ref_docs": ["MSN-ODY05"]}
+{"id": "p_takeover", "kind": "paraphrase", "query": "who takes over if the boss gets hurt?", "ref_docs": ["CRW-ODY03", "LOG-ODY03-41"]}
+{"id": "p_water", "kind": "paraphrase", "query": "the water recycler broke, what do we do?", "ref_docs": ["MAN-HABLS"]}
+{"id": "p_weight", "kind": "paraphrase", "query": "how heavy would I feel standing on the frozen planet?", "ref_docs": ["PLN-KV"]}
+{"id": "p_oceanmoon", "kind": "paraphrase", "query": "which moon has a confirmed ocean under its crust?", "ref_docs": ["PLN-TP", "HIS-HED"]}
+{"id": "p_whybasin", "kind": "paraphrase", "query": "why was the station built in that crater?", "ref_docs": ["PLN-KV"]}
+{"id": "p_life", "kind": "paraphrase", "query": "possible signs of life in the ice samples", "ref_docs": ["LOG-ODY03-41", "MSN-ODY03"]}
+{"id": "p_radmoon", "kind": "paraphrase", "query": "how dangerous is the radiation on the ocean moon?", "ref_docs": ["PLN-TP", "MSN-ODY05"]}
+{"id": "p_money", "kind": "paraphrase", "query": "the money problem that pushed back a mission", "ref_docs": ["MSN-ODY03", "HIS-HED"]}
+{"id": "p_cave", "kind": "paraphrase", "query": "lander destroyed when an underground cave caved in", "ref_docs": ["RPT-CI-SEIS", "PLN-CI", "HIS-HED"]}
+{"id": "p_outside", "kind": "paraphrase", "query": "how long can astronauts stay outside on the ocean moon?", "ref_docs": ["PLN-TP", "MSN-ODY05"]}
+{"id": "p_shaking", "kind": "paraphrase", "query": "the drill is shaking a lot, what should I do?", "ref_docs": ["MAN-RD440"]}
+{"id": "p_hot", "kind": "paraphrase", "query": "how hot does it get on the volcanic planet?", "ref_docs": ["PLN-CI"]}
+{"id": "d_anmdepth", "kind": "distractor", "query": "depth of the 0.37 Hz signal source", "ref_docs": ["RPT-ANM0042"]}
+{"id": "d_kiln2cycle", "kind": "distractor", "query": "six hour seismic cycle recorded by Kiln-2", "ref_docs": ["RPT-CI-SEIS"]}
+{"id": "d_olddepth", "kind": "distractor", "query": "old 40 m drilling depth limit", "ref_docs": ["MAN-RD440"]}
+{"id": "d_landingice", "kind": "distractor", "query": "ice thickness at Halvorsen Basin", "ref_docs": ["PLN-KV"]}
+{"id": "d_launchcmdr", "kind": "distractor", "query": "who commanded Meridian at launch?", "ref_docs": ["CRW-ODY03", "MSN-ODY03"]}
+{"id": "d_tpice", "kind": "distractor", "query": "ice crust thickness at the poles of the ocean moon", "ref_docs": ["PLN-TP"]}
+{"id": "m_ody05_risk", "kind": "mission_id", "query": "ODY-05 risk class", "ref_docs": ["MSN-ODY05"]}
+{"id": "m_ody04_landers", "kind": "mission_id", "query": "ODY-04 lander status", "ref_docs": ["PLN-CI", "RPT-CI-SEIS"]}
+{"id": "m_ody03_obj", "kind": "mission_id", "query": "ODY-03 objectives", "ref_docs": ["MSN-ODY03"]}
+{"id": "m_ody01", "kind": "mission_id", "query": "ODY-01", "ref_docs": ["HIS-HED", "PLN-CI"]}

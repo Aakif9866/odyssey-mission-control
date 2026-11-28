@@ -1,0 +1,36 @@
+name: Feedback export
+# Weekly: pull thumbs-down answers from the prod DB into an eval set and score them (reference-free judges).
+# Download the artifact, write references for real failures, move them into golden_rag.jsonl.
+on:
+  workflow_dispatch:
+  schedule: [{ cron: "0 6 * * 1" }]
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: backend } }
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+      GEN_BASE_URL: https://api.groq.com/openai/v1
+      GEN_MODEL: openai/gpt-oss-120b
+      JUDGE_BASE_URL: https://api.deepseek.com
+      JUDGE_MODEL: deepseek-flash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - uses: actions/cache@v4
+        with:
+          path: backend/.models
+          key: fastembed-${{ hashFiles('backend/app/store.py', 'backend/app/config.py') }}
+      - run: uv sync --frozen
+      - run: uv run python -m evals.pull_feedback
+      - name: Score feedback cases
+        run: |
+          if [ -s evals/golden_feedback.jsonl ]; then
+            uv run python -m app.ingest --reset
+            DATABASE_URL= uv run python -m evals.rag_eval --set feedback --tag feedback --mode hybrid_rerank
+          fi
+      - uses: actions/upload-artifact@v4
+        with: { name: feedback-cases, path: "backend/evals/golden_feedback.jsonl\nbackend/evals/results/feedback.json", if-no-files-found: ignore }

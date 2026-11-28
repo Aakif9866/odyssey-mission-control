@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Bot, Clock, Coins, CornerDownLeft, FileText, Send, Sparkles } from "lucide-react";
-import { Badge, Button, Card, Empty, ErrorNote, PageHeader, Spinner } from "@/components/ui";
+import { Badge, Button, Card, Empty, ErrorNote, Feedback, PageHeader, Spinner } from "@/components/ui";
 import { post } from "@/lib/api";
 import { usePrefill } from "@/lib/prefill";
 
@@ -70,6 +70,7 @@ export default function Assistant() {
                           <span className="flex items-center gap-1"><Clock size={11} />{t.r.llm.ms}ms</span>
                           <span>{t.r.llm.in + t.r.llm.out} tok</span>
                           <span className="flex items-center gap-1"><Coins size={11} />${t.r.llm.cost.toFixed(5)}</span>
+                          {t.r.request_id && <Feedback refId={t.r.request_id} question={t.q} answer={t.r.answer} />}
                         </span>
                       </div>
                     </>

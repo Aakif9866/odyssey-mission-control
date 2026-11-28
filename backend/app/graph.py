@@ -1,5 +1,5 @@
 """Odyssey investigation workflow (LangGraph). Diagram + state table: WORKFLOW.md."""
-import json, operator, sqlite3, time
+import json, operator, os, sqlite3, time
 from functools import wraps
 from typing import Annotated, Literal, TypedDict
 from langgraph.checkpoint.sqlite import SqliteSaver
@@ -264,5 +264,18 @@ def build(checkpointer=None):
     return g.compile(checkpointer=checkpointer)
 
 
-_conn = sqlite3.connect(STATE / "checkpoints.sqlite", check_same_thread=False)
-GRAPH = build(SqliteSaver(_conn))  # checkpoints survive restarts; resume by thread_id
+def _checkpointer():
+    """Postgres (Neon) when DATABASE_URL is set: paused runs survive redeploys/cold starts. Else a local SQLite file."""
+    if url := os.getenv("DATABASE_URL"):
+        from langgraph.checkpoint.postgres import PostgresSaver
+        from psycopg.rows import dict_row
+        from psycopg_pool import ConnectionPool
+        pool = ConnectionPool(url, min_size=1, max_size=4, open=True, check=ConnectionPool.check_connection,
+                              kwargs={"autocommit": True, "prepare_threshold": 0, "row_factory": dict_row})
+        saver = PostgresSaver(pool)
+        saver.setup()  # idempotent migrations
+        return saver
+    return SqliteSaver(sqlite3.connect(STATE / "checkpoints.sqlite", check_same_thread=False))
+
+
+GRAPH = build(_checkpointer())  # resume by thread_id

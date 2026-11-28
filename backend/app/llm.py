@@ -3,17 +3,38 @@ Generator calls fall back to the judge provider (DeepSeek) if Groq errors or tim
 import json, logging, re, time
 from openai import BadRequestError, OpenAI, RateLimitError
 from pydantic import BaseModel, ValidationError
-from app.config import GEN, JUDGE
+from app import obs
+from app.config import GEN, JUDGE, MAX_LLM_CALLS
 
 log = logging.getLogger("llm")
 CALLS: list[dict] = []  # ponytail: in-memory call log, capped; move to a trace store/DB at scale
 _clients = {"gen": OpenAI(api_key=GEN["api_key"], base_url=GEN["base_url"], timeout=30, max_retries=2),
             "judge": OpenAI(api_key=JUDGE["api_key"], base_url=JUDGE["base_url"], timeout=60, max_retries=2)}
+if obs.TRACING:  # every completion becomes a LangSmith child run (inputs/outputs redacted by obs' client)
+    from langsmith.wrappers import wrap_openai
+    _clients = {k: wrap_openai(v) for k, v in _clients.items()}
 _models = {"gen": GEN["model"], "judge": JUDGE["model"]}
 # USD per 1M tokens (input, output), list prices; used for cost estimates only
 PRICES = {"openai/gpt-oss-120b": (0.15, 0.60), "openai/gpt-oss-20b": (0.075, 0.30), "deepseek-flash": (0.30, 1.20)}
 FAST_MODEL = "openai/gpt-oss-20b"  # routing, rewriting, guard checks
 FALLBACK = True  # evals set False: a silent provider switch would mislabel the experiment
+
+
+class BudgetExceeded(RuntimeError):  # RuntimeError: LangGraph's RetryPolicy won't retry it
+    pass
+
+
+def _spend():
+    """Max LLM calls per API request: backstop against loops/retry storms (graph MAX_STEPS bounds the happy path)."""
+    b = obs.llm_budget.get()
+    if b is not None:
+        b[0] += 1
+        if b[0] > MAX_LLM_CALLS:
+            raise BudgetExceeded(f"run exceeded {MAX_LLM_CALLS} LLM calls")
+
+
+def _fail(tag, role, model, e):
+    obs.record_call({"tag": tag, "role": role, "model": model, "error": f"{type(e).__name__}: {str(e)[:200]}", "ts": time.time()})
 
 
 def cost(model: str, tin: int, tout: int) -> float:
@@ -40,7 +61,10 @@ def chat(messages: list[dict], role: str = "gen", schema: type[BaseModel] | None
                 wait = float(m.group(1)) if (m := re.search(r"try again in ([\d.]+)s", str(e))) else 2 ** attempt
                 log.warning("rate limited on %s, waiting %.1fs", model, wait + 0.5)
                 time.sleep(wait + 0.5)
+    except BudgetExceeded:
+        raise
     except Exception as e:
+        _fail(tag, role, model, e)
         if role != "gen" or not FALLBACK:
             raise
         log.warning("gen provider failed (%s: %s); falling back to %s", type(e).__name__, e, _models["judge"])
@@ -57,6 +81,7 @@ def _call(role, model, messages, schema, max_tokens, tag, kw):
         kw["response_format"] = {"type": "json_object"}
         messages = messages + [{"role": "system", "content": "Respond ONLY with a JSON object matching this JSON schema:\n"
                                 + json.dumps(_strict(schema.model_json_schema()))}]
+    _spend()
     t = time.perf_counter()
     r = _clients[role].chat.completions.create(model=model, messages=messages, max_tokens=max_tokens, **kw)
     ms = round((time.perf_counter() - t) * 1000)
@@ -65,6 +90,7 @@ def _call(role, model, messages, schema, max_tokens, tag, kw):
            "cost": round(cost(model, u.prompt_tokens, u.completion_tokens), 6), "ts": time.time()}
     CALLS.append(rec)
     del CALLS[:-2000]
+    obs.record_call(rec)
     log.info("%s", rec)
     text = r.choices[0].message.content or ""
     return schema.model_validate(json.loads(text)) if schema else text
@@ -86,6 +112,7 @@ def _strict(s: dict) -> dict:
 def chat_tools(messages: list[dict], tools: list[dict], tag: str = "agent", max_tokens: int = 1200) -> dict:
     """One tool-calling turn (native OpenAI-format tools). Returns the assistant message as a dict."""
     model = _models["gen"]
+    _spend()
     for attempt in range(6):
         try:
             t = time.perf_counter()
@@ -94,16 +121,23 @@ def chat_tools(messages: list[dict], tools: list[dict], tag: str = "agent", max_
             break
         except RateLimitError as e:
             if attempt == 5:
+                _fail(tag, "gen", model, e)
                 raise
             m = re.search(r"try again in ([\d.]+)s", str(e))
             time.sleep((float(m.group(1)) if m else 2 ** attempt) + 0.5)
         except BadRequestError as e:  # Groq validates tool args server-side; a resample usually produces valid args
             if "tool call validation failed" not in str(e) or attempt >= 2:
+                _fail(tag, "gen", model, e)
                 raise
+        except Exception as e:
+            _fail(tag, "gen", model, e)
+            raise
             log.warning("invalid tool-call args, resampling: %s", str(e)[:160])
     u, msg = r.usage, r.choices[0].message
-    CALLS.append({"tag": tag, "role": "gen", "model": model, "ms": round((time.perf_counter() - t) * 1000),
-                  "in": u.prompt_tokens, "out": u.completion_tokens, "cost": round(cost(model, u.prompt_tokens, u.completion_tokens), 6), "ts": time.time()})
+    rec = {"tag": tag, "role": "gen", "model": model, "ms": round((time.perf_counter() - t) * 1000),
+           "in": u.prompt_tokens, "out": u.completion_tokens, "cost": round(cost(model, u.prompt_tokens, u.completion_tokens), 6), "ts": time.time()}
+    CALLS.append(rec)
+    obs.record_call(rec)
     out = {"role": "assistant", "content": msg.content or ""}
     if msg.tool_calls:
         out["tool_calls"] = [{"id": tc.id, "type": "function", "function": {"name": tc.function.name, "arguments": tc.function.arguments}}

@@ -222,5 +222,37 @@ Spaced review: CONCEPTS.md on Day 3 and Day 7 (15 min each).
 
 ---
 
+## v2 Production Hardening (timebox: 2 weeks, starting 2026-11-28)
+Rules: 1–4 are must-haves, 5–7 are nice-to-haves. Keep applying with the live version and update resume bullets as each item ships.
+
+**Must-haves**
+- [ ] 1. Bigger eval sets: 100+ RAG/retrieval cases (from 19 / 43), ~25 agent trajectories (from 9)
+- [ ] 2. Tracing + PII redaction: every run traced (LangSmith or Langfuse), tagged with commit SHA, PII stripped
+- [ ] 3. Metrics dashboard from traces: p50/p95 latency, tokens + cost per query, retrieval hit rate, error rate
+- [ ] 4. Alerts: Discord/email on error-rate or latency spike. Verify with a broken key
+
+**Nice-to-haves**
+- [ ] 5. Cost/abuse guardrails: per-user rate limit, token budget, max LLM calls per run
+- [ ] 6. Auth + Postgres checkpointer: swap SQLite for Neon so runs survive redeploys
+- [ ] 7. Feedback loop: thumbs up/down in UI, bad answers auto-added to the eval set
+
+Target bullet: "...0.95 hit@3 over 120 queries, p95 latency X s, $Y per query, with CI and alerting catching regressions."
+
+**Progress log (2026-11-28): all 7 built; 15/15 pytest; frontend lint + build clean; local smoke tests pass**
+- 1: golden sets 71 RAG / 74 retrieval / 26 agent (+ `test_golden_labels`). Retrieval over **138 queries: hit@3 0.978** (hybrid_rerank_minilm, 729 ms); bge 1.000 at 7.5 s. RAG + agent eval re-run was in progress → `evals/results/v2_hybrid_rerank.json`, `agent_eval.json`
+- 2: `app/obs.py` (commit SHA, PII `redact`, LangSmith global client with hide_inputs/outputs, wrap_openai)
+- 3: `app/db.py` (SQLite ↔ Postgres), `requests` + `llm_calls` tables, `/metrics` rewrite, Telemetry tiles + latency chart
+- 4: `app/alerts.py` (SMTP; error-rate / p95 / fallback; 30-min DB cooldown). Verified with broken keys → fired once
+- 5: `auth.limits` (10 req/min, 200k tokens/day), `llm._spend` (15 LLM calls/run → 429). Verified live
+- 6: `app/auth.py` (Neon Auth JWT via JWKS), PostgresSaver when `DATABASE_URL` set, `/signin` page, `vercel.json` routes `/api/auth/*` to Next
+- 7: `POST /feedback`, thumbs in Assistant + Investigations, `evals/pull_feedback.py`, `rag_eval --set feedback`, `.github/workflows/feedback.yml`
+
+**Next:**
+1. Triage RAG/agent eval failures (label vs bug), re-baseline `THRESHOLDS` + default `RAG_RESULTS` → `v2_hybrid_rerank.json`
+2. Needs keys from user: `LANGSMITH_API_KEY` (check redacted trace), SMTP vars (`python -m app.alerts --test`), Neon `DATABASE_URL` + Neon Auth vars (restart-survives-resume, sign-in, 401)
+3. Set the same on Vercel + GitHub secrets; tick boxes; fill the resume bullet with real p95 / $/query
+
+---
+
 ## Parking lot (ideas for after today)
 -

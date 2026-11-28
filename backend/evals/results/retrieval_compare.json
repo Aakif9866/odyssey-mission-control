@@ -1,78 +1,78 @@
 {
   "k": 3,
-  "n_queries": 43,
+  "n_queries": 138,
   "table": [
     {
       "method": "dense",
-      "hit": 0.837,
-      "mrr": 0.764,
-      "ctx_precision": 0.75,
-      "ctx_recall": 0.771,
-      "latency_ms": 9,
+      "hit": 0.884,
+      "mrr": 0.827,
+      "ctx_precision": 0.812,
+      "ctx_recall": 0.804,
+      "latency_ms": 5,
       "hit_by_kind": {
-        "code": 0.67,
-        "name": 0.75,
-        "paraphrase": 0.86,
+        "code": 0.75,
+        "name": 0.83,
+        "paraphrase": 0.95,
         "distractor": 1.0,
         "mission_id": 0.75,
-        "rag_question": 0.94
+        "rag_question": 0.92
       }
     },
     {
       "method": "bm25",
-      "hit": 0.907,
-      "mrr": 0.857,
-      "ctx_precision": 0.837,
-      "ctx_recall": 0.868,
-      "latency_ms": 2,
+      "hit": 0.949,
+      "mrr": 0.906,
+      "ctx_precision": 0.886,
+      "ctx_recall": 0.908,
+      "latency_ms": 0,
       "hit_by_kind": {
         "code": 1.0,
         "name": 1.0,
-        "paraphrase": 0.71,
-        "distractor": 0.67,
-        "mission_id": 0.75,
-        "rag_question": 1.0
+        "paraphrase": 0.81,
+        "distractor": 0.89,
+        "mission_id": 0.88,
+        "rag_question": 0.98
       }
     },
     {
       "method": "hybrid",
-      "hit": 0.953,
-      "mrr": 0.826,
-      "ctx_precision": 0.82,
-      "ctx_recall": 0.895,
-      "latency_ms": 9,
+      "hit": 0.964,
+      "mrr": 0.902,
+      "ctx_precision": 0.894,
+      "ctx_recall": 0.912,
+      "latency_ms": 5,
       "hit_by_kind": {
         "code": 1.0,
         "name": 1.0,
-        "paraphrase": 0.86,
+        "paraphrase": 0.9,
         "distractor": 1.0,
         "mission_id": 0.75,
-        "rag_question": 1.0
+        "rag_question": 0.98
       }
     },
     {
       "method": "hybrid_rerank_minilm",
-      "hit": 0.953,
-      "mrr": 0.903,
-      "ctx_precision": 0.891,
-      "ctx_recall": 0.903,
-      "latency_ms": 938,
+      "hit": 0.978,
+      "mrr": 0.925,
+      "ctx_precision": 0.909,
+      "ctx_recall": 0.922,
+      "latency_ms": 729,
       "hit_by_kind": {
         "code": 1.0,
         "name": 1.0,
-        "paraphrase": 0.86,
+        "paraphrase": 0.95,
         "distractor": 1.0,
-        "mission_id": 0.75,
-        "rag_question": 1.0
+        "mission_id": 0.88,
+        "rag_question": 0.98
       }
     },
     {
       "method": "hybrid_rerank_bge",
       "hit": 1,
-      "mrr": 0.953,
-      "ctx_precision": 0.938,
-      "ctx_recall": 0.977,
-      "latency_ms": 8249,
+      "mrr": 0.965,
+      "ctx_precision": 0.948,
+      "ctx_recall": 0.975,
+      "latency_ms": 7551,
       "hit_by_kind": {
         "code": 1.0,
         "name": 1.0,
@@ -84,18 +84,18 @@
     },
     {
       "method": "multi_query",
-      "hit": 0.953,
-      "mrr": 0.903,
-      "ctx_precision": 0.891,
-      "ctx_recall": 0.903,
-      "latency_ms": 2093,
+      "hit": 0.978,
+      "mrr": 0.925,
+      "ctx_precision": 0.909,
+      "ctx_recall": 0.922,
+      "latency_ms": 2781,
       "hit_by_kind": {
         "code": 1.0,
         "name": 1.0,
-        "paraphrase": 0.86,
+        "paraphrase": 0.95,
         "distractor": 1.0,
-        "mission_id": 0.75,
-        "rag_question": 1.0
+        "mission_id": 0.88,
+        "rag_question": 0.98
       }
     }
   ],
@@ -118,8 +118,8 @@
         "MSN-ODY03"
       ],
       "hybrid": [
-        "MAN-HABLS",
         "LOG-ODY03-41",
+        "MAN-HABLS",
         "MSN-ODY03"
       ],
       "hybrid_rerank_minilm": [
@@ -489,8 +489,8 @@
       ],
       "hybrid": [
         "MSN-ODY03",
-        "PLN-TP",
-        "RPT-CI-SEIS"
+        "RPT-CI-SEIS",
+        "PLN-TP"
       ],
       "hybrid_rerank_minilm": [
         "HIS-HED",
@@ -715,7 +715,7 @@
       "hybrid": [
         "PLN-KV",
         "PLN-KV",
-        "PLN-TP"
+        "RPT-ANM0042"
       ],
       "hybrid_rerank_minilm": [
         "PLN-KV",
@@ -766,7 +766,7 @@
       "multi_query": [
         "PLN-KV",
         "PLN-CI",
-        "RPT-CI-SEIS"
+        "PLN-KV"
       ]
     },
     "p_icethick": {
@@ -1105,6 +1105,1760 @@
         "LOG-ODY03-41"
       ]
     },
+    "r_e104": {
+      "query": "E-104",
+      "kind": "code",
+      "ref": [
+        "MAN-HABLS"
+      ],
+      "dense": [
+        "MSN-ODY05",
+        "MSN-ODY03",
+        "MAN-HABLS"
+      ],
+      "bm25": [
+        "MAN-HABLS",
+        "LOG-ODY03-41"
+      ],
+      "hybrid": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "PLN-CI"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "CRW-ODY03"
+      ],
+      "multi_query": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "PLN-CI"
+      ]
+    },
+    "r_e217": {
+      "query": "E-217",
+      "kind": "code",
+      "ref": [
+        "MAN-HABLS",
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "LOG-ODY03-41",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "MAN-HABLS",
+        "LOG-ODY03-41"
+      ],
+      "hybrid": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-HABLS",
+        "HIS-HED",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "HIS-HED"
+      ],
+      "multi_query": [
+        "MAN-HABLS",
+        "HIS-HED",
+        "LOG-ODY03-41"
+      ]
+    },
+    "r_v11": {
+      "query": "V-11",
+      "kind": "code",
+      "ref": [
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "LOG-ODY03-41",
+        "MAN-HABLS",
+        "MAN-RD440"
+      ],
+      "bm25": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "hybrid": [
+        "LOG-ODY03-41",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ]
+    },
+    "r_anm": {
+      "query": "ANM-0042",
+      "kind": "code",
+      "ref": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "LOG-ODY03-41",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "RPT-ANM0042"
+      ],
+      "hybrid": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_bge": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "RPT-ANM0042"
+      ],
+      "multi_query": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "RPT-ANM0042"
+      ]
+    },
+    "r_bh2": {
+      "query": "BH-2 borehole",
+      "kind": "code",
+      "ref": [
+        "LOG-ODY03-41",
+        "MAN-RD440",
+        "MSN-ODY03"
+      ],
+      "dense": [
+        "LOG-ODY03-41",
+        "MAN-RD440",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "MAN-RD440"
+      ],
+      "hybrid": [
+        "LOG-ODY03-41",
+        "MSN-ODY03",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_bge": [
+        "LOG-ODY03-41",
+        "MSN-ODY03",
+        "MAN-RD440"
+      ],
+      "multi_query": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "MAN-RD440"
+      ]
+    },
+    "r_bh1": {
+      "query": "BH-1 meltwater",
+      "kind": "code",
+      "ref": [
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "LOG-ODY03-41",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "MAN-RD440"
+      ],
+      "hybrid": [
+        "LOG-ODY03-41",
+        "MSN-ODY03",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_bge": [
+        "LOG-ODY03-41",
+        "MSN-ODY03",
+        "MAN-RD440"
+      ],
+      "multi_query": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "MAN-RD440"
+      ]
+    },
+    "r_kiln1": {
+      "query": "Kiln-1",
+      "kind": "code",
+      "ref": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "HIS-HED"
+      ],
+      "dense": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "HIS-HED"
+      ],
+      "hybrid": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "HIS-HED"
+      ],
+      "hybrid_rerank_bge": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "HIS-HED"
+      ],
+      "multi_query": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "HIS-HED"
+      ]
+    },
+    "r_s3": {
+      "query": "S3 offline",
+      "kind": "code",
+      "ref": [
+        "RPT-ANM0042"
+      ],
+      "dense": [
+        "MAN-HABLS",
+        "MAN-HABLS",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "RPT-ANM0042"
+      ],
+      "hybrid": [
+        "RPT-ANM0042",
+        "MAN-HABLS",
+        "MAN-HABLS"
+      ],
+      "hybrid_rerank_minilm": [
+        "RPT-ANM0042",
+        "MSN-ODY03",
+        "MAN-HABLS"
+      ],
+      "hybrid_rerank_bge": [
+        "RPT-ANM0042",
+        "MSN-ODY03",
+        "CRW-ODY03"
+      ],
+      "multi_query": [
+        "RPT-ANM0042",
+        "MSN-ODY03",
+        "MAN-HABLS"
+      ]
+    },
+    "r_037": {
+      "query": "0.37 Hz",
+      "kind": "code",
+      "ref": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "RPT-CI-SEIS"
+      ],
+      "bm25": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "RPT-CI-SEIS"
+      ],
+      "hybrid": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "RPT-CI-SEIS"
+      ],
+      "hybrid_rerank_minilm": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "RPT-CI-SEIS"
+      ],
+      "hybrid_rerank_bge": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "PLN-TP"
+      ],
+      "multi_query": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "RPT-CI-SEIS"
+      ]
+    },
+    "r_12hz": {
+      "query": "1.2 Hz",
+      "kind": "code",
+      "ref": [
+        "RPT-CI-SEIS"
+      ],
+      "dense": [
+        "RPT-ANM0042",
+        "RPT-CI-SEIS",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "RPT-CI-SEIS",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ],
+      "hybrid": [
+        "RPT-CI-SEIS",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "RPT-CI-SEIS",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "RPT-CI-SEIS",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ],
+      "multi_query": [
+        "RPT-CI-SEIS",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ]
+    },
+    "r_54sv": {
+      "query": "5.4 Sv/year",
+      "kind": "code",
+      "ref": [
+        "PLN-TP",
+        "MSN-ODY05"
+      ],
+      "dense": [
+        "RPT-ANM0042",
+        "MSN-ODY05",
+        "RPT-ANM0042"
+      ],
+      "bm25": [
+        "MSN-ODY05",
+        "PLN-TP",
+        "PLN-KV"
+      ],
+      "hybrid": [
+        "MSN-ODY05",
+        "RPT-ANM0042",
+        "PLN-KV"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "PLN-KV"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "PLN-KV"
+      ],
+      "multi_query": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "PLN-KV"
+      ]
+    },
+    "r_60kpa": {
+      "query": "60 kPa",
+      "kind": "code",
+      "ref": [
+        "MAN-HABLS"
+      ],
+      "dense": [
+        "MAN-HABLS",
+        "RPT-CI-SEIS",
+        "MSN-ODY05"
+      ],
+      "bm25": [
+        "MAN-HABLS"
+      ],
+      "hybrid": [
+        "MAN-HABLS",
+        "MAN-HABLS",
+        "RPT-CI-SEIS"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-HABLS",
+        "PLN-KV",
+        "RPT-CI-SEIS"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "PLN-TP"
+      ],
+      "multi_query": [
+        "MAN-HABLS",
+        "RPT-CI-SEIS",
+        "LOG-ODY03-41"
+      ]
+    },
+    "r_314": {
+      "query": "31.4 hours",
+      "kind": "code",
+      "ref": [
+        "PLN-KV"
+      ],
+      "dense": [
+        "RPT-ANM0042",
+        "MSN-ODY05",
+        "RPT-ANM0042"
+      ],
+      "bm25": [
+        "PLN-KV",
+        "MSN-ODY05",
+        "PLN-TP"
+      ],
+      "hybrid": [
+        "RPT-ANM0042",
+        "MSN-ODY05",
+        "PLN-KV"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-KV",
+        "RPT-ANM0042",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-KV",
+        "PLN-TP",
+        "RPT-ANM0042"
+      ],
+      "multi_query": [
+        "PLN-KV",
+        "RPT-ANM0042",
+        "MSN-ODY05"
+      ]
+    },
+    "r_ody02": {
+      "query": "ODY-02 Halcyon",
+      "kind": "code",
+      "ref": [
+        "HIS-HED",
+        "PLN-KV"
+      ],
+      "dense": [
+        "MSN-ODY05",
+        "LOG-ODY03-41",
+        "MSN-ODY05"
+      ],
+      "bm25": [
+        "PLN-KV",
+        "HIS-HED",
+        "MSN-ODY03"
+      ],
+      "hybrid": [
+        "MSN-ODY05",
+        "PLN-KV",
+        "HIS-HED"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-KV",
+        "HIS-HED",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_bge": [
+        "HIS-HED",
+        "PLN-KV",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "PLN-KV",
+        "HIS-HED",
+        "MSN-ODY03"
+      ]
+    },
+    "r_ody01": {
+      "query": "ODY-01 Firstlight",
+      "kind": "code",
+      "ref": [
+        "HIS-HED",
+        "PLN-CI"
+      ],
+      "dense": [
+        "PLN-CI",
+        "HIS-HED",
+        "RPT-ANM0042"
+      ],
+      "bm25": [
+        "PLN-CI",
+        "HIS-HED",
+        "CRW-ODY03"
+      ],
+      "hybrid": [
+        "PLN-CI",
+        "HIS-HED",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-CI",
+        "HIS-HED",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-CI",
+        "HIS-HED",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "PLN-CI",
+        "HIS-HED",
+        "MSN-ODY03"
+      ]
+    },
+    "r_tethys": {
+      "query": "Tethys Rift",
+      "kind": "name",
+      "ref": [
+        "PLN-TP",
+        "MSN-ODY05"
+      ],
+      "dense": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "PLN-TP"
+      ],
+      "bm25": [
+        "PLN-TP",
+        "PLN-TP",
+        "MSN-ODY05"
+      ],
+      "hybrid": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY05",
+        "PLN-TP",
+        "PLN-TP"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-TP",
+        "PLN-TP",
+        "MSN-ODY05"
+      ],
+      "multi_query": [
+        "MSN-ODY05",
+        "PLN-TP",
+        "PLN-TP"
+      ]
+    },
+    "r_halvorsen": {
+      "query": "Halvorsen Basin",
+      "kind": "name",
+      "ref": [
+        "PLN-KV",
+        "MSN-ODY03",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "PLN-KV",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "PLN-KV",
+        "RPT-ANM0042",
+        "MSN-ODY03"
+      ],
+      "hybrid": [
+        "PLN-KV",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-KV",
+        "RPT-ANM0042",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-KV",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "PLN-KV",
+        "RPT-ANM0042",
+        "MSN-ODY03"
+      ]
+    },
+    "r_lindqvist": {
+      "query": "Amara Lindqvist",
+      "kind": "name",
+      "ref": [
+        "MSN-ODY05"
+      ],
+      "dense": [
+        "MSN-ODY05",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "MSN-ODY05"
+      ],
+      "hybrid": [
+        "MSN-ODY05",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY05",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "MSN-ODY05",
+        "LOG-ODY03-41",
+        "CRW-ODY03"
+      ],
+      "multi_query": [
+        "MSN-ODY05",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ]
+    },
+    "r_watanabe": {
+      "query": "Kenji Watanabe",
+      "kind": "name",
+      "ref": [
+        "CRW-ODY03",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "LOG-ODY03-41",
+        "LOG-ODY03-41",
+        "RPT-CI-SEIS"
+      ],
+      "bm25": [
+        "CRW-ODY03",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ],
+      "hybrid": [
+        "LOG-ODY03-41",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "CRW-ODY03",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "CRW-ODY03",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "CRW-ODY03",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ]
+    },
+    "r_raman": {
+      "query": "Priya Raman",
+      "kind": "name",
+      "ref": [
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "PLN-TP"
+      ],
+      "bm25": [
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "hybrid": [
+        "CRW-ODY03",
+        "PLN-TP",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "CRW-ODY03",
+        "LOG-ODY03-41",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_bge": [
+        "CRW-ODY03",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "CRW-ODY03",
+        "LOG-ODY03-41",
+        "MSN-ODY05"
+      ]
+    },
+    "r_aurelia": {
+      "query": "Aurelia magnetosphere",
+      "kind": "name",
+      "ref": [
+        "PLN-TP"
+      ],
+      "dense": [
+        "PLN-TP",
+        "PLN-TP",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "PLN-TP",
+        "PLN-TP"
+      ],
+      "hybrid": [
+        "PLN-TP",
+        "PLN-TP",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-TP",
+        "PLN-TP",
+        "PLN-KV"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-TP",
+        "PLN-TP",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "PLN-TP",
+        "PLN-TP",
+        "PLN-KV"
+      ]
+    },
+    "r_station": {
+      "query": "Meridian Station",
+      "kind": "name",
+      "ref": [
+        "MSN-ODY03",
+        "PLN-KV",
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "LOG-ODY03-41",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "hybrid": [
+        "LOG-ODY03-41",
+        "MSN-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "PLN-KV"
+      ],
+      "multi_query": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ]
+    },
+    "r_zhou": {
+      "query": "Mei-Lin Zhou",
+      "kind": "name",
+      "ref": [
+        "MSN-ODY05"
+      ],
+      "dense": [
+        "MSN-ODY03",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "MSN-ODY05"
+      ],
+      "hybrid": [
+        "MSN-ODY05",
+        "MSN-ODY03",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY05",
+        "LOG-ODY03-41",
+        "RPT-CI-SEIS"
+      ],
+      "hybrid_rerank_bge": [
+        "MSN-ODY05",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "MSN-ODY05",
+        "LOG-ODY03-41",
+        "RPT-CI-SEIS"
+      ]
+    },
+    "p_air": {
+      "query": "running out of breathable oxygen in the habitat",
+      "kind": "paraphrase",
+      "ref": [
+        "MAN-HABLS"
+      ],
+      "dense": [
+        "MAN-HABLS",
+        "MAN-HABLS",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "MAN-HABLS",
+        "PLN-CI",
+        "MAN-HABLS"
+      ],
+      "hybrid": [
+        "MAN-HABLS",
+        "MAN-HABLS",
+        "PLN-CI"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-HABLS",
+        "MAN-HABLS",
+        "MAN-HABLS"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-HABLS",
+        "MAN-HABLS",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "MAN-HABLS",
+        "MAN-HABLS",
+        "MAN-HABLS"
+      ]
+    },
+    "p_meltspeed": {
+      "query": "how fast does the nuclear probe melt through the ice?",
+      "kind": "paraphrase",
+      "ref": [
+        "MSN-ODY05"
+      ],
+      "dense": [
+        "MSN-ODY05",
+        "MSN-ODY03",
+        "RPT-ANM0042"
+      ],
+      "bm25": [
+        "MSN-ODY05",
+        "MSN-ODY03",
+        "PLN-TP"
+      ],
+      "hybrid": [
+        "MSN-ODY05",
+        "MSN-ODY03",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY05",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_bge": [
+        "MSN-ODY05",
+        "LOG-ODY03-41",
+        "RPT-CI-SEIS"
+      ],
+      "multi_query": [
+        "MSN-ODY05",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ]
+    },
+    "p_takeover": {
+      "query": "who takes over if the boss gets hurt?",
+      "kind": "paraphrase",
+      "ref": [
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "CRW-ODY03",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "bm25": [],
+      "hybrid": [
+        "CRW-ODY03",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_minilm": [
+        "RPT-CI-SEIS",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_bge": [
+        "CRW-ODY03",
+        "LOG-ODY03-41",
+        "HIS-HED"
+      ],
+      "multi_query": [
+        "RPT-CI-SEIS",
+        "LOG-ODY03-41",
+        "MAN-HABLS"
+      ]
+    },
+    "p_water": {
+      "query": "the water recycler broke, what do we do?",
+      "kind": "paraphrase",
+      "ref": [
+        "MAN-HABLS"
+      ],
+      "dense": [
+        "MAN-HABLS",
+        "MAN-HABLS",
+        "MAN-RD440"
+      ],
+      "bm25": [
+        "MAN-HABLS",
+        "PLN-TP",
+        "PLN-TP"
+      ],
+      "hybrid": [
+        "MAN-HABLS",
+        "PLN-TP",
+        "MAN-HABLS"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-HABLS",
+        "MSN-ODY05",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-HABLS",
+        "MSN-ODY05",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "MAN-HABLS",
+        "MSN-ODY05",
+        "MAN-RD440"
+      ]
+    },
+    "p_weight": {
+      "query": "how heavy would I feel standing on the frozen planet?",
+      "kind": "paraphrase",
+      "ref": [
+        "PLN-KV"
+      ],
+      "dense": [
+        "PLN-KV",
+        "PLN-TP",
+        "PLN-KV"
+      ],
+      "bm25": [
+        "PLN-KV",
+        "PLN-CI",
+        "PLN-TP"
+      ],
+      "hybrid": [
+        "PLN-KV",
+        "PLN-KV",
+        "PLN-CI"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-TP",
+        "PLN-KV",
+        "PLN-KV"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-KV",
+        "PLN-KV",
+        "PLN-TP"
+      ],
+      "multi_query": [
+        "PLN-TP",
+        "PLN-KV",
+        "PLN-KV"
+      ]
+    },
+    "p_oceanmoon": {
+      "query": "which moon has a confirmed ocean under its crust?",
+      "kind": "paraphrase",
+      "ref": [
+        "PLN-TP",
+        "HIS-HED"
+      ],
+      "dense": [
+        "PLN-TP",
+        "PLN-TP",
+        "PLN-TP"
+      ],
+      "bm25": [
+        "PLN-TP",
+        "HIS-HED",
+        "PLN-TP"
+      ],
+      "hybrid": [
+        "PLN-TP",
+        "PLN-TP",
+        "PLN-TP"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-TP",
+        "PLN-KV",
+        "HIS-HED"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-TP",
+        "HIS-HED",
+        "PLN-KV"
+      ],
+      "multi_query": [
+        "PLN-TP",
+        "PLN-KV",
+        "HIS-HED"
+      ]
+    },
+    "p_whybasin": {
+      "query": "why was the station built in that crater?",
+      "kind": "paraphrase",
+      "ref": [
+        "PLN-KV"
+      ],
+      "dense": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "PLN-KV"
+      ],
+      "bm25": [
+        "LOG-ODY03-41",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "hybrid": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-KV",
+        "MSN-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-KV",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "PLN-KV",
+        "MSN-ODY03",
+        "LOG-ODY03-41"
+      ]
+    },
+    "p_life": {
+      "query": "possible signs of life in the ice samples",
+      "kind": "paraphrase",
+      "ref": [
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "dense": [
+        "RPT-ANM0042",
+        "MSN-ODY03",
+        "MAN-RD440"
+      ],
+      "bm25": [
+        "LOG-ODY03-41",
+        "LOG-ODY03-41",
+        "PLN-KV"
+      ],
+      "hybrid": [
+        "LOG-ODY03-41",
+        "MSN-ODY03",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_bge": [
+        "LOG-ODY03-41",
+        "RPT-ANM0042",
+        "MSN-ODY03"
+      ],
+      "multi_query": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ]
+    },
+    "p_radmoon": {
+      "query": "how dangerous is the radiation on the ocean moon?",
+      "kind": "paraphrase",
+      "ref": [
+        "PLN-TP",
+        "MSN-ODY05"
+      ],
+      "dense": [
+        "PLN-TP",
+        "PLN-KV",
+        "MSN-ODY05"
+      ],
+      "bm25": [
+        "PLN-TP",
+        "PLN-TP",
+        "MSN-ODY05"
+      ],
+      "hybrid": [
+        "PLN-TP",
+        "PLN-TP",
+        "PLN-KV"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-KV",
+        "PLN-TP",
+        "PLN-TP"
+      ],
+      "hybrid_rerank_bge": [
+        "MSN-ODY05",
+        "PLN-KV",
+        "PLN-TP"
+      ],
+      "multi_query": [
+        "PLN-KV",
+        "PLN-TP",
+        "PLN-TP"
+      ]
+    },
+    "p_money": {
+      "query": "the money problem that pushed back a mission",
+      "kind": "paraphrase",
+      "ref": [
+        "MSN-ODY03",
+        "HIS-HED"
+      ],
+      "dense": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "MSN-ODY05"
+      ],
+      "bm25": [
+        "PLN-CI",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "hybrid": [
+        "MSN-ODY03",
+        "MSN-ODY05",
+        "PLN-CI"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY05",
+        "MSN-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "MSN-ODY05",
+        "MSN-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "MSN-ODY05",
+        "MSN-ODY03",
+        "LOG-ODY03-41"
+      ]
+    },
+    "p_cave": {
+      "query": "lander destroyed when an underground cave caved in",
+      "kind": "paraphrase",
+      "ref": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "HIS-HED"
+      ],
+      "dense": [
+        "RPT-CI-SEIS",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "bm25": [
+        "PLN-CI",
+        "MSN-ODY05",
+        "RPT-CI-SEIS"
+      ],
+      "hybrid": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_minilm": [
+        "RPT-CI-SEIS",
+        "MSN-ODY05",
+        "PLN-CI"
+      ],
+      "hybrid_rerank_bge": [
+        "RPT-CI-SEIS",
+        "MSN-ODY05",
+        "PLN-CI"
+      ],
+      "multi_query": [
+        "RPT-CI-SEIS",
+        "MSN-ODY05",
+        "PLN-CI"
+      ]
+    },
+    "p_outside": {
+      "query": "how long can astronauts stay outside on the ocean moon?",
+      "kind": "paraphrase",
+      "ref": [
+        "PLN-TP",
+        "MSN-ODY05"
+      ],
+      "dense": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "PLN-TP"
+      ],
+      "bm25": [
+        "PLN-TP",
+        "MAN-HABLS",
+        "PLN-TP"
+      ],
+      "hybrid": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "PLN-TP"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-HABLS",
+        "MSN-ODY05",
+        "PLN-TP"
+      ],
+      "multi_query": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "PLN-TP"
+      ]
+    },
+    "p_shaking": {
+      "query": "the drill is shaking a lot, what should I do?",
+      "kind": "paraphrase",
+      "ref": [
+        "MAN-RD440"
+      ],
+      "dense": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "RPT-CI-SEIS"
+      ],
+      "bm25": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "hybrid": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-RD440",
+        "PLN-KV",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_bge": [
+        "RPT-ANM0042",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "multi_query": [
+        "MAN-RD440",
+        "PLN-KV",
+        "MAN-RD440"
+      ]
+    },
+    "p_hot": {
+      "query": "how hot does it get on the volcanic planet?",
+      "kind": "paraphrase",
+      "ref": [
+        "PLN-CI"
+      ],
+      "dense": [
+        "PLN-CI",
+        "PLN-TP",
+        "PLN-CI"
+      ],
+      "bm25": [
+        "PLN-CI",
+        "PLN-CI",
+        "PLN-KV"
+      ],
+      "hybrid": [
+        "PLN-CI",
+        "PLN-CI",
+        "PLN-TP"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-CI",
+        "PLN-TP",
+        "PLN-KV"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-CI",
+        "PLN-KV",
+        "PLN-KV"
+      ],
+      "multi_query": [
+        "PLN-CI",
+        "PLN-TP",
+        "PLN-KV"
+      ]
+    },
+    "d_anmdepth": {
+      "query": "depth of the 0.37 Hz signal source",
+      "kind": "distractor",
+      "ref": [
+        "RPT-ANM0042"
+      ],
+      "dense": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ],
+      "hybrid": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_bge": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ],
+      "multi_query": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ]
+    },
+    "d_kiln2cycle": {
+      "query": "six hour seismic cycle recorded by Kiln-2",
+      "kind": "distractor",
+      "ref": [
+        "RPT-CI-SEIS"
+      ],
+      "dense": [
+        "RPT-CI-SEIS",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "RPT-CI-SEIS",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid": [
+        "RPT-CI-SEIS",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "RPT-CI-SEIS",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "RPT-CI-SEIS",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "RPT-CI-SEIS",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ]
+    },
+    "d_olddepth": {
+      "query": "old 40 m drilling depth limit",
+      "kind": "distractor",
+      "ref": [
+        "MAN-RD440"
+      ],
+      "dense": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "RPT-ANM0042"
+      ],
+      "bm25": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "RPT-ANM0042"
+      ],
+      "hybrid": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "RPT-ANM0042"
+      ],
+      "multi_query": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "RPT-ANM0042"
+      ]
+    },
+    "d_landingice": {
+      "query": "ice thickness at Halvorsen Basin",
+      "kind": "distractor",
+      "ref": [
+        "PLN-KV"
+      ],
+      "dense": [
+        "PLN-KV",
+        "RPT-ANM0042",
+        "MSN-ODY05"
+      ],
+      "bm25": [
+        "PLN-KV",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ],
+      "hybrid": [
+        "PLN-KV",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-KV",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-KV",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ],
+      "multi_query": [
+        "PLN-KV",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ]
+    },
+    "d_launchcmdr": {
+      "query": "who commanded Meridian at launch?",
+      "kind": "distractor",
+      "ref": [
+        "CRW-ODY03",
+        "MSN-ODY03"
+      ],
+      "dense": [
+        "MSN-ODY03",
+        "MSN-ODY03",
+        "CRW-ODY03"
+      ],
+      "bm25": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "MSN-ODY03"
+      ],
+      "hybrid": [
+        "MSN-ODY03",
+        "MSN-ODY03",
+        "CRW-ODY03"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY03",
+        "MSN-ODY03",
+        "CRW-ODY03"
+      ],
+      "hybrid_rerank_bge": [
+        "CRW-ODY03",
+        "MSN-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "MSN-ODY03",
+        "MSN-ODY03",
+        "CRW-ODY03"
+      ]
+    },
+    "d_tpice": {
+      "query": "ice crust thickness at the poles of the ocean moon",
+      "kind": "distractor",
+      "ref": [
+        "PLN-TP"
+      ],
+      "dense": [
+        "PLN-TP",
+        "PLN-KV",
+        "MSN-ODY05"
+      ],
+      "bm25": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "PLN-TP"
+      ],
+      "hybrid": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "PLN-KV"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-TP",
+        "PLN-KV",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-TP",
+        "PLN-KV",
+        "MSN-ODY05"
+      ],
+      "multi_query": [
+        "PLN-TP",
+        "PLN-KV",
+        "MSN-ODY05"
+      ]
+    },
+    "m_ody05_risk": {
+      "query": "ODY-05 risk class",
+      "kind": "mission_id",
+      "ref": [
+        "MSN-ODY05"
+      ],
+      "dense": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY05"
+      ],
+      "bm25": [
+        "MSN-ODY05",
+        "MSN-ODY03",
+        "MSN-ODY03"
+      ],
+      "hybrid": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY03",
+        "MSN-ODY03",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_bge": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY05"
+      ],
+      "multi_query": [
+        "MSN-ODY03",
+        "MSN-ODY03",
+        "MSN-ODY05"
+      ]
+    },
+    "m_ody04_landers": {
+      "query": "ODY-04 lander status",
+      "kind": "mission_id",
+      "ref": [
+        "PLN-CI",
+        "RPT-CI-SEIS"
+      ],
+      "dense": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "MSN-ODY03",
+        "PLN-CI",
+        "RPT-CI-SEIS"
+      ],
+      "hybrid": [
+        "MSN-ODY03",
+        "MSN-ODY05",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-CI",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-CI",
+        "RPT-CI-SEIS",
+        "HIS-HED"
+      ],
+      "multi_query": [
+        "PLN-CI",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ]
+    },
+    "m_ody03_obj": {
+      "query": "ODY-03 objectives",
+      "kind": "mission_id",
+      "ref": [
+        "MSN-ODY03"
+      ],
+      "dense": [
+        "MSN-ODY03",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "MSN-ODY03",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "hybrid": [
+        "MSN-ODY03",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY03",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_bge": [
+        "MSN-ODY03",
+        "MSN-ODY03",
+        "MSN-ODY05"
+      ],
+      "multi_query": [
+        "MSN-ODY03",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ]
+    },
+    "m_ody01": {
+      "query": "ODY-01",
+      "kind": "mission_id",
+      "ref": [
+        "HIS-HED",
+        "PLN-CI"
+      ],
+      "dense": [
+        "PLN-CI",
+        "RPT-ANM0042",
+        "HIS-HED"
+      ],
+      "bm25": [
+        "HIS-HED",
+        "CRW-ODY03",
+        "MSN-ODY05"
+      ],
+      "hybrid": [
+        "HIS-HED",
+        "PLN-CI",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-CI",
+        "MSN-ODY03",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-CI",
+        "HIS-HED",
+        "CRW-ODY03"
+      ],
+      "multi_query": [
+        "PLN-CI",
+        "MSN-ODY03",
+        "MSN-ODY05"
+      ]
+    },
     "e217": {
       "query": "What should the crew do when error E-217 appears?",
       "kind": "rag_question",
@@ -1196,8 +2950,8 @@
         "LOG-ODY03-41"
       ],
       "hybrid": [
-        "CRW-ODY03",
         "MSN-ODY03",
+        "CRW-ODY03",
         "LOG-ODY03-41"
       ],
       "hybrid_rerank_minilm": [
@@ -1234,9 +2988,9 @@
         "RPT-ANM0042"
       ],
       "hybrid": [
-        "LOG-ODY03-41",
         "RPT-ANM0042",
-        "RPT-ANM0042"
+        "LOG-ODY03-41",
+        "RPT-CI-SEIS"
       ],
       "hybrid_rerank_minilm": [
         "RPT-ANM0042",
@@ -1347,8 +3101,8 @@
       ],
       "hybrid": [
         "MSN-ODY05",
-        "PLN-TP",
-        "MSN-ODY05"
+        "MSN-ODY05",
+        "PLN-TP"
       ],
       "hybrid_rerank_minilm": [
         "MSN-ODY05",
@@ -1701,6 +3455,1795 @@
         "RPT-CI-SEIS",
         "RPT-ANM0042",
         "PLN-CI"
+      ]
+    },
+    "commander_by_id": {
+      "query": "Who currently commands ODY-03?",
+      "kind": "rag_question",
+      "ref": [
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "MSN-ODY05"
+      ],
+      "bm25": [
+        "CRW-ODY03",
+        "RPT-ANM0042",
+        "MSN-ODY03"
+      ],
+      "hybrid": [
+        "CRW-ODY03",
+        "MSN-ODY03",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_bge": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "MSN-ODY05"
+      ]
+    },
+    "e104": {
+      "query": "What should be done when error E-104 appears in the habitat?",
+      "kind": "rag_question",
+      "ref": [
+        "MAN-HABLS"
+      ],
+      "dense": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "MSN-ODY05"
+      ],
+      "bm25": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "MAN-HABLS"
+      ],
+      "hybrid": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "MAN-HABLS"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-HABLS",
+        "MAN-HABLS",
+        "MAN-HABLS"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "MAN-HABLS"
+      ],
+      "multi_query": [
+        "MAN-HABLS",
+        "MAN-HABLS",
+        "MAN-HABLS"
+      ]
+    },
+    "e309": {
+      "query": "How long does the stored water reserve last after error E-309?",
+      "kind": "rag_question",
+      "ref": [
+        "MAN-HABLS"
+      ],
+      "dense": [
+        "MAN-HABLS",
+        "MSN-ODY05",
+        "RPT-ANM0042"
+      ],
+      "bm25": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "PLN-TP"
+      ],
+      "hybrid": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-HABLS",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "RPT-CI-SEIS"
+      ],
+      "multi_query": [
+        "MAN-HABLS",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ]
+    },
+    "e412": {
+      "query": "At what thermal loop pressure must a habitat module be evacuated?",
+      "kind": "rag_question",
+      "ref": [
+        "MAN-HABLS"
+      ],
+      "dense": [
+        "MAN-HABLS",
+        "RPT-ANM0042",
+        "PLN-TP"
+      ],
+      "bm25": [
+        "MAN-HABLS",
+        "MAN-HABLS",
+        "MAN-HABLS"
+      ],
+      "hybrid": [
+        "MAN-HABLS",
+        "MAN-HABLS",
+        "MAN-HABLS"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-HABLS",
+        "MAN-HABLS",
+        "MAN-HABLS"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "multi_query": [
+        "MAN-HABLS",
+        "MAN-HABLS",
+        "MAN-HABLS"
+      ]
+    },
+    "v20": {
+      "query": "What is the procedure for RD-440 warning V-20?",
+      "kind": "rag_question",
+      "ref": [
+        "MAN-RD440"
+      ],
+      "dense": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "RPT-ANM0042"
+      ],
+      "bm25": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "hybrid": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ]
+    },
+    "hedops7": {
+      "query": "What does protocol HED-OPS-7 specify?",
+      "kind": "rag_question",
+      "ref": [
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "HIS-HED",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "CRW-ODY03",
+        "LOG-ODY03-41",
+        "HIS-HED"
+      ],
+      "hybrid": [
+        "HIS-HED",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "LOG-ODY03-41",
+        "MSN-ODY03",
+        "HIS-HED"
+      ],
+      "hybrid_rerank_bge": [
+        "CRW-ODY03",
+        "LOG-ODY03-41",
+        "HIS-HED"
+      ],
+      "multi_query": [
+        "LOG-ODY03-41",
+        "MSN-ODY03",
+        "HIS-HED"
+      ]
+    },
+    "cb9x": {
+      "query": "Which drill bit type must currently be used on the RD-440?",
+      "kind": "rag_question",
+      "ref": [
+        "MAN-RD440"
+      ],
+      "dense": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "bm25": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MSN-ODY03"
+      ],
+      "hybrid": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "multi_query": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-RD440"
+      ]
+    },
+    "rpm_current": {
+      "query": "What is the current maximum rotation speed of the RD-440?",
+      "kind": "rag_question",
+      "ref": [
+        "MAN-RD440"
+      ],
+      "dense": [
+        "MAN-RD440",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ],
+      "bm25": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "hybrid": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-RD440"
+      ]
+    },
+    "depth_warm": {
+      "query": "What is the RD-440's maximum drilling depth in ice warmer than -130 \u00b0C?",
+      "kind": "rag_question",
+      "ref": [
+        "MAN-RD440"
+      ],
+      "dense": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "bm25": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "hybrid": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ]
+    },
+    "v1_status": {
+      "query": "Is version 1 of the RD-440 manual still valid?",
+      "kind": "rag_question",
+      "ref": [
+        "MAN-RD440"
+      ],
+      "dense": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "LOG-ODY03-41",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "hybrid": [
+        "MAN-RD440",
+        "LOG-ODY03-41",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "multi_query": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ]
+    },
+    "v2_why": {
+      "query": "Why was revision v2 of the RD-440 manual issued?",
+      "kind": "rag_question",
+      "ref": [
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-HABLS"
+      ],
+      "bm25": [
+        "LOG-ODY03-41",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "hybrid": [
+        "MAN-RD440",
+        "LOG-ODY03-41",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-RD440",
+        "LOG-ODY03-41",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-RD440",
+        "LOG-ODY03-41",
+        "MAN-RD440"
+      ],
+      "multi_query": [
+        "MAN-RD440",
+        "LOG-ODY03-41",
+        "MAN-RD440"
+      ]
+    },
+    "bh2_limits": {
+      "query": "Would the 38 m depth reached in BH-2 be allowed under the current RD-440 manual?",
+      "kind": "rag_question",
+      "ref": [
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "LOG-ODY03-41",
+        "RPT-ANM0042",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "LOG-ODY03-41",
+        "MAN-RD440",
+        "MSN-ODY03"
+      ],
+      "hybrid": [
+        "LOG-ODY03-41",
+        "MSN-ODY03",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_minilm": [
+        "LOG-ODY03-41",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_bge": [
+        "LOG-ODY03-41",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "multi_query": [
+        "LOG-ODY03-41",
+        "MAN-RD440",
+        "MAN-RD440"
+      ]
+    },
+    "e217_deadline": {
+      "query": "Did the crew meet the manual's deadline when handling error E-217 on Sol 44?",
+      "kind": "rag_question",
+      "ref": [
+        "LOG-ODY03-41",
+        "MAN-HABLS"
+      ],
+      "dense": [
+        "LOG-ODY03-41",
+        "MSN-ODY05",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "LOG-ODY03-41",
+        "MAN-HABLS",
+        "LOG-ODY03-41"
+      ],
+      "hybrid": [
+        "LOG-ODY03-41",
+        "LOG-ODY03-41",
+        "MAN-HABLS"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "LOG-ODY03-41",
+        "MAN-HABLS",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "MAN-HABLS",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ]
+    },
+    "drill_approval": {
+      "query": "Does drilling BH-2 deeper than 25 m in very cold ice need anyone's approval?",
+      "kind": "rag_question",
+      "ref": [
+        "MSN-ODY03",
+        "MAN-RD440"
+      ],
+      "dense": [
+        "MAN-RD440",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "bm25": [
+        "MSN-ODY03",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "hybrid": [
+        "MAN-RD440",
+        "MSN-ODY03",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_minilm": [
+        "MAN-RD440",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_bge": [
+        "MAN-RD440",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ],
+      "multi_query": [
+        "MAN-RD440",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ]
+    },
+    "radiation_compare": {
+      "query": "How does the surface radiation dose on Kepler-Vex compare with Thalassa Prime?",
+      "kind": "rag_question",
+      "ref": [
+        "PLN-KV",
+        "PLN-TP"
+      ],
+      "dense": [
+        "PLN-TP",
+        "PLN-KV",
+        "PLN-KV"
+      ],
+      "bm25": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "PLN-KV"
+      ],
+      "hybrid": [
+        "PLN-TP",
+        "PLN-KV",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "PLN-KV"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "PLN-KV"
+      ],
+      "multi_query": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "PLN-KV"
+      ]
+    },
+    "first_crewed": {
+      "query": "What was the first crewed HED mission and where did it go?",
+      "kind": "rag_question",
+      "ref": [
+        "HIS-HED",
+        "PLN-CI"
+      ],
+      "dense": [
+        "HIS-HED",
+        "PLN-CI",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "PLN-CI",
+        "HIS-HED",
+        "CRW-ODY03"
+      ],
+      "hybrid": [
+        "HIS-HED",
+        "PLN-CI",
+        "CRW-ODY03"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-CI",
+        "HIS-HED",
+        "PLN-TP"
+      ],
+      "hybrid_rerank_bge": [
+        "HIS-HED",
+        "PLN-CI",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "PLN-CI",
+        "HIS-HED",
+        "PLN-TP"
+      ]
+    },
+    "halcyon": {
+      "query": "What did the ODY-02 Halcyon survey find?",
+      "kind": "rag_question",
+      "ref": [
+        "HIS-HED",
+        "PLN-KV"
+      ],
+      "dense": [
+        "MSN-ODY03",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "PLN-KV",
+        "HIS-HED",
+        "MSN-ODY03"
+      ],
+      "hybrid": [
+        "MSN-ODY03",
+        "PLN-KV",
+        "HIS-HED"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-KV",
+        "HIS-HED",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_bge": [
+        "HIS-HED",
+        "PLN-KV",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "PLN-KV",
+        "HIS-HED",
+        "RPT-ANM0042"
+      ]
+    },
+    "original_commander": {
+      "query": "Who was the original commander of ODY-03 Meridian?",
+      "kind": "rag_question",
+      "ref": [
+        "CRW-ODY03",
+        "MSN-ODY03"
+      ],
+      "dense": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "LOG-ODY03-41",
+        "CRW-ODY03",
+        "MSN-ODY03"
+      ],
+      "hybrid": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_bge": [
+        "CRW-ODY03",
+        "MSN-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "MSN-ODY05"
+      ]
+    },
+    "okafor_sol46": {
+      "query": "What happened to Cdr. Okafor-Reyes on Sol 46?",
+      "kind": "rag_question",
+      "ref": [
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "LOG-ODY03-41",
+        "MSN-ODY03",
+        "CRW-ODY03"
+      ],
+      "bm25": [
+        "LOG-ODY03-41",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "hybrid": [
+        "LOG-ODY03-41",
+        "CRW-ODY03",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_minilm": [
+        "LOG-ODY03-41",
+        "CRW-ODY03",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_bge": [
+        "LOG-ODY03-41",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "LOG-ODY03-41",
+        "CRW-ODY03",
+        "MSN-ODY03"
+      ]
+    },
+    "acting_commander": {
+      "query": "Is Imani Okafor-Reyes still in command of Meridian Station?",
+      "kind": "rag_question",
+      "ref": [
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "hybrid": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "CRW-ODY03"
+      ],
+      "hybrid_rerank_bge": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "CRW-ODY03"
+      ]
+    },
+    "second_in_command": {
+      "query": "Who is the second-in-command on the Meridian crew roster?",
+      "kind": "rag_question",
+      "ref": [
+        "CRW-ODY03"
+      ],
+      "dense": [
+        "CRW-ODY03",
+        "MSN-ODY03",
+        "MSN-ODY05"
+      ],
+      "bm25": [
+        "CRW-ODY03",
+        "MSN-ODY03",
+        "MSN-ODY05"
+      ],
+      "hybrid": [
+        "CRW-ODY03",
+        "MSN-ODY03",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_minilm": [
+        "CRW-ODY03",
+        "MSN-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "CRW-ODY03",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "multi_query": [
+        "CRW-ODY03",
+        "MSN-ODY03",
+        "LOG-ODY03-41"
+      ]
+    },
+    "drill_lead": {
+      "query": "Who leads drilling operations on Meridian?",
+      "kind": "rag_question",
+      "ref": [
+        "CRW-ODY03"
+      ],
+      "dense": [
+        "MSN-ODY03",
+        "MSN-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "CRW-ODY03",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "hybrid": [
+        "CRW-ODY03",
+        "MSN-ODY03",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "CRW-ODY03",
+        "MSN-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ]
+    },
+    "seismo_owner": {
+      "query": "Which Meridian crew member is responsible for the seismometer array?",
+      "kind": "rag_question",
+      "ref": [
+        "CRW-ODY03"
+      ],
+      "dense": [
+        "LOG-ODY03-41",
+        "LOG-ODY03-41",
+        "CRW-ODY03"
+      ],
+      "bm25": [
+        "CRW-ODY03",
+        "MSN-ODY03",
+        "MAN-HABLS"
+      ],
+      "hybrid": [
+        "CRW-ODY03",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "CRW-ODY03",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "multi_query": [
+        "MSN-ODY03",
+        "CRW-ODY03",
+        "LOG-ODY03-41"
+      ]
+    },
+    "anm_period": {
+      "query": "How did the period of anomaly ANM-0042 change?",
+      "kind": "rag_question",
+      "ref": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "dense": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "RPT-ANM0042"
+      ],
+      "bm25": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_minilm": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ],
+      "multi_query": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ]
+    },
+    "anm_depth": {
+      "query": "At what depth is the source of ANM-0042 estimated to be?",
+      "kind": "rag_question",
+      "ref": [
+        "RPT-ANM0042"
+      ],
+      "dense": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ],
+      "bm25": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_minilm": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_bge": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "RPT-ANM0042"
+      ]
+    },
+    "anm_sensors": {
+      "query": "Which seismometers recorded the ANM-0042 signal?",
+      "kind": "rag_question",
+      "ref": [
+        "RPT-ANM0042"
+      ],
+      "dense": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "RPT-ANM0042",
+        "LOG-ODY03-41",
+        "RPT-ANM0042"
+      ],
+      "multi_query": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ]
+    },
+    "anm_least": {
+      "query": "What is the least likely hypothesis for ANM-0042, and why?",
+      "kind": "rag_question",
+      "ref": [
+        "RPT-ANM0042"
+      ],
+      "dense": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "RPT-ANM0042"
+      ],
+      "hybrid": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_bge": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "RPT-ANM0042",
+        "RPT-ANM0042",
+        "RPT-ANM0042"
+      ]
+    },
+    "cinder_cycle": {
+      "query": "How often do seismic events cluster on Cinder, and what drives them?",
+      "kind": "rag_question",
+      "ref": [
+        "RPT-CI-SEIS"
+      ],
+      "dense": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "RPT-ANM0042"
+      ],
+      "bm25": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "PLN-CI"
+      ],
+      "hybrid": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_minilm": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "PLN-CI"
+      ],
+      "hybrid_rerank_bge": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "PLN-CI"
+      ],
+      "multi_query": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "PLN-CI"
+      ]
+    },
+    "cinder_mag": {
+      "query": "What is the largest seismic magnitude recorded by Kiln-2?",
+      "kind": "rag_question",
+      "ref": [
+        "RPT-CI-SEIS"
+      ],
+      "dense": [
+        "RPT-CI-SEIS",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "RPT-CI-SEIS",
+        "RPT-ANM0042",
+        "PLN-CI"
+      ],
+      "hybrid": [
+        "RPT-CI-SEIS",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "RPT-CI-SEIS",
+        "RPT-ANM0042",
+        "PLN-CI"
+      ],
+      "hybrid_rerank_bge": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "RPT-CI-SEIS",
+        "RPT-ANM0042",
+        "PLN-CI"
+      ]
+    },
+    "kiln2_ops": {
+      "query": "Since when has Kiln-2 been operating, and how does it stay safe?",
+      "kind": "rag_question",
+      "ref": [
+        "RPT-CI-SEIS"
+      ],
+      "dense": [
+        "RPT-CI-SEIS",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "bm25": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "MAN-HABLS"
+      ],
+      "hybrid": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_minilm": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_bge": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "HIS-HED"
+      ],
+      "multi_query": [
+        "RPT-CI-SEIS",
+        "PLN-CI",
+        "RPT-ANM0042"
+      ]
+    },
+    "ody04_landers": {
+      "query": "What landers does the ODY-04 Ember mission use?",
+      "kind": "rag_question",
+      "ref": [
+        "PLN-CI"
+      ],
+      "dense": [
+        "PLN-CI",
+        "MSN-ODY03",
+        "MSN-ODY05"
+      ],
+      "bm25": [
+        "PLN-CI",
+        "HIS-HED",
+        "RPT-CI-SEIS"
+      ],
+      "hybrid": [
+        "PLN-CI",
+        "MSN-ODY03",
+        "HIS-HED"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-CI",
+        "MSN-ODY05",
+        "HIS-HED"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-CI",
+        "RPT-CI-SEIS",
+        "HIS-HED"
+      ],
+      "multi_query": [
+        "PLN-CI",
+        "MSN-ODY05",
+        "HIS-HED"
+      ]
+    },
+    "cinder_temp": {
+      "query": "What is the average dayside surface temperature on Cinder?",
+      "kind": "rag_question",
+      "ref": [
+        "PLN-CI"
+      ],
+      "dense": [
+        "PLN-CI",
+        "RPT-CI-SEIS",
+        "PLN-CI"
+      ],
+      "bm25": [
+        "PLN-CI",
+        "PLN-TP",
+        "PLN-CI"
+      ],
+      "hybrid": [
+        "PLN-CI",
+        "RPT-CI-SEIS",
+        "PLN-TP"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-CI",
+        "RPT-CI-SEIS",
+        "PLN-TP"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-CI",
+        "RPT-CI-SEIS",
+        "PLN-TP"
+      ],
+      "multi_query": [
+        "PLN-CI",
+        "RPT-CI-SEIS",
+        "PLN-TP"
+      ]
+    },
+    "kv_gravity": {
+      "query": "What is the surface gravity of Kepler-Vex?",
+      "kind": "rag_question",
+      "ref": [
+        "PLN-KV"
+      ],
+      "dense": [
+        "PLN-KV",
+        "PLN-KV",
+        "PLN-KV"
+      ],
+      "bm25": [
+        "PLN-KV",
+        "PLN-KV",
+        "PLN-TP"
+      ],
+      "hybrid": [
+        "PLN-KV",
+        "PLN-KV",
+        "PLN-KV"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-KV",
+        "PLN-KV",
+        "PLN-KV"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-KV",
+        "PLN-KV",
+        "PLN-KV"
+      ],
+      "multi_query": [
+        "PLN-KV",
+        "PLN-KV",
+        "PLN-KV"
+      ]
+    },
+    "kv_sol": {
+      "query": "How long is a sol on Kepler-Vex?",
+      "kind": "rag_question",
+      "ref": [
+        "PLN-KV"
+      ],
+      "dense": [
+        "PLN-KV",
+        "RPT-ANM0042",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "PLN-KV",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ],
+      "hybrid": [
+        "PLN-KV",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-KV",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-KV",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "PLN-KV",
+        "RPT-ANM0042",
+        "LOG-ODY03-41"
+      ]
+    },
+    "kv_shell": {
+      "query": "How thick is the ice shell of Kepler-Vex?",
+      "kind": "rag_question",
+      "ref": [
+        "PLN-KV"
+      ],
+      "dense": [
+        "PLN-KV",
+        "PLN-KV",
+        "PLN-KV"
+      ],
+      "bm25": [
+        "PLN-KV",
+        "MSN-ODY03",
+        "RPT-ANM0042"
+      ],
+      "hybrid": [
+        "PLN-KV",
+        "PLN-KV",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-KV",
+        "MSN-ODY03",
+        "PLN-KV"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-KV",
+        "PLN-KV",
+        "PLN-KV"
+      ],
+      "multi_query": [
+        "PLN-KV",
+        "MSN-ODY03",
+        "PLN-KV"
+      ]
+    },
+    "halvorsen_why": {
+      "query": "Why was Halvorsen Basin chosen as the site of Meridian Station?",
+      "kind": "rag_question",
+      "ref": [
+        "PLN-KV"
+      ],
+      "dense": [
+        "PLN-KV",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "PLN-KV",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "hybrid": [
+        "PLN-KV",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-KV",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-KV",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "multi_query": [
+        "PLN-KV",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ]
+    },
+    "kv_atmosphere": {
+      "query": "What is the atmosphere of Kepler-Vex like?",
+      "kind": "rag_question",
+      "ref": [
+        "PLN-KV"
+      ],
+      "dense": [
+        "PLN-KV",
+        "PLN-KV",
+        "PLN-KV"
+      ],
+      "bm25": [
+        "RPT-ANM0042",
+        "PLN-KV",
+        "PLN-KV"
+      ],
+      "hybrid": [
+        "PLN-KV",
+        "PLN-KV",
+        "RPT-ANM0042"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-KV",
+        "PLN-KV",
+        "PLN-KV"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-KV",
+        "PLN-KV",
+        "PLN-KV"
+      ],
+      "multi_query": [
+        "PLN-KV",
+        "PLN-KV",
+        "PLN-KV"
+      ]
+    },
+    "carbide_cold": {
+      "query": "Why are carbide drill bits a problem on Kepler-Vex?",
+      "kind": "rag_question",
+      "ref": [
+        "PLN-KV"
+      ],
+      "dense": [
+        "PLN-KV",
+        "RPT-ANM0042",
+        "RPT-ANM0042"
+      ],
+      "bm25": [
+        "PLN-KV",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "hybrid": [
+        "PLN-KV",
+        "MAN-RD440",
+        "MAN-RD440"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-KV",
+        "MAN-RD440",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-KV",
+        "MAN-RD440",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "PLN-KV",
+        "MAN-RD440",
+        "MSN-ODY03"
+      ]
+    },
+    "tp_parent": {
+      "query": "What body does Thalassa Prime orbit?",
+      "kind": "rag_question",
+      "ref": [
+        "PLN-TP"
+      ],
+      "dense": [
+        "PLN-TP",
+        "PLN-TP",
+        "PLN-TP"
+      ],
+      "bm25": [
+        "PLN-TP",
+        "HIS-HED",
+        "PLN-TP"
+      ],
+      "hybrid": [
+        "PLN-TP",
+        "PLN-TP",
+        "HIS-HED"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-TP",
+        "PLN-TP",
+        "PLN-TP"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-TP",
+        "PLN-TP",
+        "HIS-HED"
+      ],
+      "multi_query": [
+        "PLN-TP",
+        "PLN-TP",
+        "PLN-TP"
+      ]
+    },
+    "tp_ocean": {
+      "query": "When and how was Thalassa Prime's ocean confirmed?",
+      "kind": "rag_question",
+      "ref": [
+        "PLN-TP",
+        "HIS-HED"
+      ],
+      "dense": [
+        "PLN-TP",
+        "PLN-TP",
+        "PLN-TP"
+      ],
+      "bm25": [
+        "PLN-TP",
+        "HIS-HED",
+        "PLN-TP"
+      ],
+      "hybrid": [
+        "PLN-TP",
+        "PLN-TP",
+        "HIS-HED"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-TP",
+        "HIS-HED",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-TP",
+        "HIS-HED",
+        "PLN-TP"
+      ],
+      "multi_query": [
+        "PLN-TP",
+        "HIS-HED",
+        "MSN-ODY05"
+      ]
+    },
+    "tethys_why": {
+      "query": "Why is the Tethys Rift the best place to sample Thalassa Prime's ocean?",
+      "kind": "rag_question",
+      "ref": [
+        "PLN-TP"
+      ],
+      "dense": [
+        "PLN-TP",
+        "PLN-TP",
+        "MSN-ODY05"
+      ],
+      "bm25": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "PLN-TP"
+      ],
+      "hybrid": [
+        "PLN-TP",
+        "PLN-TP",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_minilm": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "PLN-TP"
+      ],
+      "hybrid_rerank_bge": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "PLN-TP"
+      ],
+      "multi_query": [
+        "PLN-TP",
+        "MSN-ODY05",
+        "PLN-TP"
+      ]
+    },
+    "ody05_commander": {
+      "query": "Who commands the ODY-05 Deepwater mission?",
+      "kind": "rag_question",
+      "ref": [
+        "MSN-ODY05"
+      ],
+      "dense": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY05"
+      ],
+      "bm25": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY05"
+      ],
+      "hybrid": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY05",
+        "MSN-ODY03",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_bge": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "HIS-HED"
+      ],
+      "multi_query": [
+        "MSN-ODY05",
+        "MSN-ODY03",
+        "MSN-ODY05"
+      ]
+    },
+    "ody05_launch": {
+      "query": "When is ODY-05 Deepwater planned to launch?",
+      "kind": "rag_question",
+      "ref": [
+        "MSN-ODY05"
+      ],
+      "dense": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY05"
+      ],
+      "bm25": [
+        "MSN-ODY05",
+        "HIS-HED",
+        "MSN-ODY05"
+      ],
+      "hybrid": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "HIS-HED"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_bge": [
+        "MSN-ODY05",
+        "HIS-HED",
+        "MSN-ODY05"
+      ],
+      "multi_query": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY05"
+      ]
+    },
+    "ody05_risk": {
+      "query": "What risk class is the ODY-05 mission?",
+      "kind": "rag_question",
+      "ref": [
+        "MSN-ODY05"
+      ],
+      "dense": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY05"
+      ],
+      "bm25": [
+        "MSN-ODY05",
+        "MSN-ODY03",
+        "MSN-ODY03"
+      ],
+      "hybrid": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY03",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_bge": [
+        "MSN-ODY05",
+        "MSN-ODY05",
+        "MSN-ODY05"
+      ],
+      "multi_query": [
+        "MSN-ODY03",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ]
+    },
+    "ody03_budget": {
+      "query": "What is the budget of the ODY-03 Meridian mission?",
+      "kind": "rag_question",
+      "ref": [
+        "MSN-ODY03"
+      ],
+      "dense": [
+        "MSN-ODY03",
+        "MSN-ODY03",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "MSN-ODY03",
+        "MSN-ODY03",
+        "CRW-ODY03"
+      ],
+      "hybrid": [
+        "MSN-ODY03",
+        "MSN-ODY03",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY03",
+        "MSN-ODY03",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_bge": [
+        "MSN-ODY03",
+        "HIS-HED",
+        "MSN-ODY03"
+      ],
+      "multi_query": [
+        "MSN-ODY03",
+        "MSN-ODY03",
+        "MSN-ODY03"
+      ]
+    },
+    "ody03_boreholes": {
+      "query": "How many boreholes does the Meridian mission plan to drill?",
+      "kind": "rag_question",
+      "ref": [
+        "MSN-ODY03"
+      ],
+      "dense": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ],
+      "bm25": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "HIS-HED"
+      ],
+      "hybrid": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ],
+      "hybrid_rerank_bge": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "MSN-ODY03",
+        "LOG-ODY03-41",
+        "MSN-ODY03"
+      ]
+    },
+    "hed_founded": {
+      "query": "When was the Helios Exploration Directorate founded?",
+      "kind": "rag_question",
+      "ref": [
+        "HIS-HED"
+      ],
+      "dense": [
+        "HIS-HED",
+        "MSN-ODY03",
+        "MSN-ODY03"
+      ],
+      "bm25": [
+        "HIS-HED",
+        "MSN-ODY05",
+        "MSN-ODY03"
+      ],
+      "hybrid": [
+        "HIS-HED",
+        "MSN-ODY03",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_minilm": [
+        "HIS-HED",
+        "MSN-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "hybrid_rerank_bge": [
+        "HIS-HED",
+        "MSN-ODY03",
+        "LOG-ODY03-41"
+      ],
+      "multi_query": [
+        "HIS-HED",
+        "MSN-ODY03",
+        "LOG-ODY03-41"
+      ]
+    },
+    "director": {
+      "query": "Who is HED's Director of Exploration?",
+      "kind": "rag_question",
+      "ref": [
+        "HIS-HED",
+        "MSN-ODY03",
+        "MSN-ODY05"
+      ],
+      "dense": [
+        "HIS-HED",
+        "MSN-ODY03",
+        "MSN-ODY05"
+      ],
+      "bm25": [
+        "HIS-HED",
+        "MSN-ODY03",
+        "PLN-TP"
+      ],
+      "hybrid": [
+        "HIS-HED",
+        "MSN-ODY03",
+        "MSN-ODY05"
+      ],
+      "hybrid_rerank_minilm": [
+        "MSN-ODY03",
+        "HIS-HED",
+        "PLN-TP"
+      ],
+      "hybrid_rerank_bge": [
+        "MSN-ODY03",
+        "HIS-HED",
+        "MSN-ODY05"
+      ],
+      "multi_query": [
+        "MSN-ODY03",
+        "HIS-HED",
+        "PLN-TP"
       ]
     }
   }

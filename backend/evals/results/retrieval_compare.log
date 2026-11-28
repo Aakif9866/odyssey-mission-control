@@ -1,7 +1,10 @@
-warning: `VIRTUAL_ENV=/Users/shaikyasin/.pyenv/versions/3.10.13` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
-dense                  hit@3=0.897 mrr=0.825 recall=0.799 prec=0.821     5ms  {'code': 1.0, 'name': 0.75, 'paraphrase': 0.71, 'distractor': 1.0, 'rag_question': 0.94}
-bm25                   hit@3=0.923 mrr=0.893 recall=0.880 prec=0.872     0ms  {'code': 1.0, 'name': 1.0, 'paraphrase': 0.71, 'distractor': 0.67, 'rag_question': 1.0}
-hybrid                 hit@3=0.949 mrr=0.876 recall=0.885 prec=0.870     5ms  {'code': 1.0, 'name': 1.0, 'paraphrase': 0.71, 'distractor': 1.0, 'rag_question': 1.0}
-hybrid_rerank_minilm   hit@3=0.974 mrr=0.944 recall=0.940 prec=0.932   688ms  {'code': 1.0, 'name': 1.0, 'paraphrase': 0.86, 'distractor': 1.0, 'rag_question': 1.0}
-hybrid_rerank_bge      hit@3=1.000 mrr=0.970 recall=0.987 prec=0.953  6402ms  {'code': 1.0, 'name': 1.0, 'paraphrase': 1.0, 'distractor': 1.0, 'rag_question': 1.0}
-multi_query            hit@3=1.000 mrr=0.970 recall=0.987 prec=0.944  6949ms  {'code': 1.0, 'name': 1.0, 'paraphrase': 1.0, 'distractor': 1.0, 'rag_question': 1.0}
+gen provider failed (BadRequestError: Error code: 400 - Parsing failed. The model generated output that could not be parsed. Please adjust your prompt. See 'failed_generation' for more details.); falling back to deepseek-flash
+gen provider failed (BadRequestError: Error code: 400 - Parsing failed. The model generated output that could not be parsed. Please adjust your prompt. See 'failed_generation' for more details.); falling back to deepseek-flash
+gen provider failed (BadRequestError: Error code: 400 - Parsing failed. The model generated output that could not be parsed. Please adjust your prompt. See 'failed_generation' for more details.); falling back to deepseek-flash
+gen provider failed (BadRequestError: Error code: 400 - Parsing failed. The model generated output that could not be parsed. Please adjust your prompt. See 'failed_generation' for more details.); falling back to deepseek-flash
+dense                  hit@3=0.884 mrr=0.827 recall=0.804 prec=0.812     5ms  {'code': 0.75, 'name': 0.83, 'paraphrase': 0.95, 'distractor': 1.0, 'mission_id': 0.75, 'rag_question': 0.92}
+bm25                   hit@3=0.949 mrr=0.906 recall=0.908 prec=0.886     0ms  {'code': 1.0, 'name': 1.0, 'paraphrase': 0.81, 'distractor': 0.89, 'mission_id': 0.88, 'rag_question': 0.98}
+hybrid                 hit@3=0.964 mrr=0.902 recall=0.912 prec=0.894     5ms  {'code': 1.0, 'name': 1.0, 'paraphrase': 0.9, 'distractor': 1.0, 'mission_id': 0.75, 'rag_question': 0.98}
+hybrid_rerank_minilm   hit@3=0.978 mrr=0.925 recall=0.922 prec=0.909   729ms  {'code': 1.0, 'name': 1.0, 'paraphrase': 0.95, 'distractor': 1.0, 'mission_id': 0.88, 'rag_question': 0.98}
+hybrid_rerank_bge      hit@3=1.000 mrr=0.965 recall=0.975 prec=0.948  7551ms  {'code': 1.0, 'name': 1.0, 'paraphrase': 1.0, 'distractor': 1.0, 'mission_id': 1.0, 'rag_question': 1.0}
+multi_query            hit@3=0.978 mrr=0.925 recall=0.922 prec=0.909  2781ms  {'code': 1.0, 'name': 1.0, 'paraphrase': 0.95, 'distractor': 1.0, 'mission_id': 0.88, 'rag_question': 0.98}

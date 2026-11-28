@@ -25,25 +25,29 @@ def run_case(case, k, mode, model):
     t = time.perf_counter()
     r = answer(case["question"], k=k, mode=mode, model=model)
     ms = round((time.perf_counter() - t) * 1000)
-    unanswerable = not case["ref_docs"]
+    unlabeled = case.get("reference") is None  # user feedback awaiting a human-written reference
+    unanswerable = case.get("ref_docs") == []
     ctx = build_context(r["chunks"])
     ids = [c["doc_id"] for c in r["chunks"]]
     out = {"id": case["id"], "category": case["category"], "question": case["question"], "reference": case["reference"],
            "answer": r["answer"], "citations": r["citations"], "answerable": r["answerable"], "retrieved": ids,
            "bad_citations": r["bad_citations"], "latency_ms": ms, "llm": r["llm"],
            "contexts": [c["text"] for c in r["chunks"]]}
-    out["retrieval"] = None if unanswerable else retrieval_metrics(ids, case["ref_docs"])
+    out["retrieval"] = None if unanswerable or unlabeled else retrieval_metrics(ids, case["ref_docs"])
     v = {}
-    if unanswerable:  # correctness = did it refuse? (code check, no judge needed)
+    if unlabeled:
+        pass  # reference-free judges only (relevance, groundedness)
+    elif unanswerable:  # correctness = did it refuse? (code check, no judge needed)
         v["correctness"] = {"passed": not r["answerable"], "explanation": "expects answerable=false"}
     else:
         v["correctness"] = judge("correctness", question=case["question"], answer=r["answer"], reference=case["reference"]).model_dump()
         v["retrieval_relevance"] = judge("retrieval_relevance", question=case["question"], context=ctx).model_dump()
     v["relevance"] = judge("relevance", question=case["question"], answer=r["answer"]).model_dump()
     v["groundedness"] = judge("groundedness", answer=r["answer"], context=ctx).model_dump()
-    v["concision"] = {"passed": concise(r["answer"], case["reference"]), "explanation": f"{len(r['answer'])} vs ref {len(case['reference'])} chars"}
+    if not unlabeled:
+        v["concision"] = {"passed": concise(r["answer"], case["reference"]), "explanation": f"{len(r['answer'])} vs ref {len(case['reference'])} chars"}
     out["verdicts"] = v
-    out["passed"] = all(x["passed"] for m, x in v.items() if m in ("correctness", "groundedness"))
+    out["passed"] = all(x["passed"] for m, x in v.items() if m in (("relevance", "groundedness") if unlabeled else ("correctness", "groundedness")))
     return out
 
 
@@ -54,7 +58,7 @@ def summarize(cases):
     ret = [c["retrieval"] for c in cases if c["retrieval"]]
     lat = sorted(c["latency_ms"] for c in cases)
     s = {m: rate(m) for m in ("correctness", "relevance", "groundedness", "retrieval_relevance", "concision")}
-    s |= {f"{m}": round(statistics.mean(r[m] for r in ret), 3) for m in ("hit", "mrr", "ctx_precision", "ctx_recall")}
+    s |= {f"{m}": round(statistics.mean(r[m] for r in ret), 3) if ret else None for m in ("hit", "mrr", "ctx_precision", "ctx_recall")}
     s |= {"pass_rate": round(sum(c["passed"] for c in cases) / len(cases), 3),
           "latency_p50_ms": lat[len(lat) // 2], "latency_p95_ms": lat[min(len(lat) - 1, int(len(lat) * 0.95))],
           "gen_tokens": sum(c["llm"]["in"] + c["llm"]["out"] for c in cases),
@@ -73,9 +77,10 @@ def main():
     ap.add_argument("--mode", default="dense")
     ap.add_argument("--model", default=None)
     ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--set", default="rag", choices=["rag", "feedback"], help="feedback = thumbs-down cases from evals.pull_feedback")
     a = ap.parse_args()
     llm.FALLBACK = False
-    cases = load()
+    cases = load("golden_feedback.jsonl" if a.set == "feedback" else "golden_rag.jsonl")
     n0 = len(CALLS)
     with ThreadPoolExecutor(a.workers) as ex:
         results = list(ex.map(lambda c: run_case(c, a.k, a.mode, a.model), cases))

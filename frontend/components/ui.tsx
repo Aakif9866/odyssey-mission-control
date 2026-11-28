@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useState, type ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
-  Activity, BookOpen, Bot, Database, FileText, FlaskConical, GitBranch, Gauge, Menu, Orbit, Radar, Search, X,
+  Activity, BookOpen, Bot, Database, FileText, FlaskConical, GitBranch, Gauge, Menu, Orbit, Radar, Search, ThumbsDown, ThumbsUp, UserRound, X,
 } from "lucide-react";
 
 export const NAV: { href: string; label: string; icon: LucideIcon; tone: string; group: string }[] = [
@@ -17,6 +17,7 @@ export const NAV: { href: string; label: string; icon: LucideIcon; tone: string;
   { href: "/graph", label: "Graph & Traces", icon: GitBranch, tone: "graph", group: "Engineer" },
   { href: "/telemetry", label: "Telemetry", icon: Gauge, tone: "telemetry", group: "Engineer" },
   { href: "/learn", label: "Learn", icon: BookOpen, tone: "learn", group: "Lab" },
+  { href: "/signin", label: "Account", icon: UserRound, tone: "assistant", group: "Lab" },
 ];
 
 export function Shell({ children }: { children: ReactNode }) {
@@ -163,4 +164,32 @@ export function Empty({ icon: Icon = Database, children }: { icon?: LucideIcon; 
 export function ErrorNote({ error }: { error: string | null }) {
   if (!error) return null;
   return <p className="rounded-lg border border-danger/40 bg-danger/10 px-3 py-2 text-sm text-danger">⚠ {error.includes("fetch") ? "Backend unreachable. Start it: cd backend && uv run uvicorn app.api:app --port 8000" : error}</p>;
+}
+
+/** Thumbs up/down on an answer → POST /feedback. Thumbs-down rows feed evals/pull_feedback.py (the eval set grows from real failures). */
+export function Feedback({ refId, question, answer }: { refId: string; question: string; answer: string }) {
+  const [sent, setSent] = useState<"up" | "down" | null>(null);
+  const [err, setErr] = useState<string | null>(null);
+  async function rate(rating: "up" | "down") {
+    try {
+      const { post } = await import("@/lib/api");
+      await post("/feedback", { ref_id: refId, rating, question, answer });
+      setSent(rating); setErr(null);
+    } catch (e) { setErr(String(e)); }
+  }
+  return (
+    <span className="inline-flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
+      {(["up", "down"] as const).map((r) => {
+        const Icon = r === "up" ? ThumbsUp : ThumbsDown;
+        return (
+          <span key={r} role="button" tabIndex={0} aria-label={r === "up" ? "Good answer" : "Bad answer"} aria-pressed={sent === r}
+            onClick={() => !sent && rate(r)} onKeyDown={(e) => e.key === "Enter" && !sent && rate(r)}
+            className={`grid size-7 place-items-center rounded-md transition-colors ${sent === r ? "text-[var(--c)]" : sent ? "opacity-30" : "cursor-pointer text-muted hover:text-heading"}`}>
+            <Icon size={13} />
+          </span>
+        );
+      })}
+      {err && <span className="font-mono text-[10px] text-danger">{err.slice(0, 60)}</span>}
+    </span>
+  );
 }

@@ -31,6 +31,21 @@ def test_guards_deterministic():
     assert kept == [] and flags
 
 
+def test_golden_labels():
+    """Every ref_doc exists in the corpus, ids are unique, agent tools exist: catches label typos for free."""
+    from app.chunking import parse_front_matter
+    from app.config import CORPUS_DIR
+    from app.tools import REGISTRY
+    from evals.rag_eval import load
+    corpus = {parse_front_matter(p.read_text())[0]["doc_id"] for p in CORPUS_DIR.glob("*.md")}
+    for name in ("golden_rag.jsonl", "golden_retrieval.jsonl", "golden_agent.jsonl"):
+        cases = load(name)
+        assert len({c["id"] for c in cases}) == len(cases), f"duplicate id in {name}"
+        for c in cases:
+            assert set(c.get("ref_docs") or []) <= corpus, f"{name}:{c['id']} unknown ref_docs"
+            assert set(c.get("tools_all", [])) <= set(REGISTRY), f"{name}:{c['id']} unknown tool"
+
+
 # Default: the committed production-config run. CI's eval job points RAG_RESULTS at its fresh run.
 @pytest.mark.parametrize("name,file", [("rag", os.getenv("RAG_RESULTS", "hybrid_rerank_v2.json")), ("agent", "agent_eval.json")])
 def test_regression_gate(name, file):

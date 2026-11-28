@@ -11,7 +11,7 @@ A 6-hour hands-on AI engineering crash course, taught **in this Claude chat**, b
 - **One frontend** (`frontend/`, Next.js 16): the Lab's parts (Retrieval Lab, Evals, Graph & Traces, Telemetry, Learn) live inside Odyssey's UI as an "Engineer/Lab" section. No second app.
 - **Modules (7):** M1 RAG · M2 LLM Eval · M3 LangGraph + Agent Harness · M4 Advanced RAG · M5 Agent Eval · M6 Guardrails + AI Safety · M7 Integration + Production. The timeline is in `CHECKLIST.md`.
 - **Odyssey backend first**, with the frontend last (M7). Every module ends with something runnable from the CLI/pytest.
-- No auth, payments, or SaaS features. Qdrant runs as a Docker server (`QDRANT_URL`); unset = embedded (single process).
+- No payments or SaaS features. v2 (2026-11-28) added Neon Auth sign-in + per-user limits; both are off when their env vars are unset (local dev, CI). Qdrant runs as a Docker server (`QDRANT_URL`); unset = embedded (single process).
 
 ## Teaching loop (per topic)
 1. **Concept** in ≤10 lines: what it is, why it exists, the data flow (ASCII diagram if helpful).
